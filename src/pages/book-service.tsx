@@ -1,15 +1,27 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 import { Input, TextArea, Select } from "../components/Input";
 import { CheckCircle } from "lucide-react";
 import SEO from "@/components/Seo";
-
+import { useSearchParams } from "next/navigation";
 export default function BookService() {
+  const [userFromPricing, setUserFromPricing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
+  const searchParams = useSearchParams();
 
+  const distance = searchParams.get("distance");
+  const vehicle = searchParams.get("vehicle");
+  const price = searchParams.get("price");
+  const source = searchParams.get("source");
+
+  useEffect(() => {
+    if (source === "pricing") {
+      setUserFromPricing(true);
+    }
+  }, []);
   const [formData, setFormData] = useState({
     parentName: "",
     arrivalType: "Airport",
@@ -36,7 +48,12 @@ export default function BookService() {
     const message = `
   🟢 *New Care2Home Booking Request*
   
-  👴 Parent Name: ${formData.parentName}
+   *Selected Plan*
+   • Distance Range: ${distance ? `${distance} km` : "Not selected"}
+   • Vehicle Type: ${vehicle ? vehicle.toUpperCase() : "Not selected"}
+   • Estimated Fare: ${price ? `₹${price}` : "To be confirmed"}
+  
+   👴 Parent Name: ${formData.parentName}
   🚏 Arrival Type: ${formData.arrivalType}
   ✈️/🚆 Flight/Train No: ${formData.flightTrainNumber}
   📅 Arrival Date: ${formData.arrivalDate}
@@ -47,10 +64,11 @@ export default function BookService() {
   
   🩺 Special Needs:
   ${formData.specialNeeds || "None"}
-  
+   
   📞 Booking Phone: ${formData.bookingPhone}
   📧 Email: ${formData.bookingEmail || "Not provided"}
   🚨 Emergency Contact: ${formData.emergencyContact}
+
   `;
 
     const encodedMessage = encodeURIComponent(message);
@@ -94,12 +112,6 @@ export default function BookService() {
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
-        <SEO
-          title="Book Parent Pickup & Assisted Travel Care | Care2Home"
-          description="Book safe pickup, drop, and assisted travel care for parents and elderly family members with Care2Home. Verified care companions, doorstep pickup, and reliable support you can trust."
-          canonical="https://www.care2home.co/book-service"
-        />
-
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -133,7 +145,21 @@ export default function BookService() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
+      <SEO
+        title="Book Parent Pickup & Assisted Travel Care | Care2Home"
+        description="Book safe pickup, drop, and assisted travel care for parents and elderly family members with Care2Home. Verified care companions, doorstep pickup, and reliable support you can trust."
+        canonical="https://www.care2home.co/book-service"
+      />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        {userFromPricing && (
+          <div className="mb-6 rounded-xl bg-blue-50 border border-green-600 p-4 shadow-2xl">
+            <p className="text-green-900 font-semibold">Selected Plan</p>
+            <p className="text-sm text-green-800 mt-1">
+              Distance: {distance} km • Vehicle: {vehicle?.toUpperCase()} •
+              Estimated Fare: ₹{price}
+            </p>
+          </div>
+        )}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Book Care Service
@@ -175,6 +201,7 @@ export default function BookService() {
                   options={[
                     { value: "Airport", label: "Airport" },
                     { value: "Railway", label: "Railway Station" },
+                    { value: "Bus Stand", label: "Bus Stand" },
                   ]}
                 />
 
@@ -293,7 +320,9 @@ export default function BookService() {
               className="w-full"
               size="lg"
             >
-              {isSubmitting ? "Redirecting to WhatsApp..." : "Submit & Send to WhatsApp"}
+              {isSubmitting
+                ? "Redirecting to WhatsApp..."
+                : "Submit & Send to WhatsApp"}
             </Button>
           </form>
         </Card>

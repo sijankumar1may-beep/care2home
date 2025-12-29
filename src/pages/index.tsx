@@ -1,6 +1,7 @@
 import HowItWorksSection from "@/components/howitworks";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import Link from "next/link";
 import {
   Shield,
   PhoneCall,
@@ -16,10 +17,11 @@ import {
 } from "lucide-react";
 import Safetyandtrust from "../components/safetyandtrust";
 import HeroBanner from "@/components/HeroBanner";
+import PricingModel from "@/components/PricingModel";
 import SEO from "@/components/Seo";
 export default function Home() {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/", "_blank");
+    window.open("https://wa.me/919910646415", "_blank");
   };
 
   return (
@@ -162,7 +164,7 @@ export default function Home() {
           your parent is safely home.
         </p>
       </section>
-      <section className="bg-white py-16">
+      {/* <section className="bg-white py-16">
         <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
             Simple, Transparent Pricing
@@ -266,8 +268,8 @@ export default function Home() {
             comfort.
           </p>
         </div>
-      </section>
-
+      </section> */}
+      <PricingModel/>
       <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
         <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -277,13 +279,13 @@ export default function Home() {
             Book a Care Companion today, or talk to us on WhatsApp to know more.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-50 border-0"
-            >
+          <Link
+                href="/bookservice"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-green-600 text-white text-lg font-medium hover:bg-green-700 transition"
+              >
               Book Now
-            </Button>
+            </Link>
+            <div className="flex justify-center">
             <Button
               onClick={handleWhatsApp}
               size="lg"
@@ -292,6 +294,7 @@ export default function Home() {
               <MessageCircle className="w-5 h-5 mr-2" />
               Talk on WhatsApp
             </Button>
+            </div>
           </div>
         </Card>
       </section>

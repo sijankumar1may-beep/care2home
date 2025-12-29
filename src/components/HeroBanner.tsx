@@ -86,7 +86,7 @@ const HeroBanner = () => {
               </Link>
 
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href="https://wa.me/919910646415"
                 className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 border-green-600 text-green-600 text-lg font-medium hover:bg-green-50 transition"
               >
                 Talk on WhatsApp

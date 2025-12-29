@@ -5,16 +5,25 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-const router=useRouter();
-  const isActive = (path: string) => router.pathname==path;
+  const router = useRouter();
+  const isActive = (path: string) => router.pathname == path;
 
   return (
     <nav className="bg-gray-700 shadow-sm sticky top-0 z-50 h-20 my-auto">
       <div className="mx-auto md:mx-8 px-6 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center text-center space-x-2 pt-2">
+          <Link
+            href="/"
+            className="flex items-center text-center space-x-2 pt-2"
+          >
             {/* <Heart className="w-8 h-8 text-blue-600" /> */}
-            <Image src="/care2homelogo.png" width={180} height={80} alt="logo" className="rounded-lg" />
+            <Image
+              src="/care2homelogo.png"
+              width={180}
+              height={80}
+              alt="logo"
+              className="rounded-lg"
+            />
             {/* <span className="text-xl font-semibold text-gray-900">Care2Home</span> */}
           </Link>
 
@@ -28,6 +37,16 @@ const router=useRouter();
               }`}
             >
               Home
+            </Link>
+            <Link
+              href="/pricing"
+              className={`text-base font-bold transition-colors ${
+                isActive("/pricing")
+                  ? "text-blue-600"
+                  : "text-white hover:text-blue-600"
+              }`}
+            >
+              Pricing
             </Link>
             <Link
               href="/book-service"
@@ -96,10 +115,21 @@ const router=useRouter();
               Home
             </Link>
             <Link
-              href="/bookservice"
+              href="/pricing"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 rounded-lg text-base font-medium ${
-                isActive("/bookservice")
+                isActive("/pricing")
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-white hover:bg-gray-50"
+              }`}
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/book-service"
+              onClick={() => setIsOpen(false)}
+              className={`block px-4 py-3 rounded-lg text-base font-medium ${
+                isActive("/book-service")
                   ? "bg-blue-50 text-blue-600"
                   : "text-white hover:bg-gray-50"
               }`}
