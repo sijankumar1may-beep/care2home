@@ -13,16 +13,20 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 const Footer = () => {
+  const whatsappNumber = "919910646415"; // CHANGE THIS TO YOUR WHATSAPP NUMBER
+
+  // Create WhatsApp URL
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   return (
     <>
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+      <footer className="bg-gray-700 text-white py-12">
+        <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-16 md:grid-cols-3 md:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
               <Image src="/care2homelogo.png" width={180} height={80} alt="logo" className="rounded-lg"/>
               </div>
-              <p className="text-gray-400">
+              <p className="text-white font-bold hover:text-blue-600">
                 Trusted care for parents traveling alone. Peace of mind for
                 working professionals.
               </p>
@@ -30,38 +34,59 @@ const Footer = () => {
 
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-white">
                 <li>
-                  <Link href="/" className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-blue-600 transition-colors">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-white transition-colors" href="/bookservice">
+                  <Link className="hover:text-blue-600 transition-colors" href="/book-service">
                     Book Service
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-white transition-colors" href="/terms">
+                  <Link className="hover:text-blue-600 transition-colors" href="/terms">
                     Terms & Safety
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/vision-mission">
+                    Vision & Mission
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li className="flex items-center">
+              <h4 className="font-semibold mb-4">Contact & Support</h4>
+              <ul className="space-y-2">
+              <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/contact-us">
+                    Contact us
+                  </Link>
+                </li>
+                <li className="flex items-center hover:text-blue-600">
+                <Link className="hover:text-blue-600 transition-colors flex items-center" href={`${whatsappUrl}`}>
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp Support
+                  </Link>
                 </li>
-                <li>Available for Delhi NCR</li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/about-us">
+                    About us
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/our-team">
+                    Our team
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+          <div className="border-t border-gray-800 pt-8 text-center text-white text-sm">
             <p>&copy; 2025 Care2Home. All rights reserved.</p>
           </div>
         </div>

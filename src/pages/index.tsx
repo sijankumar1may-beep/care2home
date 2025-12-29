@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Safetyandtrust from "../components/safetyandtrust";
 import HeroBanner from "@/components/HeroBanner";
+import SEO from "@/components/Seo";
 export default function Home() {
   const handleWhatsApp = () => {
     window.open("https://wa.me/", "_blank");
@@ -23,9 +24,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <SEO
+  title="Trusted Pickup & Assisted Travel Care for Parents | Care2Home"
+  description="Worried about your parents traveling alone? Care2Home offers verified care companions, safe pickup & drop, and assisted travel services so your loved ones always feel supported."
+  canonical="https://www.care2home.co/"
+/>
+
       <HeroBanner />
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
           How it works
         </h2>
@@ -78,7 +85,7 @@ export default function Home() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
             Why not just book a cab?
           </h2>
@@ -156,7 +163,7 @@ export default function Home() {
         </p>
       </section>
       <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
             Simple, Transparent Pricing
           </h2>
@@ -261,7 +268,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
         <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to ensure safe travel for your parents?

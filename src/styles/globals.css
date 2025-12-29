@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --care-blue-light: 210 100% 96%;
+  --care-green-light: 158 64% 92%;
+  --primary: 217 91% 60%;
+  --card:0 0% 100%;
+  --muted-foreground:215 16% 47%;
+  --care-warm:45 93% 97%;
 }
 
 @theme inline {
@@ -11,6 +16,23 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-care-blue: #2563eb;
+  --color-muted-foreground:hsl(var(--muted-foreground));
+  --color-primary:hsl(var(--primary));
+  --color-card:hsl(var(--card));
+  --color-care-green-light:hsl(var(--care-green-light));
+  --color-care-blue-light: hsl(var(--care-blue-light));
+  --color-care-green: var(--color-green-900);
+  --color-care-warm: hsl(var(--care-warm));
+  --tw-gradient-from: #eff6ff var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(239 246 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #fff var(--tw-gradient-to-position);
+  --tw-gradient-from: hsl(var(--care-blue-light))
+    var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(var(--care-blue-light) / 0)
+    var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,8 +42,169 @@
   }
 }
 
+@layer utilities {
+  .header {
+    @apply bg-white shadow-sm sticky top-0 z-50;
+  }
+  .bg-care-green\/10 {
+    background-color: hsl(var(--care-green) / 0.1);
+  }
+  .header-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+  }
+
+  .header-brand {
+    @apply flex items-center gap-3;
+  }
+
+  .header-icon {
+    @apply bg-blue-600 p-2 rounded-lg;
+  }
+
+  .header-title {
+    @apply text-3xl font-bold text-gray-900;
+  }
+
+  .main-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16;
+  }
+
+  .hero-section {
+    @apply text-center mb-16;
+  }
+
+  .hero-title {
+    @apply text-5xl font-bold text-gray-900 mb-4;
+  }
+
+  .hero-subtitle {
+    @apply text-xl text-gray-600 max-w-3xl mx-auto;
+  }
+
+  .vision-mission-grid {
+    @apply grid md:grid-cols-2 gap-12 mb-16;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300;
+  }
+
+  .card-vision {
+    @apply border-t-4 border-blue-600;
+  }
+
+  .card-mission {
+    @apply border-t-4 border-green-600;
+  }
+
+  .card-header {
+    @apply flex items-center gap-4 mb-6;
+  }
+
+  .card-icon-wrapper {
+    @apply p-4 rounded-full;
+  }
+
+  .card-icon-blue {
+    @apply bg-blue-100;
+  }
+
+  .card-icon-green {
+    @apply bg-green-100;
+  }
+
+  .card-icon {
+    @apply w-10 h-10;
+  }
+
+  .card-title {
+    @apply text-3xl font-bold text-gray-900;
+  }
+
+  .card-text {
+    @apply text-lg text-gray-700 leading-relaxed;
+  }
+
+  .values-section {
+    @apply bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl shadow-xl p-12 text-white mb-16;
+  }
+
+  .values-title {
+    @apply text-3xl font-bold text-center mb-12;
+  }
+
+  .values-grid {
+    @apply grid sm:grid-cols-2 lg:grid-cols-4 gap-8;
+  }
+
+  .value-item {
+    @apply text-center;
+  }
+
+  .value-icon-wrapper {
+    @apply bg-white/20 backdrop-blur-sm rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4;
+  }
+
+  .value-icon {
+    @apply w-10 h-10;
+  }
+
+  .value-name {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  .value-description {
+    @apply text-blue-50;
+  }
+
+  .cta-section {
+    @apply bg-white rounded-2xl shadow-xl p-12 text-center;
+  }
+
+  .cta-icon {
+    @apply w-16 h-16 text-blue-600 mx-auto mb-6;
+  }
+
+  .cta-title {
+    @apply text-3xl font-bold text-gray-900 mb-4;
+  }
+
+  .cta-text {
+    @apply text-lg text-gray-700 max-w-3xl mx-auto mb-8;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl;
+  }
+
+  .footer {
+    @apply bg-gray-900 text-white py-8 mt-16;
+  }
+
+  .footer-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+  }
+
+  .footer-text {
+    @apply text-gray-400;
+  }
+
+  .page-bg {
+    @apply min-h-screen bg-gradient-to-b from-blue-50 to-white;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.border-border {
+  border-color: hsl(var(--border));
+  border-top-color: rgb(225, 231, 239);
+  border-right-color: rgb(225, 231, 239);
+  border-bottom-color: rgb(225, 231, 239);
+  border-left-color: rgb(225, 231, 239);
 }

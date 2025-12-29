@@ -1,16 +1,14 @@
-import Header from './Header'
-import Footer from './Footer'
-import { ReactElement } from 'react'
- const Layout=({children}:{ children: React.ReactNode })=>{
-
-
-    return <div className='container'>
-    <Header/>
-    {children}
-    <Footer/>
+import Header from "./Header";
+import Footer from "./Footer";
+import { ReactElement } from "react";
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="">
+      <Header />
+      {children}
+      <Footer />
     </div>
+  );
+};
 
-    
-}
-
-export default Layout
+export default Layout;

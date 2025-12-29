@@ -1,5 +1,6 @@
 import { Button } from "./Button";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Shield,
   PhoneCall,
@@ -21,9 +22,9 @@ const HeroBanner = () => {
 
   return (
     <section className="bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="order-2 md:order-1 ">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Trusted care for your parents,
               <br />
@@ -77,12 +78,12 @@ const HeroBanner = () => {
             </ul>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
+              <Link
                 href="/bookservice"
                 className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition"
               >
                 Book Care Companion
-              </a>
+              </Link>
 
               <a
                 href="https://wa.me/91XXXXXXXXXX"
@@ -97,7 +98,7 @@ const HeroBanner = () => {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative order-1 md:order-2">
             <Image
               src="/Parents.png"
               alt="Care companion assisting elderly parent during travel"

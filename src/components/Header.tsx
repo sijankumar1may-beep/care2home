@@ -2,48 +2,49 @@ import Link from "next/link";
 import { Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const isActive = (path: string) => true;
+const router=useRouter();
+  const isActive = (path: string) => router.pathname==path;
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-gray-700 shadow-sm sticky top-0 z-50 h-20 my-auto">
+      <div className="mx-auto md:mx-8 px-6 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center text-center space-x-2 pt-2">
             {/* <Heart className="w-8 h-8 text-blue-600" /> */}
-            <Image src="/care2homelogo.png" width={180} height={80} alt="logo" />
+            <Image src="/care2homelogo.png" width={180} height={80} alt="logo" className="rounded-lg" />
             {/* <span className="text-xl font-semibold text-gray-900">Care2Home</span> */}
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
-              className={`text-base font-medium transition-colors ${
+              className={`text-base font-bold transition-colors ${
                 isActive("/")
                   ? "text-blue-600"
-                  : "text-gray-700 hover:text-blue-600"
+                  : "text-white hover:text-blue-600"
               }`}
             >
               Home
             </Link>
             <Link
-              href="/bookservice"
-              className={`text-base font-medium transition-colors ${
-                isActive("/bookservice")
+              href="/book-service"
+              className={`text-base font-bold transition-colors ${
+                isActive("/book-service")
                   ? "text-blue-600"
-                  : "text-gray-700 hover:text-blue-600"
+                  : "text-white hover:text-blue-600"
               }`}
             >
               Book Service
             </Link>
             <Link
               href="/terms"
-              className={`text-base font-medium transition-colors ${
+              className={`text-base font-bold transition-colors ${
                 isActive("/terms")
                   ? "text-blue-600"
-                  : "text-gray-700 hover:text-blue-600"
+                  : "text-white hover:text-blue-600"
               }`}
             >
               Terms
@@ -51,19 +52,29 @@ export default function Header() {
 
             <Link
               href="/safety"
-              className={`text-base font-medium transition-colors ${
+              className={`text-base font-bold transition-colors ${
                 isActive("/safety")
                   ? "text-blue-600"
-                  : "text-gray-700 hover:text-blue-600"
+                  : "text-white hover:text-blue-600"
               }`}
             >
               Safety & Trust
+            </Link>
+            <Link
+              href="/vision-mission"
+              className={`text-base font-bold transition-colors ${
+                isActive("/vision-mission")
+                  ? "text-blue-600"
+                  : "text-white hover:text-blue-600"
+              }`}
+            >
+              Vision & Mission
             </Link>
           </div>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="md:hidden bg-white p-2 rounded-lg hover:bg-gray-100"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -71,7 +82,7 @@ export default function Header() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+        <div className="md:hidden border-t border-gray-200 bg-gray-500 mx-1">
           <div className="px-4 pt-2 pb-4 space-y-2">
             <Link
               href="/"
@@ -79,7 +90,7 @@ export default function Header() {
               className={`block px-4 py-3 rounded-lg text-base font-medium ${
                 isActive("/")
                   ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-50"
+                  : "text-white hover:bg-gray-50"
               }`}
             >
               Home
@@ -88,9 +99,9 @@ export default function Header() {
               href="/bookservice"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 rounded-lg text-base font-medium ${
-                isActive("/book")
+                isActive("/bookservice")
                   ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-50"
+                  : "text-white hover:bg-gray-50"
               }`}
             >
               Book Service
@@ -101,7 +112,7 @@ export default function Header() {
               className={`block px-4 py-3 rounded-lg text-base font-medium ${
                 isActive("/terms")
                   ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-50"
+                  : "text-white hover:bg-gray-50"
               }`}
             >
               Terms & Safety
@@ -110,12 +121,23 @@ export default function Header() {
               href="/safety"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 rounded-lg text-base font-medium ${
-                isActive("/terms")
+                isActive("/safety")
                   ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-50"
+                  : "text-white hover:bg-gray-50"
               }`}
             >
               Safety & Trust
+            </Link>
+            <Link
+              href="/visionmission"
+              onClick={() => setIsOpen(false)}
+              className={`block px-4 py-3 rounded-lg text-base font-medium ${
+                isActive("/visionmission")
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-white hover:bg-gray-50"
+              }`}
+            >
+              Vision & Mission
             </Link>
           </div>
         </div>
