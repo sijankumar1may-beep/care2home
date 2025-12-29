@@ -61,6 +61,10 @@ export default function PricingModel() {
   return (
     <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
+        <p className="text-center text-gray-700 text-lg font-medium mb-2">
+          Most families book us when they can’t leave office or live in another
+          city — and don’t want to take risks with their parents.
+        </p>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Simple, Transparent Pricing
         </h2>
@@ -161,14 +165,14 @@ export default function PricingModel() {
                   <Link
                     className="bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 w-full block p-3 rounded-2xl text-center"
                     href={{
-                        pathname: "/book-service",
-                        query: {
-                          distance: tier.distanceKm,
-                          vehicle: selectedVehicle,
-                          price: price,
-                          source: "pricing",
-                        },
-                      }}
+                      pathname: "/book-service",
+                      query: {
+                        distance: tier.distanceKm,
+                        vehicle: selectedVehicle,
+                        price: price,
+                        source: "pricing",
+                      },
+                    }}
                   >
                     Book Now
                   </Link>

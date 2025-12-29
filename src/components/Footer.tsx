@@ -21,7 +21,7 @@ const Footer = () => {
     <>
       <footer className="bg-gray-700 text-white py-12">
         <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-16 md:grid-cols-3 md:gap-8 mb-8">
+          <div className="grid grid-cols-2 gap-16 md:grid-cols-4 md:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
               <Image src="/care2homelogo.png" width={180} height={80} alt="logo" className="rounded-lg"/>
@@ -62,7 +62,36 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-
+            <div className="col-span-2 md:col-span-1">
+              <h4 className="font-semibold mb-4">Serving Stations</h4>
+              <ul className="space-y-2 text-white">
+                <li>
+                  <Link href="/new-delhi-railway-station-parent-pickup" className="hover:text-blue-600 transition-colors">
+                  New Delhi Railway Station
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/old-delhi-railway-station-parent-pickup">
+                  Old Delhi Railway Station
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/delhi-cantt-railway-station-parent-pickup">
+                  Delhi Cantt Railway Station
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/hazrat-nizamuddin-railway-station-parent-pickup">
+                  Hazrat Nizamuddin Railway Station
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-blue-600 transition-colors" href="/anand-vihar-railway-station-parent-pickup">
+                  Anand Vihar Railway Station
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div className="col-span-2 md:col-span-1">
               <h4 className="font-semibold mb-4">Contact & Support</h4>
               <ul className="space-y-2">

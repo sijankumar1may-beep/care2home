@@ -3,6 +3,15 @@ import { Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from "@/components/dropdown-menu";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -58,37 +67,117 @@ export default function Header() {
             >
               Book Service
             </Link>
-            <Link
-              href="/terms"
-              className={`text-base font-bold transition-colors ${
-                isActive("/terms")
-                  ? "text-blue-600"
-                  : "text-white hover:text-blue-600"
-              }`}
-            >
-              Terms
-            </Link>
 
-            <Link
-              href="/safety"
-              className={`text-base font-bold transition-colors ${
-                isActive("/safety")
-                  ? "text-blue-600"
-                  : "text-white hover:text-blue-600"
-              }`}
-            >
-              Safety & Trust
-            </Link>
-            <Link
-              href="/vision-mission"
-              className={`text-base font-bold transition-colors ${
-                isActive("/vision-mission")
-                  ? "text-blue-600"
-                  : "text-white hover:text-blue-600"
-              }`}
-            >
-              Vision & Mission
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 transition-colors outline-none text-white font-bold">
+                Services
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56 bg-gray-500 text-white">
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/terms"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/terms")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Terms
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/safety"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/safety")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Safety & Trust
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/vision-mission"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/vision-mission")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Vision & Mission
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Serving Stations</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/new-delhi-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/new-delhi-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   New Delhi Railway Station
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/old-delhi-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/old-delhi-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Old Delhi Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/delhi-cantt-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/delhi-cantt-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   Delhi Cantt Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/hazrat-nizamuddin-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/hazrat-nizamuddin-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   Hazrat Nizamuddin Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/anand-vihar-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/anand-vihar-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   Anand Vihar Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <button
@@ -106,7 +195,7 @@ export default function Header() {
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium ${
+              className={`block px-4 rounded-lg text-base font-medium ${
                 isActive("/")
                   ? "bg-blue-50 text-blue-600"
                   : "text-white hover:bg-gray-50"
@@ -117,7 +206,7 @@ export default function Header() {
             <Link
               href="/pricing"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium ${
+              className={`block px-4 rounded-lg text-base font-medium ${
                 isActive("/pricing")
                   ? "bg-blue-50 text-blue-600"
                   : "text-white hover:bg-gray-50"
@@ -128,7 +217,7 @@ export default function Header() {
             <Link
               href="/book-service"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium ${
+              className={`block px-4 rounded-lg text-base font-medium ${
                 isActive("/book-service")
                   ? "bg-blue-50 text-blue-600"
                   : "text-white hover:bg-gray-50"
@@ -136,39 +225,116 @@ export default function Header() {
             >
               Book Service
             </Link>
-            <Link
-              href="/terms"
-              onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium ${
-                isActive("/terms")
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-white hover:bg-gray-50"
-              }`}
-            >
-              Terms & Safety
-            </Link>
-            <Link
-              href="/safety"
-              onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium ${
-                isActive("/safety")
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-white hover:bg-gray-50"
-              }`}
-            >
-              Safety & Trust
-            </Link>
-            <Link
-              href="/visionmission"
-              onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium ${
-                isActive("/visionmission")
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-white hover:bg-gray-50"
-              }`}
-            >
-              Vision & Mission
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className=" px-4 flex items-center gap-1 transition-colors outline-none text-white font-bold">
+                Services
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56 bg-gray-500 text-white">
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/terms"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/terms")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Terms
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/safety"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/safety")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Safety & Trust
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/vision-mission"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/vision-mission")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Vision & Mission
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Serving Stations</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/new-delhi-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/new-delhi-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   New Delhi Railway Station
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/old-delhi-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/old-delhi-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Old Delhi Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/delhi-cantt-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/delhi-cantt-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   Delhi Cantt Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/hazrat-nizamuddin-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/hazrat-nizamuddin-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   Hazrat Nizamuddin Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link
+                    href="/anand-vihar-railway-station-parent-pickup"
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/anand-vihar-railway-station-parent-pickup")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                   Anand Vihar Railway Station
+                  </Link>
+                  
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       )}

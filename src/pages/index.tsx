@@ -27,10 +27,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <SEO
-  title="Trusted Pickup & Assisted Travel Care for Parents | Care2Home"
-  description="Worried about your parents traveling alone? Care2Home offers verified care companions, safe pickup & drop, and assisted travel services so your loved ones always feel supported."
-  canonical="https://www.care2home.co/"
-/>
+        title="Trusted Pickup & Assisted Travel Care for Parents | Care2Home"
+        description="Worried about your parents traveling alone? Care2Home offers verified care companions, safe pickup & drop, and assisted travel services so your loved ones always feel supported."
+        canonical="https://www.care2home.co/"
+      />
 
       <HeroBanner />
 
@@ -269,7 +269,7 @@ export default function Home() {
           </p>
         </div>
       </section> */}
-      <PricingModel/>
+      <PricingModel />
       <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
         <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -279,21 +279,21 @@ export default function Home() {
             Book a Care Companion today, or talk to us on WhatsApp to know more.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-                href="/bookservice"
-                className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-green-600 text-white text-lg font-medium hover:bg-green-700 transition"
-              >
+            <Link
+              href="/bookservice"
+              className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-green-600 text-white text-lg font-medium hover:bg-green-700 transition"
+            >
               Book Now
             </Link>
             <div className="flex justify-center">
-            <Button
-              onClick={handleWhatsApp}
-              size="lg"
-              className="bg-green-600 hover:bg-green-700"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Talk on WhatsApp
-            </Button>
+              <Button
+                onClick={handleWhatsApp}
+                size="lg"
+                className="bg-green-600 hover:bg-green-700"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Talk on WhatsApp
+              </Button>
             </div>
           </div>
         </Card>
