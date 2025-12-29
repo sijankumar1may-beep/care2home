@@ -11,7 +11,7 @@ const teamMembers = [
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
   },
   {
-    name: "Dr. Priya Sharma",
+    name: "Deepak Patel",
     role: "Head of Care & Safety Standards",
     description:
       "A senior-care specialist responsible for defining Care2Home’s safety protocols, companion guidelines, and emergency response standards to ensure every parent travels with confidence and care.",
@@ -96,7 +96,7 @@ const OurTeam = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
                 <value.icon className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">
+              <h3 className="font-bold text-foreground mb-2">
                 {value.title}
               </h3>
               <p className="text-sm text-muted-foreground">
