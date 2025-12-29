@@ -156,7 +156,7 @@ ${formData.message}
   };
 
   return (
-    <div className="bg-card p-8 md:p-12">
+    <div className="bg-card shadow-2xl p-8">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">

@@ -1,26 +1,84 @@
-import ContactForm from "@/components/ContactUs";
+import  ContactForm from "@/components/ContactUs";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import SEO from "@/components/Seo";
-export default function Contactus() {
-  return (
-    <>
-      <main className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
-        <SEO
-          title="Contact Us | Care2Home Parent Pickup & Assisted Travel Support"
-          description="Get in touch with Care2Home for questions, support, or booking assistance. We’re here to help families arrange safe pickup and assisted travel care for parents and elderly loved ones."
-          canonical="https://www.care2home.co/contact-us"
-        />
 
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            Get in Touch
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Have a question or want to work together? Fill out the form below
-            and we&apos;ll get back to you via WhatsApp.
+export default function ContactPage() {
+  return (
+
+    <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8 mt-8 ">
+      <SEO title="Contact Us | RentMyBooks" description="Contact us for any questions or feedback. We're here to help you." canonical="https://rentmybooks.in/contact" />
+      <h1 className="text-3xl font-bold mb-8 text-center">Contact Us</h1>
+
+      <div className="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
+          <p className="text-gray-600 mb-8">
+            Have questions about our services or want to provide feedback? Fill
+            out the form and we&apos;ll get back to you as soon as possible.
           </p>
+
+          <ContactForm />
         </div>
-        <ContactForm />
-      </main>
-    </>
+
+        <div>
+          <h2 className="text-2xl font-semibold mb-6">Our Information</h2>
+
+          <div className="bg-muted rounded-lg p-6 shadow-xl">
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <MapPin className="w-6 h-6 text-primary mt-1" />
+                <div>
+                  <h3 className="font-medium">Location</h3>
+                  <p className="text-gray-600">
+                    New Ashok Nager, Mayur Vihar Tehsil, East Delhi, Delhi,
+                    110096, India:{" "}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Phone className="w-6 h-6 text-primary mt-1" />
+                <div>
+                  <h3 className="font-medium">Phone</h3>
+                  <p className="text-gray-600">+91 9910646415</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Mail className="w-6 h-6 text-primary mt-1" />
+                <div>
+                  <h3 className="font-medium">Email</h3>
+                  <p className="text-gray-600">info@care2home.co</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Clock className="w-6 h-6 text-primary mt-1" />
+                
+                  <h3 className="font-medium">24 * 7</h3>
+                  {/* <p className="text-gray-600">
+                    Monday - Saturday: 10:00 AM - 8:00 PM
+                  </p>
+                  <p className="text-gray-600">Sunday: 11:00 AM - 4:00 PM</p> */}
+                
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 h-64 bg-muted rounded-lg overflow-hidden">
+            {/* This would be a real map in production */}
+            <div className="w-full h-full flex items-center justify-center bg-gray-200">
+              {/* <p className="text-gray-500">Map Location</p> */}
+              <iframe
+                src="https://maps.google.com/?q=28.59070101354673,77.30841745833007&z=15&output=embed"
+                width="100%"
+                height="250"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
