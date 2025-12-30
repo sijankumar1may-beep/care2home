@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     gtag('config', 'G-D34L8EG2LC');
   `}
       </Script>
+      
       <Component {...pageProps} />;
     </Layout>
   );

@@ -7,8 +7,6 @@ const Sitemap = () => null;
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // Static pages
   const staticPages = [
-    "",
-    "/",
     "/about-us",
     "/contact-us",
     "/book-service",
@@ -29,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       <url>
         <loc>${SITE_URL}${path}</loc>
         <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
       </url>`;
     })
     .join("");
