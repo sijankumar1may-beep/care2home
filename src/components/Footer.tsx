@@ -24,7 +24,13 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-16 md:grid-cols-4 md:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-              <Image src="/care2homelogo.png" width={180} height={80} alt="logo" className="rounded-lg"/>
+                <Image
+                  src="/care2homelogo.png"
+                  width={180}
+                  height={80}
+                  alt="logo"
+                  className="rounded-lg"
+                />
               </div>
               <p className="text-white font-bold hover:text-blue-600">
                 Trusted care for parents traveling alone. Peace of mind for
@@ -36,27 +42,42 @@ const Footer = () => {
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-white">
                 <li>
-                  <Link href="/" className="hover:text-blue-600 transition-colors">
+                  <Link
+                    href="/"
+                    className="hover:text-blue-600 transition-colors"
+                  >
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/pricing">
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/pricing"
+                  >
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/book-service">
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/book-service"
+                  >
                     Book Service
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/terms">
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/terms"
+                  >
                     Terms & Safety
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/vision-mission">
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/vision-mission"
+                  >
                     Vision & Mission
                   </Link>
                 </li>
@@ -66,28 +87,43 @@ const Footer = () => {
               <h4 className="font-semibold mb-4">Serving Stations</h4>
               <ul className="space-y-2 text-white">
                 <li>
-                  <Link href="/new-delhi-railway-station-parent-pickup" className="hover:text-blue-600 transition-colors">
-                  New Delhi Railway Station
+                  <Link
+                    href="/new-delhi-railway-station-parent-pickup"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    New Delhi Railway Station
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/old-delhi-railway-station-parent-pickup">
-                  Old Delhi Railway Station
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/old-delhi-railway-station-parent-pickup"
+                  >
+                    Old Delhi Railway Station
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/delhi-cantt-railway-station-parent-pickup">
-                  Delhi Cantt Railway Station
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/delhi-cantt-railway-station-parent-pickup"
+                  >
+                    Delhi Cantt Railway Station
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/hazrat-nizamuddin-railway-station-parent-pickup">
-                  Hazrat Nizamuddin Railway Station
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/hazrat-nizamuddin-railway-station-parent-pickup"
+                  >
+                    Hazrat Nizamuddin Railway Station
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/anand-vihar-railway-station-parent-pickup">
-                  Anand Vihar Railway Station
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/anand-vihar-railway-station-parent-pickup"
+                  >
+                    Anand Vihar Railway Station
                   </Link>
                 </li>
               </ul>
@@ -95,24 +131,36 @@ const Footer = () => {
             <div className="col-span-2 md:col-span-1">
               <h4 className="font-semibold mb-4">Contact & Support</h4>
               <ul className="space-y-2">
-              <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/contact-us">
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/contact-us"
+                  >
                     Contact us
                   </Link>
                 </li>
                 <li className="flex items-center hover:text-blue-600">
-                <Link className="hover:text-blue-600 transition-colors flex items-center" href={`${whatsappUrl}`}>
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  WhatsApp Support
+                  <Link
+                    className="hover:text-blue-600 transition-colors flex items-center"
+                    href={`${whatsappUrl}`}
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    WhatsApp Support
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/about-us">
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/about-us"
+                  >
                     About us
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-600 transition-colors" href="/our-team">
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/our-team"
+                  >
                     Our team
                   </Link>
                 </li>

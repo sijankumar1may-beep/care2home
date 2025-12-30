@@ -73,10 +73,40 @@ export default function Header() {
                 Services
                 <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56 bg-gray-500 text-white">
+              <DropdownMenuContent
+                align="start"
+                className="w-56 bg-gray-500 text-white"
+              >
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/about-us"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/about-us")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    About us
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/contact-us"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/contact-us")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Contact us
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
                     href="/terms"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/terms")
                         ? "text-blue-600"
@@ -89,6 +119,7 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/safety"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/safety")
                         ? "text-blue-600"
@@ -101,6 +132,7 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/vision-mission"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/vision-mission")
                         ? "text-blue-600"
@@ -115,18 +147,20 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/new-delhi-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/new-delhi-railway-station-parent-pickup")
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   New Delhi Railway Station
+                    New Delhi Railway Station
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/old-delhi-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/old-delhi-railway-station-parent-pickup")
                         ? "text-blue-600"
@@ -135,46 +169,47 @@ export default function Header() {
                   >
                     Old Delhi Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/delhi-cantt-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/delhi-cantt-railway-station-parent-pickup")
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   Delhi Cantt Railway Station
+                    Delhi Cantt Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/hazrat-nizamuddin-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
-                      isActive("/hazrat-nizamuddin-railway-station-parent-pickup")
+                      isActive(
+                        "/hazrat-nizamuddin-railway-station-parent-pickup"
+                      )
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   Hazrat Nizamuddin Railway Station
+                    Hazrat Nizamuddin Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/anand-vihar-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/anand-vihar-railway-station-parent-pickup")
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   Anand Vihar Railway Station
+                    Anand Vihar Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -230,10 +265,40 @@ export default function Header() {
                 Services
                 <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56 bg-gray-500 text-white">
+              <DropdownMenuContent
+                align="start"
+                className="w-56 bg-gray-500 text-white"
+              >
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/about-us"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/about-us")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    About us
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/contact-us"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${
+                      isActive("/contact-us")
+                        ? "text-blue-600"
+                        : "text-white hover:text-blue-600"
+                    }`}
+                  >
+                    Contact us
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
                     href="/terms"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/terms")
                         ? "text-blue-600"
@@ -246,6 +311,7 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/safety"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/safety")
                         ? "text-blue-600"
@@ -258,6 +324,7 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/vision-mission"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/vision-mission")
                         ? "text-blue-600"
@@ -272,18 +339,20 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/new-delhi-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/new-delhi-railway-station-parent-pickup")
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   New Delhi Railway Station
+                    New Delhi Railway Station
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/old-delhi-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/old-delhi-railway-station-parent-pickup")
                         ? "text-blue-600"
@@ -292,46 +361,47 @@ export default function Header() {
                   >
                     Old Delhi Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/delhi-cantt-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/delhi-cantt-railway-station-parent-pickup")
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   Delhi Cantt Railway Station
+                    Delhi Cantt Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/hazrat-nizamuddin-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
-                      isActive("/hazrat-nizamuddin-railway-station-parent-pickup")
+                      isActive(
+                        "/hazrat-nizamuddin-railway-station-parent-pickup"
+                      )
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   Hazrat Nizamuddin Railway Station
+                    Hazrat Nizamuddin Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                <Link
+                  <Link
                     href="/anand-vihar-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${
                       isActive("/anand-vihar-railway-station-parent-pickup")
                         ? "text-blue-600"
                         : "text-white hover:text-blue-600"
                     }`}
                   >
-                   Anand Vihar Railway Station
+                    Anand Vihar Railway Station
                   </Link>
-                  
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

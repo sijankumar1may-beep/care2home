@@ -6,7 +6,22 @@ const Sitemap = () => null;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // Static pages
-  const staticPages = ["", "/", "/about-us", "/contact-us","/book-service","/terms","/safety","/our-team","/vision-mission"];
+  const staticPages = [
+    "",
+    "/",
+    "/about-us",
+    "/contact-us",
+    "/book-service",
+    "/terms",
+    "/safety",
+    "/our-team",
+    "/vision-mission",
+    "/new-delhi-railway-station-parent-pickup",
+    "/old-delhi-railway-station-parent-pickup",
+    "/hazrat-nizamuddin-railway-station-parent-pickup",
+    "/anand-vihar-railway-station-parent-pickup",
+    "/delhi-cantt-railway-station-parent-pickup",
+  ];
 
   const staticUrls = staticPages
     .map((path) => {
