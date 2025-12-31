@@ -79,13 +79,13 @@ const HeroBanner = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service.%20Arrival%20details:"
+                href="https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service."
                 className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 border-green-600 text-green-600 text-lg font-medium hover:bg-green-50 transition"
               >
                 Talk on WhatsApp
               </a>
               <Link
-                href="/bookservice"
+                href="/book-service"
                 className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition"
               >
                 Book Online

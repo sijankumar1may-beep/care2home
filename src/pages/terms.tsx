@@ -289,7 +289,7 @@ export default function TermsAndSafety() {
                 </a>
               </Button>
               <Button>
-                <Link href="/bookservice">Book a Care Companion</Link>
+                <Link href="/book-service">Book a Care Companion</Link>
               </Button>
             </div>
           </div>

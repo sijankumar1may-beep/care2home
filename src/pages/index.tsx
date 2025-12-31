@@ -21,7 +21,7 @@ import PricingModel from "@/components/PricingModel";
 import SEO from "@/components/Seo";
 export default function Home() {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/919910646415", "_blank");
+    window.open("https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service.", "_blank");
   };
 
   return (
@@ -280,7 +280,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/bookservice"
+              href="/book-service"
               className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-green-600 text-white text-lg font-medium hover:bg-green-700 transition"
             >
               Book Now

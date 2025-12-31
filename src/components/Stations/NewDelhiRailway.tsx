@@ -48,7 +48,7 @@ export default function NewDelhiRailwayStationPage() {
                 </a>
               </Button>
               <Button size="lg" variant="outline">
-                <a href="/about">Learn More About Us</a>
+                <a href="/about-us">Learn More About Us</a>
               </Button>
             </div>
           </div>
@@ -185,19 +185,16 @@ export default function NewDelhiRailwayStationPage() {
               Give yourself peace of mind. Book a verified care companion for
               your parents today. Available 24/7.
             </p>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-green text-primary"
-            >
+            
               <a
                 href={`/book-service`}
                 target="_blank"
+                className="btn-primary bg-green-500"
                 rel="noopener noreferrer"
               >
                 Book now
               </a>
-            </Button>
+           
             <p className="mt-4 text-sm opacity-75">
               Serving Delhi, Noida, Gurgaon, Ghaziabad, and Faridabad
             </p>

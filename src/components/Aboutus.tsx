@@ -7,7 +7,7 @@ export default function AboutPage() {
     const whatsappNumber = "919910646415"; // CHANGE THIS TO YOUR WHATSAPP NUMBER
 
   // Create WhatsApp URL
-  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+  const whatsappUrl = `https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service.`;
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}

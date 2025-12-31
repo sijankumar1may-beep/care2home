@@ -2,6 +2,7 @@ import { Button } from "@/components/Button";
 import { Card, CardContent } from "@/components/Cardnew";
 import { CheckCircle, Clock, Shield, Phone } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Old Delhi Railway Station Parent Pickup Service | Care2Home",
@@ -38,18 +39,19 @@ export default function OldDelhiRailwayStationPage() {
               doorstep.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent hover:bg-accent/90">
-                <a
+              
+                <Link
                   href={`/book-service`}
                   target="_blank"
+                  className="btn-primary"
                   rel="noopener noreferrer"
                 >
                   Book now
-                </a>
-              </Button>
-              <Button size="lg" variant="outline">
-                <a href="/about-us">Learn More About Us</a>
-              </Button>
+                
+              </Link>
+             
+                <Link href="/about-us" className="btn-primary bg-green-500">Learn More About Us</Link>
+             
             </div>
           </div>
         </div>

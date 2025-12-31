@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import SEO from "@/components/Seo";
+import Link from "next/link";
 const VisionMission = () => {
   return (
     <main className="main-container">
@@ -170,7 +171,7 @@ const VisionMission = () => {
           times. From pickup, assistance, and doorstep support, we ensure
           comfort, dignity, and peace of mind — just like family would.
         </p>
-        <button className="btn-primary">Book Care for Your Loved Ones</button>
+        <Link href="/book-service" className="btn-primary">Book Care for Your Loved Ones</Link>
       </div>
     </main>
   );
