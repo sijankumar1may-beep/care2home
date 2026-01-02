@@ -168,8 +168,8 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 text-center text-white text-sm">
-            <p>&copy; 2025 Care2Home. All rights reserved.</p>
+          <div className="border-t border-gray-800 pt-8 pb-14 md:pb-2 text-center text-white text-sm">
+            <p>&copy; 2026 Care2Home. All rights reserved.</p>
           </div>
         </div>
       </footer>

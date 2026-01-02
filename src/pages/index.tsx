@@ -270,31 +270,32 @@ export default function Home() {
         </div>
       </section> */}
       <PricingModel />
-      <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
-        <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center">
+      <section className="lg:px-8 py-16">
+        <Card className=" bg-gray-300 text-black text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to ensure safe travel for your parents?
           </h2>
-          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-black mb-8 max-w-2xl mx-auto">
             Book a Care Companion today, or talk to us on WhatsApp to know more.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/book-service"
-              className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-green-600 text-white text-lg font-medium hover:bg-green-700 transition"
-            >
-              Book Now
-            </Link>
             <div className="flex justify-center">
-              <Button
-                onClick={handleWhatsApp}
-                size="lg"
-                className="bg-green-600 hover:bg-green-700"
+              <Link
+                href={`https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service`}
+
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-green-600 text-white text-lg font-medium hover:bg-green-700 transition"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Talk on WhatsApp
-              </Button>
+              </Link>
             </div>
+            <Link
+              href="/book-service"
+              className="inline-flex justify-center items-center px-6 py-3 rounded-lg text-black border-2 border-black text-lg font-medium transition"
+            >
+              Book Now
+            </Link>
+
           </div>
         </Card>
       </section>

@@ -4,6 +4,7 @@ import { Button } from "@/components/Button";
 import { Card, CardContent } from "@/components/Cardnew";
 import { Shield, CheckCircle, Clock, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
+import StickyButton from "../StickyButton";
 
 export default function HazratNizamuddinRailway() {
   // Replace with your actual WhatsApp number (include country code, no + or spaces)
@@ -20,33 +21,63 @@ export default function HazratNizamuddinRailway() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <MapPin className="w-4 h-4" />
-            Hazrat Nizamuddin Railway Station
-          </div>
+      <section className="bg-gradient-to-br from-primary/10 via-background to-accent/5 py-12 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
 
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-balance">
-            Reliable Parent Pickup from Hazrat Nizamuddin Railway Station
-          </h1>
+            {/* Location Badge */}
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <MapPin className="w-4 h-4" />
+              Hazrat Nizamuddin Railway Station (NZM)
+            </div>
 
-          <p className="text-xl text-gray-600 mb-8 text-pretty">
-            Premium pickup service for elderly parents arriving at Hazrat
-            Nizamuddin Station. Professional drivers, comfortable vehicles, and
-            complete peace of mind for your family.
-          </p>
+            {/* Headline */}
+            <h1 className="text-3xl md:text-5xl font-bold text-primary mb-4 tracking-tight text-balance">
+              Parents Arriving Alone at Hazrat Nizamuddin Railway Station?
+            </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/book-service"
-              className="bg-green-600 hover:bg-green-700 text-white gap-2 text-xl p-4 rounded-2xl"
-            >
-              Book now
-            </Link>
-            <Button size="lg" variant="outline">
-              <Link href="/pricing">View Pricing</Link>
-            </Button>
+            {/* Sub-headline */}
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 text-balance">
+              We receive your parents directly from the train platform, assist with luggage,
+              and safely drop them inside their home.
+              <span className="block mt-2 font-medium text-foreground">
+                Live WhatsApp updates at every step.
+              </span>
+            </p>
+
+            {/* Trust bullets */}
+            <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-muted-foreground mb-8">
+              <span>✔ Background-Verified Companions</span>
+              <span>✔ Till-Home Responsibility</span>
+              <span>✔ Delhi NCR Only</span>
+            </div>
+
+            {/* Primary CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:+919910646415"
+                className="rounded-lg bg-green-600 text-white px-6 py-3 text-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2"
+              >
+                📞 Call Now – 2 Min Booking
+              </a>
+
+              <a
+                href="https://wa.me/919910646415?text=Hi%2C%20I%20need%20parent%20pickup%20from%20Hazrat%20Nizamuddin%20Railway%20Station%20(NZM).%20Please%20share%20details."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border-2 border-accent text-accent px-6 py-3 text-lg font-medium hover:bg-accent/10 transition flex items-center justify-center gap-2"
+              >
+                💬 WhatsApp Us
+              </a>
+            </div>
+            <p className="mt-3 text-sm font-medium text-foreground">
+              Trains arriving today? Book instantly.
+            </p>
+            {/* Micro reassurance */}
+            <p className="mt-4 text-sm text-muted-foreground">
+              Most families book via a quick phone call • Available 24/7
+            </p>
+
           </div>
         </div>
       </section>
@@ -158,24 +189,38 @@ export default function HazratNizamuddinRailway() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-600 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-4">
-            Book Parent Pickup from Hazrat Nizamuddin Now
-          </h3>
-          <p className="text-xl mb-8 text-blue-100">
-            Professional Service | Available 24/7 | Instant WhatsApp Booking
-          </p>
-          <Button
-            size="lg"
-            onClick={handleWhatsAppClick}
-            className="bg-green-700 gap-2"
-          >
-            <Phone className="w-5 h-5" />
-            Book Now on WhatsApp
-          </Button>
+      <section className="py-12 md:py-16 bg-gray-100 text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-balance">
+              Book Parent Pickup from Hazrat Nizamuddin Railway Station
+            </h2>
+            <p className="text-lg mb-6 opacity-90 leading-relaxed text-balance">
+              Give yourself peace of mind. Book a verified care companion for
+              your parents today. Available 24/7.
+            </p>
+
+            <a
+              href={`tel:+919910646415`}
+              target="_blank"
+              className="inline-block bg-green-500 px-8 py-3 rounded-lg font-semibold text-lg text-white"
+              rel="noopener noreferrer"
+            >
+              📞 Call Now – Speak to a Human
+            </a>
+            <p className="mt-3 text-sm font-medium text-foreground">
+              Trains arriving today? Book instantly.
+            </p>
+            <p className="mt-3 text-sm opacity-80">
+              Most bookings are confirmed over a quick call
+            </p>
+            <p className="mt-4 text-sm opacity-75">
+              Serving Delhi, Noida, Gurgaon, Ghaziabad, and Faridabad
+            </p>
+          </div>
         </div>
       </section>
+      <StickyButton buttonTitle="📞 Call Now | NZM Parent Pickup | 24/7" />
     </div>
   );
 }

@@ -77,7 +77,7 @@ export default function PricingModel() {
         <div className="inline-flex bg-gray-100 rounded-lg p-1 mb-8">
           <button
             onClick={() => setSelectedVehicle("auto")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all cursor-pointer ${
               selectedVehicle === "auto"
                 ? "bg-white text-blue-600 shadow-md"
                 : "text-gray-600 hover:text-gray-900"
@@ -88,7 +88,7 @@ export default function PricingModel() {
           </button>
           <button
             onClick={() => setSelectedVehicle("car")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold cursor-pointer transition-all ${
               selectedVehicle === "car"
                 ? "bg-white text-blue-600 shadow-md"
                 : "text-gray-600 hover:text-gray-900"
@@ -98,6 +98,9 @@ export default function PricingModel() {
             Car
           </button>
         </div>
+        <p className="text-smtext-gray-600 text-center mb-4">
+        Price includes Care Companion, vehicle & till-home assistance — no hidden charges
+</p>
       </div>
 
       {/* Pricing Cards */}
@@ -174,7 +177,7 @@ export default function PricingModel() {
                       },
                     }}
                   >
-                    Book Now
+                   Book Pickup
                   </Link>
                 ) : (
                   <span>Not Available</span>

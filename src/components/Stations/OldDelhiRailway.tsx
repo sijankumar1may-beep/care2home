@@ -1,9 +1,9 @@
 import { Button } from "@/components/Button";
 import { Card, CardContent } from "@/components/Cardnew";
-import { CheckCircle, Clock, Shield, Phone } from "lucide-react";
+import { CheckCircle, Clock, Shield, Phone, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-
+import StickyButton from "../StickyButton";
 export const metadata: Metadata = {
   title: "Old Delhi Railway Station Parent Pickup Service | Care2Home",
   description:
@@ -26,36 +26,65 @@ export default function OldDelhiRailwayStationPage() {
       <section className="bg-gradient-to-br from-primary/10 via-background to-accent/5 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Old Delhi Railway Station (DLI)
+
+            {/* Location Badge */}
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <MapPin className="w-4 h-4" />
+            Old Delhi Railway Station (DLI)
             </div>
+
+            {/* Headline */}
             <h1 className="text-3xl md:text-5xl font-bold text-primary mb-4 tracking-tight text-balance">
-              Trusted Parent Pickup from Old Delhi Railway Station
+              Parents Arriving Alone at Old Delhi Railway Station?
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 text-balance">
-              Parents arriving at Old Delhi Railway Station? Get them home
-              safely with our trained care companions. Background-verified
-              professionals who take complete responsibility from platform to
-              doorstep.
+
+            {/* Sub-headline */}
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 text-balance">
+              We receive your parents directly from the train platform, assist with luggage,
+              and safely drop them inside their home.
+              <span className="block mt-2 font-medium text-foreground">
+                Live WhatsApp updates at every step.
+              </span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              
-                <Link
-                  href={`/book-service`}
-                  target="_blank"
-                  className="btn-primary"
-                  rel="noopener noreferrer"
-                >
-                  Book now
-                
-              </Link>
-             
-                <Link href="/about-us" className="btn-primary bg-green-500">Learn More About Us</Link>
-             
+
+            {/* Trust bullets */}
+            <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-muted-foreground mb-8">
+              <span>✔ Background-Verified Companions</span>
+              <span>✔ Till-Home Responsibility</span>
+              <span>✔ Expert Handling at Crowded Stations</span>
+              <span>✔ Delhi NCR Only</span>
             </div>
+
+            {/* Primary CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:+919910646415"
+                className="rounded-lg bg-green-600 text-white px-6 py-3 text-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2"
+              >
+                📞 Call Now – 2 Min Booking
+              </a>
+
+              <a
+                href="https://wa.me/919910646415?text=Hi%2C%20I%20need%20parent%20pickup%20from%20Old%20Delhi%20Railway%20Station%20(DLI).%20Please%20share%20details."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border-2 border-accent text-accent px-6 py-3 text-lg font-medium hover:bg-accent/10 transition flex items-center justify-center gap-2"
+              >
+                💬 WhatsApp Us
+              </a>
+            </div>
+            <p className="mt-3 text-sm font-medium text-foreground">
+              Trains arriving today? Book instantly.
+            </p>
+            {/* Micro reassurance */}
+            <p className="mt-4 text-sm text-muted-foreground">
+              Most families book via a quick phone call • Available 24/7
+            </p>
+
           </div>
         </div>
       </section>
+
 
       {/* Why Choose Us Section */}
       <section className="py-12 md:py-16 bg-secondary/20">
@@ -182,36 +211,38 @@ export default function OldDelhiRailwayStationPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-16 bg-primary text-primary-foreground">
+      <section className="py-12 md:py-16 bg-gray-100 text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-balance">
-              Book Your Parent&apos;s Safe Journey from Old Delhi Station
+              Book Parent Pickup from Old Delhi Railway Station
             </h2>
             <p className="text-lg mb-6 opacity-90 leading-relaxed text-balance">
-              Don&apos;t let your parents travel alone. Give them the care and
-              comfort they deserve with Care2Home.
+              Give yourself peace of mind. Book a verified care companion for
+              your parents today. Available 24/7.
             </p>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-green text-primary"
+
+            <a
+              href={`tel:+919910646415`}
+              target="_blank"
+              className="inline-block bg-green-500 px-8 py-3 rounded-lg font-semibold text-lg text-white"
+              rel="noopener noreferrer"
             >
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=${bookingMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Phone className="h-5 w-5" />
-                Book Now on WhatsApp
-              </a>
-            </Button>
+              📞 Call Now – Speak to a Human
+            </a>
+            <p className="mt-3 text-sm font-medium text-foreground">
+              Trains arriving today? Book instantly.
+            </p>
+            <p className="mt-3 text-sm opacity-80">
+              Most bookings are confirmed over a quick call
+            </p>
             <p className="mt-4 text-sm opacity-75">
-              Available across Delhi NCR • 24/7 Service
+              Serving Delhi, Noida, Gurgaon, Ghaziabad, and Faridabad
             </p>
           </div>
         </div>
       </section>
+      <StickyButton buttonTitle="📞 Call Now | DLI Parent Pickup | 24/7" />
     </div>
   );
 }

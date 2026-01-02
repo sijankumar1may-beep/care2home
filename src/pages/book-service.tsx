@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 import { Input, TextArea, Select } from "../components/Input";
 import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 import SEO from "@/components/Seo";
 import { useSearchParams } from "next/navigation";
 export default function BookService() {
@@ -164,6 +165,9 @@ export default function BookService() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Book Care Service
           </h1>
+          <p className="text-sm text-gray-500 text-center mb-6">
+            Available 24/7 • Airport, Railway & Bus Stand pickups • Delhi NCR
+          </p>
           <p className="text-lg text-gray-600">
             Share your parent&apos;s travel details and we&apos;ll take care of
             the rest.
@@ -307,6 +311,9 @@ export default function BookService() {
             )}
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-xs text-gray-600 text-center mb-2">
+                All Care Companions are background-verified and trained to assist elderly parents
+              </p>
               <p className="text-sm text-blue-900">
                 <strong>Note:</strong> This is a booking request. Our team will
                 call you within 2 hours to confirm details and payment. No
@@ -322,14 +329,14 @@ export default function BookService() {
             >
               {isSubmitting
                 ? "Redirecting to WhatsApp..."
-                : "Submit & Send to WhatsApp"}
+                : "Submit Request • We’ll Call You"}
             </Button>
           </form>
         </Card>
 
         <div className="mt-8 text-center">
-          <p className="text-gray-600">
-            Need help? Contact us on WhatsApp for immediate assistance.
+          <p className="text-xs text-gray-600 mt-3 text-center">
+            Prefer talking first? <Link href="tel:+919910646415" className="underline">Call us </Link> or <Link className="underline" href="https://wa.me/919910646415?text=Hi%20Care2Home%20Team">WhatsApp us</Link> anytime.
           </p>
         </div>
       </div>

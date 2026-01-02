@@ -26,10 +26,10 @@ const HeroBanner = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 ">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            Parents arriving today or tomorrow?
-              
+              Parents arriving today or tomorrow?
+              We personally pick them up and drop them home safely.
             </h1>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">We personally pick them up and drop them home safely.</h2>
+
 
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
               A trained Care Companion personally meets your parent at the
@@ -80,21 +80,22 @@ const HeroBanner = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service."
-                className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 border-green-600 text-green-600 text-lg font-medium hover:bg-green-50 transition"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 border-green-600 bg-green-600 text-white text-lg font-medium hover:bg-green-500 transition"
               >
                 Talk on WhatsApp
               </a>
               <Link
                 href="/book-service"
-                className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 text-black text-lg font-medium transition"
               >
                 Book Online
               </Link>
             </div>
-
+            <p className="text-sm text-black mt-2">
+              Parents arriving today? Book instantly.
+            </p>
             <p className="text-sm text-gray-500 mt-6">
-             Average response time: under 5 minutes <br/>
-              Currently available in Delhi
+              Currently available in Delhi NCR • Avg response time under 5 minutes
             </p>
           </div>
 
@@ -105,7 +106,7 @@ const HeroBanner = () => {
               className="rounded-2xl shadow-lg"
               width={800}
               height={800}
-              
+
             />
             <p className="text-xs text-gray-400 text-center mt-2">
               Illustrative image
