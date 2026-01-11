@@ -91,7 +91,7 @@ const Footer = () => {
                     href="/new-delhi-railway-station-parent-pickup"
                     className="hover:text-blue-600 transition-colors"
                   >
-                    New Delhi Railway Station
+                    New Delhi Railway Station Parent Pickup
                   </Link>
                 </li>
                 <li>
@@ -99,7 +99,7 @@ const Footer = () => {
                     className="hover:text-blue-600 transition-colors"
                     href="/old-delhi-railway-station-parent-pickup"
                   >
-                    Old Delhi Railway Station
+                    Old Delhi Railway Station Parent Pickup
                   </Link>
                 </li>
                 <li>
@@ -107,7 +107,7 @@ const Footer = () => {
                     className="hover:text-blue-600 transition-colors"
                     href="/delhi-cantt-railway-station-parent-pickup"
                   >
-                    Delhi Cantt Railway Station
+                    Delhi Cantt Railway Station Parent Pickup
                   </Link>
                 </li>
                 <li>
@@ -115,7 +115,7 @@ const Footer = () => {
                     className="hover:text-blue-600 transition-colors"
                     href="/hazrat-nizamuddin-railway-station-parent-pickup"
                   >
-                    Hazrat Nizamuddin Railway Station
+                    Hazrat Nizamuddin Railway Station Parent Pickup
                   </Link>
                 </li>
                 <li>
@@ -123,9 +123,31 @@ const Footer = () => {
                     className="hover:text-blue-600 transition-colors"
                     href="/anand-vihar-railway-station-parent-pickup"
                   >
-                    Anand Vihar Railway Station
+                    Anand Vihar Railway Station Parent Pickup
                   </Link>
                 </li>
+              </ul>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <h4 className="font-semibold mb-4">Serving Airports</h4>
+              <ul className="space-y-2 text-white">
+                <li>
+                  <Link
+                    href="/igi-airport-delhi-parent-pickup"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    IGI Airport Delhi Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/t3-igi-airport-parent-pickup"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                   T3 IGI Airport Parent Pickup
+                  </Link>
+                </li>
+                
               </ul>
             </div>
             <div className="col-span-2 md:col-span-1">

@@ -4,6 +4,7 @@ import { CheckCircle, Clock, Shield, Phone, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import StickyButton from "../StickyButton";
+import PricingModel from "../PricingModel";
 export const metadata: Metadata = {
   title: "Old Delhi Railway Station Parent Pickup Service | Care2Home",
   description:
@@ -30,7 +31,7 @@ export default function OldDelhiRailwayStationPage() {
             {/* Location Badge */}
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <MapPin className="w-4 h-4" />
-            Old Delhi Railway Station (DLI)
+              Old Delhi Railway Station (DLI)
             </div>
 
             {/* Headline */}
@@ -241,6 +242,9 @@ export default function OldDelhiRailwayStationPage() {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <PricingModel />
       </section>
       <StickyButton buttonTitle="📞 Call Now | DLI Parent Pickup | 24/7" />
     </div>

@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/Cardnew"
 import { CheckCircle, Clock, Shield, Phone, MapPin } from "lucide-react"
 import type { Metadata } from "next"
 import StickyButton from "../StickyButton";
+import PricingModel from "../PricingModel";
 export const metadata: Metadata = {
   title: "Delhi Cantt Railway Station Parent Pickup Service | Care2Home",
   description:
@@ -29,7 +30,7 @@ export default function DelhiCanttPage() {
             {/* Location Badge */}
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <MapPin className="w-4 h-4" />
-            Delhi Cantt Railway Station (DEC)
+              Delhi Cantt Railway Station (DEC)
             </div>
 
             {/* Headline */}
@@ -219,6 +220,9 @@ export default function DelhiCanttPage() {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <PricingModel />
       </section>
       <StickyButton buttonTitle="📞 Call Now | DEC Parent Pickup | 24/7" />
     </div>

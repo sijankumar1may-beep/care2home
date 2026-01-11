@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/Cardnew";
 import { Shield, CheckCircle, Clock, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 import StickyButton from "../StickyButton";
+import PricingModel from "../PricingModel";
 
 export default function HazratNizamuddinRailway() {
   // Replace with your actual WhatsApp number (include country code, no + or spaces)
@@ -219,6 +220,9 @@ export default function HazratNizamuddinRailway() {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <PricingModel />
       </section>
       <StickyButton buttonTitle="📞 Call Now | NZM Parent Pickup | 24/7" />
     </div>

@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/Cardnew";
 import { Shield, CheckCircle, Clock, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 import StickyButton from "../StickyButton";
+import PricingModel from "../PricingModel";
 
 export default function AnandViharRailway() {
   // Replace with your actual WhatsApp number (include country code, no + or spaces)
@@ -149,7 +150,7 @@ export default function AnandViharRailway() {
                 </div>
                 <h4 className="font-semibold mb-2">Verified Care Companions</h4>
                 <p className="text-sm text-gray-600">
-                Background-verified and trained in elderly care
+                  Background-verified and trained in elderly care
                 </p>
               </CardContent>
             </Card>
@@ -212,6 +213,9 @@ export default function AnandViharRailway() {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <PricingModel />
       </section>
       <StickyButton buttonTitle="📞 Call Now | ANVT Parent Pickup | 24/7" />
     </div>

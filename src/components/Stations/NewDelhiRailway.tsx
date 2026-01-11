@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/Cardnew";
 import { CheckCircle, Clock, Shield, Phone, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import StickyButton from "../StickyButton";
+import PricingModel from "../PricingModel";
 export const metadata: Metadata = {
   title: "New Delhi Railway Station Parent Pickup Service | Care2Home",
   description:
@@ -234,6 +235,9 @@ export default function NewDelhiRailwayStationPage() {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <PricingModel />
       </section>
       <StickyButton buttonTitle="📞 Call Now | NDLS Parent Pickup | 24/7" />
     </div>
