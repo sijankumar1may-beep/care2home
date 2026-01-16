@@ -23,17 +23,29 @@ const HeroBanner = () => {
   return (
     <section className="bg-gradient-to-b from-blue-50 to-white">
       <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div className="order-2 md:order-1 ">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl text-center font-bold text-gray-900 leading-tight mb-6">
               Parents arriving today or tomorrow?
-              We personally pick them up and drop them home safely.
+              <span className="block mt-3">
+                We personally
+                <span className="text-blue-700">
+                  {" "}
+                  receive them at the station/airport and drop them home safely
+                </span>
+                — and also
+                <span className="text-green-700">
+                  {" "}
+                  receive them at home and drop them at the station/airport
+                </span>
+                .
+              </span>
             </h1>
 
-
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
-              A trained Care Companion personally meets your parent at the
-              airport or railway station and ensures they reach home safely —
+              A trained Care Companion receives your parent at the
+              airport/railway station and ensures a safe drop home — or receives
+              them from home and drops them at the airport/railway station —
               with live updates for you.
             </p>
 
@@ -95,22 +107,37 @@ const HeroBanner = () => {
               Parents arriving today? Book instantly.
             </p>
             <p className="text-sm text-gray-500 mt-6">
-              Currently available in Delhi NCR • Avg response time under 5 minutes
+              Currently available in Delhi NCR • Avg response time under 5
+              minutes
             </p>
           </div>
 
           <div className="relative order-1 md:order-2">
             <Image
-              src="/Parents.png"
+              src="/servcefinal.png"
               alt="Care companion assisting elderly parent during travel"
               className="rounded-2xl shadow-lg"
               width={800}
               height={800}
-
             />
             <p className="text-xs text-gray-400 text-center mt-2">
               Illustrative image
             </p>
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-xs font-bold">
+                  ✓
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-primary">
+                    Trusted by many families
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Safe & verified travel care companions
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

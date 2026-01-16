@@ -19,6 +19,7 @@ import Safetyandtrust from "../components/safetyandtrust";
 import HeroBanner from "@/components/HeroBanner";
 import PricingModel from "@/components/PricingModel";
 import SEO from "@/components/Seo";
+import StickyButton from "@/components/StickyButton";
 export default function Home() {
   const handleWhatsApp = () => {
     window.open("https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service.", "_blank");
@@ -299,6 +300,7 @@ export default function Home() {
           </div>
         </Card>
       </section>
+      <StickyButton buttonTitle={`📞 Call Now — Parent Pickup (Airport/Railway) | 24/7`} />
     </div>
   );
 }

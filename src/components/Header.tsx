@@ -135,30 +135,6 @@ export default function Header() {
                     Anand Vihar Railway Station Parent Pickup
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/igi-airport-delhi-parent-pickup"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-base font-bold transition-colors ${isActive("/igi-airport-delhi-parent-pickup")
-                        ? "text-blue-400"
-                        : "text-white hover:text-blue-400"
-                      }`}
-                  >
-                    IGI Airport Delhi Parent Pickup
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/t3-igi-airport-parent-pickup"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-base font-bold transition-colors ${isActive("/t3-igi-airport-parent-pickup")
-                        ? "text-blue-400"
-                        : "text-white hover:text-blue-400"
-                      }`}
-                  >
-                    T3 IGI Airport Parent Pickup
-                  </Link>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -383,30 +359,6 @@ export default function Header() {
                       }`}
                   >
                     Anand Vihar Railway Station Parent Pickup
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/igi-airport-delhi-parent-pickup"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-base font-bold transition-colors ${isActive("/igi-airport-delhi-parent-pickup")
-                        ? "text-blue-400"
-                        : "text-white hover:text-blue-400"
-                      }`}
-                  >
-                    IGI Airport Delhi Parent Pickup
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/t3-igi-airport-parent-pickup"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-base font-bold transition-colors ${isActive("/t3-igi-airport-parent-pickup")
-                        ? "text-blue-400"
-                        : "text-white hover:text-blue-400"
-                      }`}
-                  >
-                    T3 IGI Airport Parent Pickup
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

@@ -9,6 +9,10 @@
   --card:0 0% 100%;
   --muted-foreground:0 0% 0%;
   --care-warm:45 93% 97%;
+  --trust-badge-foreground: 210 80% 35%;
+  --trust-badge: 210 80% 95%;
+  --accent: 145 60% 40%;
+  --cta-green: 145 60% 40%;
 }
 
 @theme inline {
@@ -18,12 +22,17 @@
   --font-mono: var(--font-geist-mono);
   --color-care-blue: #2563eb;
   --color-muted-foreground:hsl(var(--muted-foreground));
+  --color-accent:hsl(var(--accent));
+  --color-cta-green:hsl(var(--cta-green));
   --color-primary:hsl(var(--primary));
   --color-card:hsl(var(--card));
   --color-care-green-light:hsl(var(--care-green-light));
   --color-care-blue-light: hsl(var(--care-blue-light));
   --color-care-green: var(--color-green-900);
+  
   --color-care-warm: hsl(var(--care-warm));
+  --color-trust-badge-foreground:hsl(var(--trust-badge-foreground));
+  --color-trust-badge:hsl(var(--trust-badge));
   --tw-gradient-from: #eff6ff var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(239 246 255 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
