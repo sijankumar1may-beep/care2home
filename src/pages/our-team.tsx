@@ -19,7 +19,7 @@ const teamMembers = [
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face",
   },
   {
-    name: "Anand Mehta",
+    name: "Alok Ranjan",
     role: "Operations & Logistics Head",
     description:
       "Leads daily operations, including pickup scheduling, route coordination, and on-ground execution to ensure timely, smooth, and stress-free journeys for parents and families.",

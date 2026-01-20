@@ -20,7 +20,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     "/anand-vihar-railway-station-parent-pickup",
     "/delhi-cantt-railway-station-parent-pickup",
     "/igi-airport-delhi-parent-pickup",
-    "/t3-igi-airport-parent-pickup"
+    "/t3-igi-airport-parent-pickup",
+    "/interchange-service"
   ];
 
   const staticUrls = staticPages

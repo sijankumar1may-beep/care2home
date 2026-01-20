@@ -77,30 +77,28 @@ export default function PricingModel() {
         <div className="inline-flex bg-gray-100 rounded-lg p-1 mb-8">
           <button
             onClick={() => setSelectedVehicle("auto")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all cursor-pointer ${
-              selectedVehicle === "auto"
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all cursor-pointer ${selectedVehicle === "auto"
                 ? "bg-white text-blue-600 shadow-md"
                 : "text-gray-600 hover:text-gray-900"
-            }`}
+              }`}
           >
             <Badge className="w-5 h-5" />
             Auto
           </button>
           <button
             onClick={() => setSelectedVehicle("car")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold cursor-pointer transition-all ${
-              selectedVehicle === "car"
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold cursor-pointer transition-all ${selectedVehicle === "car"
                 ? "bg-white text-blue-600 shadow-md"
                 : "text-gray-600 hover:text-gray-900"
-            }`}
+              }`}
           >
             <Car className="w-5 h-5" />
             Car
           </button>
         </div>
         <p className="text-smtext-gray-600 text-center mb-4">
-        Price includes Care Companion, vehicle & till-home assistance — no hidden charges
-</p>
+          Price includes Care Companion, vehicle & till-home assistance — no hidden charges
+        </p>
       </div>
 
       {/* Pricing Cards */}
@@ -112,11 +110,10 @@ export default function PricingModel() {
           return (
             <Card
               key={index}
-              className={`relative hover:shadow-xl transition-all ${
-                tier.popular
+              className={`relative hover:shadow-xl transition-all ${tier.popular
                   ? "border-2 border-blue-600 scale-105"
                   : "border border-gray-200"
-              } ${!isAvailable ? "opacity-60" : ""}`}
+                } ${!isAvailable ? "opacity-60" : ""}`}
             >
               {tier.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -177,7 +174,7 @@ export default function PricingModel() {
                       },
                     }}
                   >
-                   Book Pickup
+                    Book Pickup
                   </Link>
                 ) : (
                   <span>Not Available</span>

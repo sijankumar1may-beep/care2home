@@ -25,7 +25,7 @@ const HeroBanner = () => {
       <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div className="order-2 md:order-1 ">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-center font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Parents arriving today or tomorrow?
               <span className="block mt-3">
                 We personally

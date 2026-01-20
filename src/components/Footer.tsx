@@ -52,6 +52,14 @@ const Footer = () => {
                 <li>
                   <Link
                     className="hover:text-blue-600 transition-colors"
+                    href="/interchange-service"
+                  >
+                    Interchange Service
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
                     href="/pricing"
                   >
                     Pricing
@@ -126,6 +134,30 @@ const Footer = () => {
                     Anand Vihar Railway Station Parent Pickup
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/ghaziabad-railway-station-parent-pickup"
+                  >
+                    Ghaziabad Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/delhi-sarai-rohilla-railway-station-parent-pickup"
+                  >
+                    Delhi Sarai Rohilla Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/interchange-service"
+                  >
+                    Stations Interchange
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="col-span-2 md:col-span-1">
@@ -144,10 +176,17 @@ const Footer = () => {
                     href="/t3-igi-airport-parent-pickup"
                     className="hover:text-blue-600 transition-colors"
                   >
-                   T3 IGI Airport Parent Pickup
+                    T3 IGI Airport Parent Pickup
                   </Link>
                 </li>
-                
+                <li>
+                  <Link
+                    href="/interchange-service"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Airport ↔ Station Transfer
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="col-span-2 md:col-span-1">

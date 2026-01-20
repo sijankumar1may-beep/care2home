@@ -31,7 +31,7 @@ const HeroSection = () => {
 
             {/* Sub-headline */}
             <p
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 text-balance animate-fade-in-up"
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 animate-fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
               <span className="font-medium">

@@ -300,7 +300,7 @@ export default function Home() {
           </div>
         </Card>
       </section>
-      <StickyButton buttonTitle={`📞 Call Now — Parent Pickup (Airport/Railway) | 24/7`} />
+      <StickyButton buttonTitle={`📞 Call Now — Parent Pickup | 24/7`} />
     </div>
   );
 }
