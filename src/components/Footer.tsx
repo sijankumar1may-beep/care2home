@@ -24,13 +24,13 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-16 md:grid-cols-4 md:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Image
-                  src="/care2homelogo.png"
-                  width={180}
-                  height={80}
-                  alt="logo"
-                  className="rounded-lg"
-                />
+              <Image
+              src="/care2homelogonew.png"
+              width={180}
+              height={80}
+              alt="logo"
+              className="rounded-lg mt-2 w-20 h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
+            />
               </div>
               <p className="text-white font-bold hover:text-blue-600">
                 Trusted care for parents traveling alone. Peace of mind for

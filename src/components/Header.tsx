@@ -27,11 +27,11 @@ export default function Header() {
           >
             {/* <Heart className="w-8 h-8 text-blue-400" /> */}
             <Image
-              src="/care2homelogo.png"
+              src="/care2homelogonew.png"
               width={180}
               height={80}
               alt="logo"
-              className="rounded-lg"
+              className="rounded-lg mt-2 w-20 h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
             />
             {/* <span className="text-xl font-semibold text-gray-900">Care2Home</span> */}
           </Link>
