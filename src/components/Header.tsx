@@ -29,9 +29,9 @@ export default function Header() {
             <Image
               src="/care2homelogonew.png"
               width={180}
-              height={80}
+              height={115}
               alt="logo"
-              className="rounded-lg mt-2 w-20 h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
+              className="rounded-lg mt-2 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
             />
             {/* <span className="text-xl font-semibold text-gray-900">Care2Home</span> */}
           </Link>
@@ -278,6 +278,18 @@ export default function Header() {
                       }`}
                   >
                     Terms
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/privacy-policy"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/privacy-policy")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Privacy Policy
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -537,6 +549,18 @@ export default function Header() {
                       }`}
                   >
                     Terms
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/privacy-policy"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/privacy-policy")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Privacy Policy
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

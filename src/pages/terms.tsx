@@ -47,6 +47,7 @@ export default function TermsAndSafety() {
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Meet and greet at arrival point</li>
                 <li>Luggage assistance</li>
+                <li>Wheelchair assistance</li>
                 <li>Safe transportation arrangement</li>
                 <li>Companionship throughout the journey</li>
                 <li>Assistance till inside the home</li>

@@ -21,15 +21,15 @@ const Footer = () => {
     <>
       <footer className="bg-gray-700 text-white py-12">
         <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-16 md:grid-cols-4 md:gap-8 mb-8">
+          <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
               <Image
               src="/care2homelogonew.png"
               width={180}
-              height={80}
+              height={115}
               alt="logo"
-              className="rounded-lg mt-2 w-20 h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
+              className="rounded-lg mt-2 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
             />
               </div>
               <p className="text-white font-bold hover:text-blue-600">
@@ -79,6 +79,14 @@ const Footer = () => {
                     href="/terms"
                   >
                     Terms & Safety
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
+                    href="/privacy-policy"
+                  >
+                    Privacy Policy
                   </Link>
                 </li>
                 <li>
