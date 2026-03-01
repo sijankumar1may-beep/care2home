@@ -5,8 +5,8 @@ const Pricing = () => {
   return (
     <>
       <SEO
-        title="Pricing | Care2Home Parent Pickup & Assisted Travel Care"
-        description="View Care2Home’s simple and transparent pricing for parent pickup and assisted travel services. Distance-based care pricing with verified companions and no hidden charges."
+        title="Parent Pickup Service Price | Elderly Parent Pickup Cost Delhi | Railway Station Pickup Pricing | Care2Home"
+        description="Simple and transparent pricing for elderly parent pickup service Delhi, railway station pickup service, airport pickup for parents. Distance-based pricing with verified companions. No hidden charges. View parent pickup service price now."
         canonical="https://www.care2home.co/pricing"
       />
        {/* <section className="bg-gradient-to-b from-blue-50 to-white py-16">

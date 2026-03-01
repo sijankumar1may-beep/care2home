@@ -7,9 +7,9 @@ const DelhiSaraiRohillaRailwayStationPageCom = () => {
 
     return <>
         <SEO
-            title="Delhi Sarai Rohilla Railway Station Parent Pickup Service | Care2Home"
-            description="Reliable parent pickup from Delhi Sarai Rohilla Railway Station (DEE). Background-verified Care2Home companions ensure safe doorstep drop with live WhatsApp updates. Book now."
-            canonical="/delhi-sarai-rohilla-railway-station-parent-pickup"
+            title="Delhi Sarai Rohilla Railway Station Pickup | Parent Pickup Railway Station | Elderly Parent Pickup Delhi | Care2Home"
+            description="Delhi Sarai Rohilla railway station pickup for parents. Railway station parent pickup, elderly parent pickup Delhi, senior citizen pickup service. Safe doorstep drop with verified companions. Book Sarai Rohilla station parent pickup."
+            canonical="https://www.care2home.co/delhi-sarai-rohilla-railway-station-parent-pickup"
         />
 
         <DelhiSaraiRohillaRailwayStationPage />

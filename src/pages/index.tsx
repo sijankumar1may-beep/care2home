@@ -28,8 +28,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <SEO
-        title="Trusted Pickup & Assisted Travel Care for Parents | Care2Home"
-        description="Worried about your parents traveling alone? Care2Home offers verified care companions, safe pickup & drop, and assisted travel services so your loved ones always feel supported."
+        title="Elderly Parent Pickup Service Delhi | Railway Station & Airport Pickup for Parents | Care2Home"
+        description="Elderly parent pickup service in Delhi. Safe railway station pickup, airport pickup for elderly parents, senior citizen travel assistance. Verified care companions with live tracking. Book parent pickup service Delhi now."
         canonical="https://www.care2home.co/"
       />
 

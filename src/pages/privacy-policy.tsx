@@ -11,8 +11,8 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
       <SEO
-        title="Privacy Policy - Care2Home Parent Care Services | Care2home"
-        description="Care2Home's privacy policy explains how we collect, use, and protect your personal information when using our parent care services and mobile application."
+        title="Privacy Policy | Elderly Parent Pickup Service Delhi | Data Protection | Care2Home"
+        description="Care2Home privacy policy for elderly parent pickup service Delhi. Learn how we protect your data when booking railway station pickup, airport pickup for parents. Your privacy matters to us."
         canonical="https://www.care2home.co/privacy-policy"
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

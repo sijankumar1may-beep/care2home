@@ -161,6 +161,18 @@ export default function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
+                    href="/jaipur-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/jaipur-railway-station-parent-pickup")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Jaipur Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
@@ -465,6 +477,18 @@ export default function Header() {
                       }`}
                   >
                     Delhi Sarai Rohilla Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/jaipur-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/jaipur-railway-station-parent-pickup")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Jaipur Railway Station Parent Pickup
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

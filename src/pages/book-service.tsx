@@ -1,76 +1,179 @@
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useRef } from "react";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
-import { Input, TextArea, Select } from "../components/Input";
-import { CheckCircle } from "lucide-react";
+import { Input, TextArea } from "../components/Input";
+import { CheckCircle, Upload, X, MapPin, Loader2 } from "lucide-react";
 import Link from "next/link";
 import SEO from "@/components/Seo";
-import { useSearchParams } from "next/navigation";
+
 export default function BookService() {
-  const [userFromPricing, setUserFromPricing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
-  const searchParams = useSearchParams();
+  const [ticketImage, setTicketImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+  const [isLoadingAddress, setIsLoadingAddress] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const distance = searchParams.get("distance");
-  const vehicle = searchParams.get("vehicle");
-  const price = searchParams.get("price");
-  const source = searchParams.get("source");
-
-  useEffect(() => {
-    if (source === "pricing") {
-      setUserFromPricing(true);
-    }
-  }, []);
   const [formData, setFormData] = useState({
-    parentName: "",
-    arrivalType: "Airport",
-    flightTrainNumber: "",
-    arrivalDate: "",
-    arrivalTime: "",
-    homeAddress: "",
-    specialNeeds: "",
-    emergencyContact: "",
-    bookingEmail: "",
-    bookingPhone: "",
+    address: "",
+    phone: "",
+    email: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const WHATSAPP_NUMBER = "919910646415";
-  const sendToWhatsApp = () => {
-    const message = `
-  🟢 *New Care2Home Booking Request*
-  
-   *Selected Plan*
-   • Distance Range: ${distance ? `${distance} km` : "Not selected"}
-   • Vehicle Type: ${vehicle ? vehicle.toUpperCase() : "Not selected"}
-   • Estimated Fare: ${price ? `₹${price}` : "To be confirmed"}
-  
-   👴 Parent Name: ${formData.parentName}
-  🚏 Arrival Type: ${formData.arrivalType}
-  ✈️/🚆 Flight/Train No: ${formData.flightTrainNumber}
-  📅 Arrival Date: ${formData.arrivalDate}
-  ⏰ Arrival Time: ${formData.arrivalTime}
-  
-  🏠 Home Address:
-  ${formData.homeAddress}
-  
-  🩺 Special Needs:
-  ${formData.specialNeeds || "None"}
-   
-  📞 Booking Phone: ${formData.bookingPhone}
-  📧 Email: ${formData.bookingEmail || "Not provided"}
-  🚨 Emergency Contact: ${formData.emergencyContact}
 
-  `;
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please upload an image file');
+        return;
+      }
+      // Validate file size (10MB max)
+      if (file.size > 10 * 1024 * 1024) {
+        setError('Image size should be less than 10MB');
+        return;
+      }
+      setTicketImage(file);
+      setError('');
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setTicketImage(null);
+    setImagePreview(null);
+    setUploadedImageUrl(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const getCurrentAddress = async () => {
+    setIsLoadingAddress(true);
+    setError("");
+
+    // Check if geolocation is supported
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported by your browser");
+      setIsLoadingAddress(false);
+      return;
+    }
+
+    try {
+      // Get current position
+      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        });
+      });
+
+      const { latitude, longitude } = position.coords;
+
+      // Reverse geocode using OpenStreetMap Nominatim API
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+        {
+          headers: {
+            'User-Agent': 'Care2Home/1.0', // Required by Nominatim
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch address");
+      }
+
+      const data = await response.json();
+      
+      // Format the address from the response
+      const address = data.display_name || 
+        `${data.address?.road || ''} ${data.address?.house_number || ''}, ${data.address?.suburb || data.address?.neighbourhood || ''}, ${data.address?.city || data.address?.town || ''}, ${data.address?.state || ''} ${data.address?.postcode || ''}`.trim();
+
+      if (address) {
+        setFormData((prev) => ({ ...prev, address }));
+      } else {
+        setError("Could not determine address from location");
+      }
+    } catch (err: any) {
+      console.error("Error getting current address:", err);
+      if (err.code === 1) {
+        setError("Location access denied. Please enable location permissions and try again.");
+      } else if (err.code === 2) {
+        setError("Location unavailable. Please try again.");
+      } else if (err.code === 3) {
+        setError("Location request timed out. Please try again.");
+      } else {
+        setError(err.message || "Failed to get current address. Please enter manually.");
+      }
+    } finally {
+      setIsLoadingAddress(false);
+    }
+  };
+
+  const uploadImage = async (): Promise<string | null> => {
+    if (!ticketImage) return null;
+
+    const formData = new FormData();
+    formData.append('ticketImage', ticketImage);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to upload image');
+      }
+
+      const data = await response.json();
+      return data.imageUrl;
+    } catch (err: any) {
+      console.error('Upload error:', err);
+      throw err;
+    }
+  };
+
+  const WHATSAPP_NUMBER = "919910646415";
+  const sendToWhatsApp = (imageUrl: string | null) => {
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.care2home.co';
+    const fullImageUrl = imageUrl ? `${baseUrl}${imageUrl}` : 'Not provided';
+    
+    const message = `
+🟢 *New Care2Home Booking Request*
+
+📋 *Booking Details:*
+
+📸 *Ticket Image:* ${fullImageUrl}
+
+📍 *Pickup/Drop Address:*
+${formData.address}
+
+📞 *Phone Number:* ${formData.phone}
+
+📧 *Email:* ${formData.email || "Not provided"}
+
+---
+*Thank you for choosing Care2Home!*
+    `.trim();
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
@@ -83,26 +186,45 @@ export default function BookService() {
     setIsSubmitting(true);
     setError("");
 
+    // Validate required fields
+    if (!ticketImage) {
+      setError("Please upload a ticket image");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.address.trim()) {
+      setError("Please enter pickup/drop address");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      setError("Please enter phone number");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      sendToWhatsApp(); // 👈 SEND TO WHATSAPP
+      // Upload image first
+      const imageUrl = await uploadImage();
+      setUploadedImageUrl(imageUrl);
+
+      // Send to WhatsApp
+      sendToWhatsApp(imageUrl);
 
       setIsSuccess(true);
 
+      // Reset form
       setFormData({
-        parentName: "",
-        arrivalType: "Airport",
-        flightTrainNumber: "",
-        arrivalDate: "",
-        arrivalTime: "",
-        homeAddress: "",
-        specialNeeds: "",
-        emergencyContact: "",
-        bookingEmail: "",
-        bookingPhone: "",
+        address: "",
+        phone: "",
+        email: "",
       });
-    } catch (err) {
+      removeImage();
+    } catch (err: any) {
       setError(
-        "Unable to send booking details. Please contact us on WhatsApp."
+        err.message || "Unable to upload image. Please try again or contact us on WhatsApp."
       );
       console.error(err);
     } finally {
@@ -147,20 +269,11 @@ export default function BookService() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
       <SEO
-        title="Book Parent Pickup & Assisted Travel Care | Care2Home"
-        description="Book safe pickup, drop, and assisted travel care for parents and elderly family members with Care2Home. Verified care companions, doorstep pickup, and reliable support you can trust."
+        title="Book Parent Pickup Service | Elderly Parent Pickup Booking Delhi | Railway Station Airport Pickup | Care2Home"
+        description="Book elderly parent pickup service Delhi. Book parent pickup railway station, airport pickup for elderly parents, senior citizen travel assistance. Quick booking with verified care companions. Book now."
         canonical="https://www.care2home.co/book-service"
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {userFromPricing && (
-          <div className="mb-6 rounded-xl bg-blue-50 border border-green-600 p-4 shadow-2xl">
-            <p className="text-green-900 font-semibold">Selected Plan</p>
-            <p className="text-sm text-green-800 mt-1">
-              Distance: {distance} km • Vehicle: {vehicle?.toUpperCase()} •
-              Estimated Fare: ₹{price}
-            </p>
-          </div>
-        )}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Book Care Service
@@ -176,133 +289,117 @@ export default function BookService() {
 
         <Card>
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Ticket Image Upload */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Parent&apos;s Information
-              </h3>
-              <Input
-                label="Parent's Name"
-                name="parentName"
-                type="text"
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Ticket Image <span className="text-red-500">*</span>
+              </label>
+              <div className="mt-1">
+                {!imagePreview ? (
+                  <div className="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-400 transition-colors">
+                    <div className="space-y-1 text-center">
+                      <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                      <div className="flex text-sm text-gray-600">
+                        <label
+                          htmlFor="ticket-image"
+                          className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="ticket-image"
+                            ref={fileInputRef}
+                            name="ticketImage"
+                            type="file"
+                            accept="image/*"
+                            className="sr-only"
+                            onChange={handleImageChange}
+                            required
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <div className="border-2 border-gray-300 rounded-lg p-4">
+                      <img
+                        src={imagePreview}
+                        alt="Ticket preview"
+                        className="max-h-64 mx-auto rounded-lg"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={removeImage}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Pickup/Drop Address */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Pickup/Drop Address <span className="text-red-500">*</span>
+                </label>
+                <button
+                  type="button"
+                  onClick={getCurrentAddress}
+                  disabled={isLoadingAddress}
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
+                >
+                  {isLoadingAddress ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Getting address...</span>
+                    </>
+                  ) : (
+                    <>
+                      <MapPin className="w-4 h-4 cursor-pointer" />
+                      <span>Use Current Address</span>
+                    </>
+                  )}
+                </button>
+              </div>
+              <TextArea
+                name="address"
                 required
-                value={formData.parentName}
+                value={formData.address}
                 onChange={handleChange}
-                placeholder="Enter parent's full name"
+                placeholder="Enter complete pickup/drop address with landmark"
+                rows={4}
+                label=""
               />
             </div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Travel Details
-              </h3>
-              <div className="space-y-4">
-                <Select
-                  label="Arrival Type"
-                  name="arrivalType"
-                  required
-                  value={formData.arrivalType}
-                  onChange={handleChange}
-                  options={[
-                    { value: "Airport", label: "Airport" },
-                    { value: "Railway", label: "Railway Station" },
-                    { value: "Bus Stand", label: "Bus Stand" },
-                  ]}
-                />
+            {/* Phone Number */}
+            <Input
+              label="Phone Number"
+              name="phone"
+              type="tel"
+              required
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+            />
 
-                <Input
-                  label={
-                    formData.arrivalType === "Airport"
-                      ? "Flight Number"
-                      : "Train Number"
-                  }
-                  name="flightTrainNumber"
-                  type="text"
-                  required
-                  value={formData.flightTrainNumber}
-                  onChange={handleChange}
-                  placeholder={
-                    formData.arrivalType === "Airport"
-                      ? "e.g., AI 101"
-                      : "e.g., 12345"
-                  }
-                />
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <Input
-                    label="Arrival Date"
-                    name="arrivalDate"
-                    type="date"
-                    required
-                    value={formData.arrivalDate}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    label="Arrival Time"
-                    name="arrivalTime"
-                    type="time"
-                    required
-                    value={formData.arrivalTime}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <TextArea
-                  label="Home Address"
-                  name="homeAddress"
-                  required
-                  value={formData.homeAddress}
-                  onChange={handleChange}
-                  placeholder="Enter complete home address with landmark"
-                  rows={3}
-                />
-
-                <TextArea
-                  label="Special Needs (Optional)"
-                  name="specialNeeds"
-                  value={formData.specialNeeds}
-                  onChange={handleChange}
-                  placeholder="Any mobility issues, health considerations, or specific requirements"
-                  rows={3}
-                />
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Contact Information
-              </h3>
-              <div className="space-y-4">
-                <Input
-                  label="Your Phone Number"
-                  name="bookingPhone"
-                  type="tel"
-                  required
-                  value={formData.bookingPhone}
-                  onChange={handleChange}
-                  placeholder="For booking confirmation and updates"
-                />
-
-                <Input
-                  label="Your Email (Optional)"
-                  name="bookingEmail"
-                  type="email"
-                  value={formData.bookingEmail}
-                  onChange={handleChange}
-                  placeholder="For booking confirmation"
-                />
-
-                <Input
-                  label="Emergency Contact"
-                  name="emergencyContact"
-                  type="tel"
-                  required
-                  value={formData.emergencyContact}
-                  onChange={handleChange}
-                  placeholder="Alternate contact number"
-                />
-              </div>
-            </div>
+            {/* Email (Optional) */}
+            <Input
+              label="Email (Optional)"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email address"
+            />
 
             {error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -328,8 +425,8 @@ export default function BookService() {
               size="lg"
             >
               {isSubmitting
-                ? "Redirecting to WhatsApp..."
-                : "Submit Request • We’ll Call You"}
+                ? "Uploading & Redirecting to WhatsApp..."
+                : "Submit Request • We'll Call You"}
             </Button>
           </form>
         </Card>

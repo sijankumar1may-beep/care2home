@@ -13,8 +13,8 @@ const VisionMission = () => {
   return (
     <main className="main-container">
       <SEO
-        title="Our Vision & Mission | Care2Home Parent Care & Assisted Travel Services"
-        description="Discover Care2Home’s vision and mission to make parent and elderly travel safe, dignified, and stress-free. We are committed to trusted pickup, assisted travel, and compassionate care for families."
+        title="Vision & Mission | Elderly Parent Pickup Service Delhi | Parent Care Vision | Care2Home"
+        description="Care2Home's vision and mission for elderly parent pickup service Delhi. Making parent travel safe, dignified, and stress-free with railway station pickup, airport pickup for parents. Trusted care for families."
         canonical="https://www.care2home.co/vision-mission"
       />
       <div className="hero-section">

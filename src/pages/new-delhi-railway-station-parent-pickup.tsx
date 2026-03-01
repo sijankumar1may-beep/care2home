@@ -5,9 +5,9 @@ const NewDelhiRailway = () => {
   return (
     <>
       <SEO
-        title="New Delhi Railway Station Parent Pickup Service | Care2Home"
-        description="Safe and reliable parent pickup service from New Delhi Railway Station (NDLS). Trained care companions, background-verified, with live updates. Book now for doorstep drop."
-        canonical="/new-delhi-railway-station-parent-pickup"
+        title="New Delhi Railway Station Pickup | Parent Pickup New Delhi Station | Elderly Parent Pickup Delhi | Care2Home"
+        description="New Delhi railway station pickup service for parents. Parent pickup railway station, elderly parent pickup Delhi, senior citizen pickup service. Safe doorstep drop with verified care companions. Book New Delhi station parent pickup now."
+        canonical="https://www.care2home.co/new-delhi-railway-station-parent-pickup"
       />
       <NewDelhiRailwayStationPage />
     </>

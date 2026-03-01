@@ -161,6 +161,14 @@ const Footer = () => {
                 <li>
                   <Link
                     className="hover:text-blue-600 transition-colors"
+                    href="/jaipur-railway-station-parent-pickup"
+                  >
+                    Jaipur Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-blue-600 transition-colors"
                     href="/interchange-service"
                   >
                     Stations Interchange
@@ -225,14 +233,14 @@ const Footer = () => {
                     About us
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     className="hover:text-blue-600 transition-colors"
                     href="/our-team"
                   >
                     Our team
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

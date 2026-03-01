@@ -9,8 +9,8 @@ export default function TermsAndSafety() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
       <SEO
-        title="Terms & Conditions - Care2Home Parent Care Services | Care2home"
-        description="Read Care2Home’s terms and conditions for booking pickup, drop, and assisted travel services for parents. Clear policies on usage, responsibilities, and service guidelines."
+        title="Terms & Conditions | Elderly Parent Pickup Service Delhi | Parent Pickup Terms | Care2Home"
+        description="Terms and conditions for elderly parent pickup service Delhi, railway station pickup, airport pickup for parents. Clear policies on booking, service scope, and responsibilities. Read Care2Home terms now."
         canonical="https://www.care2home.co/terms"
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

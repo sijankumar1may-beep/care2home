@@ -5,9 +5,9 @@ const IGIAirport = () => {
     return (
         <>
             <SEO
-                title="IGI Airport Parent Pickup Service in Delhi | Care2Home"
-                description="Safe and reliable parent pickup from IGI Airport Delhi. Trained care companions assist parents at arrival gate and ensure safe doorstep drop with live WhatsApp updates. Available 24/7."
-                canonical="/igi-airport-delhi-parent-pickup"
+                title="Delhi Airport Parent Pickup | Airport Pickup Service Delhi for Parents | Elderly Parent Pickup Airport | Care2Home"
+                description="Delhi airport parent pickup service. Airport pickup service Delhi for parents, airport pickup for elderly parents in Delhi, elderly parent pickup Delhi airport. Verified care companions with live tracking. Book IGI airport parent pickup now."
+                canonical="https://www.care2home.co/igi-airport-delhi-parent-pickup"
             />
 
             <IGIAirportPickup />

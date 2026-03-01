@@ -6,7 +6,7 @@ export default function ContactPage() {
   return (
 
     <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8 mt-8 ">
-      <SEO title="Contact Us | Care2home" description="Contact us for any questions or feedback. We're here to help you." canonical="https://care2home.co/contact-us" />
+      <SEO title="Contact Us | Elderly Parent Pickup Service Delhi | Parent Pickup Support | Care2Home" description="Contact Care2Home for elderly parent pickup service Delhi, railway station pickup, airport pickup for parents. Get help with booking parent pickup service. Call or WhatsApp 24/7." canonical="https://www.care2home.co/contact-us" />
       <h1 className="text-3xl font-bold mb-8 text-center">Contact Us</h1>
 
       <div className="grid md:grid-cols-2 gap-12">

@@ -4,9 +4,9 @@ const OldDelhiRailway = () => {
   return (
     <>
       <SEO
-        title="Old Delhi Railway Station Parent Pickup Service | Care2Home"
-        description="Reliable parent pickup from Old Delhi Railway Station (DLI). Background-verified care companions ensure safe doorstep drop with live tracking. Book now via WhatsApp."
-        canonical="/old-delhi-railway-station-parent-pickup"
+        title="Old Delhi Railway Station Pickup | Parent Pickup Railway Station | Elderly Parent Pickup Service Delhi | Care2Home"
+        description="Old Delhi railway station pickup for parents. Railway station parent pickup, elderly parent pickup Delhi, parent pickup railway station service. Background-verified companions with live tracking. Book Old Delhi station parent pickup."
+        canonical="https://www.care2home.co/old-delhi-railway-station-parent-pickup"
       />
       <OldDelhiRailwayStationPage />
     </>

@@ -5,6 +5,7 @@ import { Shield, CheckCircle, Clock, MapPin, ArrowRightLeft, BellRing } from "lu
 import StickyButton from "../components/StickyButton";
 import PricingModel from "../components/PricingModel";
 import InterchangeHeroSection from "@/components/StationsHeroBanner/InterchangeHeroSection";
+import SEO from "@/components/Seo";
 
 export default function InterchangeService() {
     const whatsappNumber = "919910646415";
@@ -18,6 +19,11 @@ export default function InterchangeService() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+            <SEO
+                title="Station Interchange Service | Airport Station Transfer | Parent Travel Assistance Delhi | Care2Home"
+                description="Station interchange service for parents. Airport to station transfer, railway station interchange, elderly travel assistance in Delhi. Verified care companions help parents transfer between trains/flights safely."
+                canonical="https://www.care2home.co/interchange-service"
+            />
             {/* Hero Section */}
             <InterchangeHeroSection />
 

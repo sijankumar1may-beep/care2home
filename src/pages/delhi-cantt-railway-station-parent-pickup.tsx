@@ -4,7 +4,7 @@ import {metadata} from '../components/Stations/DelhiCanttRailway'
  const DelhiCanttRailway = () => {
   return (
     <>
-    <SEO title="Delhi Cantt Railway Station Parent Pickup Service | Care2Home" description="Safe parent pickup from Delhi Cantt Railway Station. Trained care companions with live tracking ensure doorstep responsibility. Book your parent's safe journey now." canonical="/old-delhi-railway-station-parent-pickup" />
+    <SEO title="Delhi Cantt Railway Station Pickup | Parent Pickup Railway Station | Elderly Parent Pickup Delhi | Care2Home" description="Delhi Cantt railway station pickup service for parents. Railway station parent pickup, elderly parent pickup Delhi, senior citizen travel assistance. Safe doorstep drop with live tracking. Book Delhi Cantt station parent pickup." canonical="https://www.care2home.co/delhi-cantt-railway-station-parent-pickup" />
     <DelhiCanttPage />
     </>
   );

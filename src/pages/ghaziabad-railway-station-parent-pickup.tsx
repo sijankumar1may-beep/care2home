@@ -7,9 +7,9 @@ const GhaziabadRailwayStation = () => {
 
     return <>
         <SEO
-            title="Ghaziabad Railway Station Parent Pickup Service | Care2Home"
-            description="Reliable parent pickup from Ghaziabad Railway Station (GZB). Background-verified Care2Home companions ensure safe doorstep drop with live WhatsApp updates. Book now."
-            canonical="/ghaziabad-railway-station-parent-pickup"
+            title="Ghaziabad Railway Station Pickup | Parent Pickup Railway Station | Elderly Parent Pickup Service Delhi | Care2Home"
+            description="Ghaziabad railway station pickup for parents. Railway station parent pickup, elderly parent pickup Delhi, parent pickup railway station service. Background-verified companions with live tracking. Book Ghaziabad station parent pickup."
+            canonical="https://www.care2home.co/ghaziabad-railway-station-parent-pickup"
         />
 
         <GhaziabadRailwayStationPage />

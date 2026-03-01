@@ -4,8 +4,8 @@ const Aboutus = () => {
   return (
     <>
       <SEO
-        title="About Us | Care2Home – Trusted Parent Care & Assisted Travel Services"
-        description="Learn about Care2Home, our story, vision, and commitment to providing safe pickup, assisted travel, and reliable care services for parents and elderly family members."
+        title="About Us | Elderly Parent Pickup Service Delhi | Parent Care & Travel Assistance | Care2Home"
+        description="Learn about Care2Home - trusted elderly parent pickup service Delhi, railway station pickup, airport pickup for parents. Our story, vision, and commitment to safe parent travel assistance."
         canonical="https://www.care2home.co/about-us"
       />
 
