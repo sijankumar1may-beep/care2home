@@ -16,7 +16,7 @@ import {
   Fullscreen,
 } from "lucide-react";
 const HeroBanner = () => {
-  const playStoreUrl = "https://play.google.com/store/apps/details?id=YOUR_APP_ID"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
   
   const handleWhatsApp = () => {
     window.open("https://wa.me/", "_blank");
