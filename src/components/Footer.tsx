@@ -9,11 +9,13 @@ import {
   Heart,
   UserCheck,
   Bell,
+  Smartphone,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 const Footer = () => {
   const whatsappNumber = "919910646415"; // CHANGE THIS TO YOUR WHATSAPP NUMBER
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
 
   // Create WhatsApp URL
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
@@ -24,18 +26,37 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-              <Image
-              src="/care2homelogonew.png"
-              width={180}
-              height={115}
-              alt="logo"
-              className="rounded-lg mt-2 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
-            />
+                <Image
+                  src="/care2homelogonew.png"
+                  width={180}
+                  height={115}
+                  alt="logo"
+                  className="rounded-lg mt-2 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
+                />
               </div>
-              <p className="text-white font-bold hover:text-blue-600">
+              <p className="text-white font-bold hover:text-blue-600 mb-4">
                 Trusted care for parents traveling alone. Peace of mind for
                 working professionals.
               </p>
+              <div className="mt-4">
+                <p className="text-white font-semibold mb-2 text-sm md:text-base">
+                  Download our Android App
+                </p>
+                <a
+                  href={playStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block hover:opacity-80 transition-opacity"
+                >
+                  <Image
+                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                    alt="Get it on Google Play"
+                    width={155}
+                    height={60}
+                    className="h-auto"
+                  />
+                </a>
+              </div>
             </div>
 
             <div>
@@ -224,6 +245,25 @@ const Footer = () => {
                     <MessageCircle className="w-4 h-4 mr-2" />
                     WhatsApp Support
                   </Link>
+                </li>
+                <li className="mt-2">
+                  <p className="text-white font-semibold mb-2 text-sm">
+                    Download our Android App
+                  </p>
+                  <a
+                    href={playStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <Image
+                      src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                      alt="Get it on Google Play"
+                      width={130}
+                      height={50}
+                      className="h-auto"
+                    />
+                  </a>
                 </li>
                 <li>
                   <Link

@@ -5,8 +5,64 @@ import { Input, TextArea } from "../components/Input";
 import { CheckCircle, Upload, X, MapPin, Loader2 } from "lucide-react";
 import Link from "next/link";
 import SEO from "@/components/Seo";
+import StructuredData from "@/components/StructuredData";
+import { storage } from '../../lib/firebase'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export default function BookService() {
+  const bookingWebPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.care2home.co/book-service#webpage",
+    name: "Book Parent Pickup Service",
+    url: "https://www.care2home.co/book-service",
+    isPartOf: {
+      "@id": "https://www.care2home.co/#website",
+    },
+    about: {
+      "@id": "https://www.care2home.co/#professionalservice",
+    },
+  };
+
+  const bookingServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://www.care2home.co/book-service#service",
+    name: "Parent Pickup Booking Service",
+    serviceType: "Elderly parent airport and railway pickup booking",
+    provider: {
+      "@id": "https://www.care2home.co/#organization",
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Delhi NCR",
+    },
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: "https://www.care2home.co/book-service",
+      availableLanguage: ["en", "hi"],
+    },
+  };
+
+  const bookingBreadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.care2home.co/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Book Service",
+        item: "https://www.care2home.co/book-service",
+      },
+    ],
+  };
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -130,22 +186,12 @@ export default function BookService() {
   const uploadImage = async (): Promise<string | null> => {
     if (!ticketImage) return null;
 
-    const formData = new FormData();
-    formData.append('ticketImage', ticketImage);
-
     try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to upload image');
-      }
-
-      const data = await response.json();
-      return data.imageUrl;
+      const fileName = `${Date.now()}-${ticketImage.name}`;
+      const imageRef = ref(storage, `Care2homeWeb/${fileName}`);
+      await uploadBytes(imageRef, ticketImage);
+      const imageURL = await getDownloadURL(imageRef);
+      return imageURL;
     } catch (err: any) {
       console.error('Upload error:', err);
       throw err;
@@ -154,8 +200,7 @@ export default function BookService() {
 
   const WHATSAPP_NUMBER = "919910646415";
   const sendToWhatsApp = (imageUrl: string | null) => {
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.care2home.co';
-    const fullImageUrl = imageUrl ? `${baseUrl}${imageUrl}` : 'Not provided';
+    const fullImageUrl = imageUrl || 'Not provided';
     
     const message = `
 🟢 *New Care2Home Booking Request*
@@ -272,6 +317,12 @@ ${formData.address}
         title="Book Parent Pickup Service | Elderly Parent Pickup Booking Delhi | Railway Station Airport Pickup | Care2Home"
         description="Book elderly parent pickup service Delhi. Book parent pickup railway station, airport pickup for elderly parents, senior citizen travel assistance. Quick booking with verified care companions. Book now."
         canonical="https://www.care2home.co/book-service"
+      />
+      <StructuredData id="booking-webpage-schema" data={bookingWebPageSchema} />
+      <StructuredData id="booking-service-schema" data={bookingServiceSchema} />
+      <StructuredData
+        id="booking-breadcrumb-schema"
+        data={bookingBreadcrumbSchema}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">

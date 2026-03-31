@@ -16,6 +16,8 @@ import {
   Fullscreen,
 } from "lucide-react";
 const HeroBanner = () => {
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=YOUR_APP_ID"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
+  
   const handleWhatsApp = () => {
     window.open("https://wa.me/", "_blank");
   };
@@ -42,7 +44,7 @@ const HeroBanner = () => {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
+            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-xl">
               A trained Care Companion receives your parent at the
               airport/railway station and ensures a safe drop home — or receives
               them from home and drops them at the airport/railway station —
@@ -137,6 +139,26 @@ const HeroBanner = () => {
                   </p>
                 </div>
               </div>
+            </div>
+            
+            <div className="mt-6 text-center">
+              <p className="text-gray-900 font-semibold mb-3 text-base md:text-lg">
+                Download our Android App
+              </p>
+              <a
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 transition-opacity"
+              >
+                <Image
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  alt="Get it on Google Play"
+                  width={180}
+                  height={70}
+                  className="h-auto mx-auto"
+                />
+              </a>
             </div>
           </div>
         </div>

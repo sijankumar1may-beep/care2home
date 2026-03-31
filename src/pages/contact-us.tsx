@@ -1,12 +1,60 @@
 import  ContactForm from "@/components/ContactUs";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import SEO from "@/components/Seo";
+import StructuredData from "@/components/StructuredData";
 
 export default function ContactPage() {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://www.care2home.co/contact-us#contactpage",
+    name: "Contact Care2Home",
+    url: "https://www.care2home.co/contact-us",
+    mainEntity: {
+      "@type": "Organization",
+      "@id": "https://www.care2home.co/#organization",
+      name: "Care2Home",
+      url: "https://www.care2home.co/",
+      telephone: "+91-9910646415",
+      email: "info@care2home.co",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          telephone: "+91-9910646415",
+          availableLanguage: ["en", "hi"],
+        },
+      ],
+    },
+  };
+  const contactBreadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.care2home.co/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contact Us",
+        item: "https://www.care2home.co/contact-us",
+      },
+    ],
+  };
+
   return (
 
     <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8 mt-8 ">
       <SEO title="Contact Us | Elderly Parent Pickup Service Delhi | Parent Pickup Support | Care2Home" description="Contact Care2Home for elderly parent pickup service Delhi, railway station pickup, airport pickup for parents. Get help with booking parent pickup service. Call or WhatsApp 24/7." canonical="https://www.care2home.co/contact-us" />
+      <StructuredData id="contact-page-schema" data={contactPageSchema} />
+      <StructuredData
+        id="contact-breadcrumb-schema"
+        data={contactBreadcrumbSchema}
+      />
       <h1 className="text-3xl font-bold mb-8 text-center">Contact Us</h1>
 
       <div className="grid md:grid-cols-2 gap-12">

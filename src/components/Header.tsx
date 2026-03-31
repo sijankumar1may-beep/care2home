@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart, Menu, X } from "lucide-react";
+import { Heart, Menu, X, Smartphone } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -16,6 +16,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const isActive = (path: string) => router.pathname == path;
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
 
   return (
     <nav className="bg-gray-700 shadow-sm sticky top-0 z-50 h-20 my-auto">
@@ -330,6 +331,24 @@ export default function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <div className="flex flex-col items-end">
+             
+              <a
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 transition-opacity"
+              >
+                <Image
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  alt="Get it on Google Play"
+                  width={130}
+                  height={50}
+                  className="h-auto"
+                />
+              </a>
+            </div>
           </div>
 
           <button
@@ -613,6 +632,25 @@ export default function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <div className="py-2">
+             
+              <a
+                href={playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="inline-block hover:opacity-80 transition-opacity"
+              >
+                <Image
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  alt="Get it on Google Play"
+                  width={140}
+                  height={55}
+                  className="h-auto"
+                />
+              </a>
+            </div>
           </div>
         </div>
       )}

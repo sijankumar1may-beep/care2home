@@ -20,7 +20,47 @@ import HeroBanner from "@/components/HeroBanner";
 import PricingModel from "@/components/PricingModel";
 import SEO from "@/components/Seo";
 import StickyButton from "@/components/StickyButton";
+import StructuredData from "@/components/StructuredData";
 export default function Home() {
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://www.care2home.co/#parent-pickup-service",
+    name: "Elderly Parent Pickup Service",
+    serviceType: "Airport and Railway Station Parent Pickup",
+    provider: {
+      "@type": "Organization",
+      "@id": "https://www.care2home.co/#organization",
+      name: "Care2Home",
+      url: "https://www.care2home.co/",
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Delhi",
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Delhi NCR",
+      },
+    ],
+    audience: {
+      "@type": "PeopleAudience",
+      suggestedAge: "60+",
+    },
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: "https://www.care2home.co/book-service",
+      availableLanguage: ["en", "hi"],
+    },
+    offers: {
+      "@type": "Offer",
+      url: "https://www.care2home.co/pricing",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "INR",
+    },
+  };
+
   const handleWhatsApp = () => {
     window.open("https://wa.me/919910646415?text=Hi%20I%20need%20parent%20pickup%20service.", "_blank");
   };
@@ -32,6 +72,7 @@ export default function Home() {
         description="Elderly parent pickup service in Delhi. Safe railway station pickup, airport pickup for elderly parents, senior citizen travel assistance. Verified care companions with live tracking. Book parent pickup service Delhi now."
         canonical="https://www.care2home.co/"
       />
+      <StructuredData id="home-service-schema" data={homePageSchema} />
 
       <HeroBanner />
 
