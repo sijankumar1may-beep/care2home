@@ -7,7 +7,7 @@ const toursPackages = [
     {
       name: "Delhi Elder Tour",
       slug: "/delhi-elder-tour",
-      image: "/placeholder.svg",
+      image: "/delhi-elder-tour.png",
     },
     
   ];
@@ -27,7 +27,7 @@ export default function ProvidingTourPackages() {
               <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                 
                 {/* Image */}
-                <div className="relative w-full h-40">
+                <div className="relative w-full h-65">
                   <Image
                     src={station.image}
                     alt={station.name}

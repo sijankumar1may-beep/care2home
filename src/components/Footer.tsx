@@ -283,6 +283,20 @@ const Footer = () => {
                 </li> */}
               </ul>
             </div>
+            <div className="col-span-2 md:col-span-1">
+              <h4 className="font-semibold mb-4">Tour Services</h4>
+              <ul className="space-y-2 text-white">
+                <li>
+                  <Link
+                    href="/delhi-elder-tour"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Delhi Elder Tour
+                  </Link>
+                </li>
+                
+              </ul>
+            </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 pb-14 md:pb-2 text-center text-white text-sm">

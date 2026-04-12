@@ -56,7 +56,7 @@ export default function DiscountPopup() {
           <div className="text-center">
             {/* Discount Badge */}
             <div className="inline-block bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-2 rounded-full mb-4 transform -rotate-2">
-              <span className="text-2xl font-bold">40% OFF</span>
+              <span className="text-2xl font-bold">10% OFF</span>
             </div>
 
             {/* Main Heading */}
@@ -68,7 +68,7 @@ export default function DiscountPopup() {
 
             {/* Description */}
             <p className="text-gray-600 mb-6 text-lg">
-              Get <span className="font-bold text-blue-600">40% discount</span> on
+              Get <span className="font-bold text-blue-600">10% discount</span> on
               your first booking. Safe travel for your parents, peace of mind for
               you.
             </p>

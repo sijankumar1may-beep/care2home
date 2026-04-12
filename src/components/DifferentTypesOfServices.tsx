@@ -5,19 +5,22 @@ import Image from "next/image";
 
 const differentTypesOfServices = [
     {
-      name: "Airport Pickup",
+      name: "Airport Pickup & Drop",
+      description: "We pick your parents from the airport and drop them off at their destination.",
       slug: "/#serving-airport",
-      image: "/placeholder.svg",
+      image: "/airtportservice.png",
     },
     {
-      name: "Station Pickup",
+      name: "Station Pickup & Drop",
+      description: "We pick your parents from the station and drop them off at their destination.",
       slug: "/#serving-stations",
-      image: "/placeholder.svg",
+      image: "/railwaystationservice.png",
     },
     {
-      name: "Tour Packages",
+      name: "Providing Tour Packages",
+      description: "We provide tour packages for your parents to explore the city.",
       slug: "/#providing-tour-packages",
-      image: "/placeholder.svg",
+      image: "/tourpackageservice.png",
     },
   ];
 
@@ -36,7 +39,7 @@ export default function DifferentTypesOfServices() {
               <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                 
                 {/* Image */}
-                <div className="relative w-full h-40">
+                <div className="relative w-full h-65">
                   <Image
                     src={station.image}
                     alt={station.name}
@@ -52,7 +55,7 @@ export default function DifferentTypesOfServices() {
                   </h3>
 
                   <p className="text-xs text-gray-500 mt-1">
-                    Parent Pickup Service
+                   {station.description}
                   </p>
 
                   <button className="mt-3 text-blue-600 text-sm font-medium hover:underline">

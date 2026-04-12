@@ -7,7 +7,7 @@ const stations = [
   {
     name: "New Delhi Railway Station",
     slug: "/new-delhi-railway-station-parent-pickup",
-    image: "/placeholder.svg",
+    image: "/newdelhfinal.png",
   },
   {
     name: "Old Delhi Railway Station",
@@ -17,7 +17,7 @@ const stations = [
   {
     name: "Delhi Cantt Railway Station",
     slug: "/delhi-cantt-railway-station-parent-pickup",
-    image: "/placeholder.svg",
+    image: "/delhicanttfinal.png",
   },
   {
     name: "Hazrat Nizamuddin Railway Station",
@@ -27,7 +27,7 @@ const stations = [
   {
     name: "Anand Vihar Railway Station",
     slug: "/anand-vihar-railway-station-parent-pickup",
-    image: "/placeholder.svg",
+    image: "/anandvihar.png",
   },
   {
     name: "Ghaziabad Railway Station",
@@ -66,7 +66,7 @@ export default function ServiceStations() {
               <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                 
                 {/* Image */}
-                <div className="relative w-full h-40">
+                <div className="relative w-full h-65">
                   <Image
                     src={station.image}
                     alt={station.name}

@@ -2,6 +2,10 @@ import HowItWorksSection from "@/components/howitworks";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import Link from "next/link";
+import ServiceStations from "@/components/ServingStations";
+import ServiceAirport from "@/components/ServingAirport";
+import ProvingTourPackages from "@/components/ProvingTourPackages";
+import DifferentTypesOfServices from "@/components/DifferentTypesOfServices";
 import {
   Shield,
   PhoneCall,
@@ -311,6 +315,10 @@ export default function Home() {
           </p>
         </div>
       </section> */}
+      <DifferentTypesOfServices />
+      <ServiceStations />
+      <ServiceAirport />
+      <ProvingTourPackages />
       <PricingModel />
       <section className="lg:px-8 py-16">
         <Card className=" bg-gray-300 text-black text-center">

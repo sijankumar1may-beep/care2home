@@ -39,24 +39,6 @@ export default function Header() {
 
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href="/"
-              className={`text-base font-bold transition-colors ${isActive("/")
-                ? "text-blue-400"
-                : "text-white hover:text-blue-400"
-                }`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/pricing"
-              className={`text-base font-bold transition-colors ${isActive("/pricing")
-                ? "text-blue-400"
-                : "text-white hover:text-blue-400"
-                }`}
-            >
-              Pricing
-            </Link>
-            <Link
               href="/book-service"
               className={`text-base font-bold transition-colors ${isActive("/book-service")
                 ? "text-blue-400"
@@ -234,7 +216,15 @@ export default function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
+            <Link
+              href="/pricing"
+              className={`text-base font-bold transition-colors ${isActive("/pricing")
+                ? "text-blue-400"
+                : "text-white hover:text-blue-400"
+                }`}
+            >
+              Pricing
+            </Link>
 
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 transition-colors outline-none text-white font-bold">
@@ -331,7 +321,29 @@ export default function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 transition-colors outline-none text-white font-bold">
+                Tour Services
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="w-56 bg-gray-500 text-white"
+              >
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/delhi-elder-tour"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/delhi-elder-tour")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                   Delhi Elder Tour
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <div className="flex flex-col items-end">
              
               <a
@@ -363,16 +375,7 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 bg-gray-500 mx-1">
           <div className="px-4 pt-2 pb-4 space-y-2">
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className={`block rounded-lg text-base font-medium ${isActive("/")
-                ? "bg-blue-50 text-blue-400"
-                : "text-white hover:bg-gray-50"
-                }`}
-            >
-              Home
-            </Link>
+           
             <Link
               href="/interchange-service"
               onClick={() => setIsOpen(false)}
@@ -632,7 +635,29 @@ export default function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 transition-colors outline-none text-white font-bold">
+                Tour Services
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="w-56 bg-gray-500 text-white"
+              >
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/delhi-elder-tour"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/delhi-elder-tour")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                   Delhi Elder Tour
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <div className="py-2">
              
               <a
