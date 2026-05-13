@@ -45,10 +45,12 @@ const HeroBanner = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-xl">
-              A trained Care Companion receives your parent at the
-              airport/railway station and ensures a safe drop home — or receives
-              them from home and drops them at the airport/railway station —
-              with live updates for you.
+              A trained Care Companion provides senior citizen airport assistance
+              and station support across Delhi NCR—airport pickup for elderly
+              parents, railway station pickup for senior citizens, or the
+              reverse journey—with live updates for you. It&apos;s a parent
+              companion service and elderly travel assistance: a safe pickup
+              service for parents when you can&apos;t be at the gate yourself.
             </p>
 
             <ul className="flex flex-col sm:flex-row gap-4 text-gray-700 mb-8">

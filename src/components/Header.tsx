@@ -16,6 +16,8 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const isActive = (path: string) => router.pathname == path;
+  const isBlogSection =
+    router.asPath === "/blog" || router.asPath.startsWith("/blog/");
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
 
   return (
@@ -225,6 +227,15 @@ export default function Header() {
             >
               Pricing
             </Link>
+            <Link
+              href="/blog"
+              className={`text-base font-bold transition-colors ${isBlogSection
+                ? "text-blue-400"
+                : "text-white hover:text-blue-400"
+                }`}
+            >
+              Blog
+            </Link>
 
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 transition-colors outline-none text-white font-bold">
@@ -305,6 +316,18 @@ export default function Header() {
                       }`}
                   >
                     Safety & Trust
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/faq"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/faq")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    FAQ
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -395,6 +418,16 @@ export default function Header() {
                 }`}
             >
               Pricing
+            </Link>
+            <Link
+              href="/blog"
+              onClick={() => setIsOpen(false)}
+              className={`block rounded-lg text-base font-medium ${isBlogSection
+                ? "bg-blue-50 text-blue-400"
+                : "text-white hover:bg-gray-50"
+                }`}
+            >
+              Blog
             </Link>
             <Link
               href="/book-service"
@@ -619,6 +652,18 @@ export default function Header() {
                       }`}
                   >
                     Safety & Trust
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/faq"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/faq")
+                      ? "text-blue-400"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    FAQ
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

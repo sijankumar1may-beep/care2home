@@ -1,16 +1,24 @@
 import { GetServerSideProps } from "next";
+import { getAllBlogSlugs } from "../data/blogPosts";
 
 const SITE_URL = "https://care2home.co";
 
 const Sitemap = () => null;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  const blogPaths = [
+    "/blog",
+    ...getAllBlogSlugs().map((slug) => `/blog/${slug}`),
+  ];
+
   // Static pages
   const staticPages = [
+    ...blogPaths,
     "/about-us",
     "/contact-us",
     "/book-service",
     "/terms",
+    "/faq",
     "/safety",
     "/our-team",
     "/vision-mission",

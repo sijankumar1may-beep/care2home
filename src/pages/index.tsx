@@ -1,4 +1,3 @@
-import HowItWorksSection from "@/components/howitworks";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import Link from "next/link";
@@ -7,19 +6,15 @@ import ServiceAirport from "@/components/ServingAirport";
 import ProvingTourPackages from "@/components/ProvingTourPackages";
 import DifferentTypesOfServices from "@/components/DifferentTypesOfServices";
 import {
-  Shield,
-  PhoneCall,
-  Clock,
   MessageCircle,
   CheckCircle,
-  Plane,
-  Train,
   Home as HomeIcon,
   Heart,
   UserCheck,
   Bell,
 } from "lucide-react";
 import Safetyandtrust from "../components/safetyandtrust";
+import AsSeenOn from "@/components/AsSeenOn";
 import HeroBanner from "@/components/HeroBanner";
 import PricingModel from "@/components/PricingModel";
 import SEO from "@/components/Seo";
@@ -31,7 +26,10 @@ export default function Home() {
     "@type": "Service",
     "@id": "https://www.care2home.co/#parent-pickup-service",
     name: "Elderly Parent Pickup Service",
-    serviceType: "Airport and Railway Station Parent Pickup",
+    description:
+      "Airport pickup for elderly parents, railway station pickup for senior citizens, and elderly travel assistance in Delhi NCR. Parent companion service with senior citizen airport assistance—a safe pickup service for parents.",
+    serviceType:
+      "Airport pickup for elderly parents; railway station pickup for senior citizens; parent companion service; senior citizen airport assistance",
     provider: {
       "@type": "Organization",
       "@id": "https://www.care2home.co/#organization",
@@ -72,8 +70,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <SEO
-        title="Elderly Parent Pickup Service Delhi | Railway Station & Airport Pickup for Parents | Care2Home"
-        description="Elderly parent pickup service in Delhi. Safe railway station pickup, airport pickup for elderly parents, senior citizen travel assistance. Verified care companions with live tracking. Book parent pickup service Delhi now."
+        title="Airport Pickup for Elderly Parents Delhi NCR | Railway Station & Senior Citizen Assistance | Care2Home"
+        description="Parent companion service in Delhi NCR: airport pickup for elderly parents, railway station pickup for senior citizens, senior citizen airport assistance, and elderly travel assistance. A safe pickup service for parents—verified Care Companions, live updates. Book Care2Home."
         canonical="https://www.care2home.co/"
       />
       <StructuredData id="home-service-schema" data={homePageSchema} />
@@ -139,7 +137,9 @@ export default function Home() {
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             A cab drops your parent at the gate. Our Care Companion ensures
-            they&apos;re safe until they&apos;re home.
+            they&apos;re safe until they&apos;re home—whether you need airport
+            pickup for elderly parents, railway station pickup for senior
+            citizens, or ongoing elderly travel assistance across Delhi NCR.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -210,6 +210,10 @@ export default function Home() {
           your parent is safely home.
         </p>
       </section>
+
+      <Safetyandtrust />
+      <AsSeenOn />
+
       {/* <section className="bg-white py-16">
         <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
