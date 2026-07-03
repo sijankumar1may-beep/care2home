@@ -5,7 +5,10 @@ import Link from "next/link";
 export default function DiscountPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const discount = "10%";
 
+   const whatsAppMessage = `Hi, I'm interested in the ${discount} discount offer for Care2Home's parent pickup and drop service. Could you please share more details?`;
+  
   useEffect(() => {
     // Set mounted to true after component mounts
     setIsMounted(true);
@@ -83,7 +86,7 @@ export default function DiscountPopup() {
                 Book Now & Save
               </Link>
               <a
-                href="https://wa.me/919910646415?text=Hi%2C%20I%20want%20to%20avail%20the%2040%25%20discount%20offer%20for%20first-time%20users."
+                href={`https://wa.me/919910646415?text=${whatsAppMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleClose}

@@ -21,7 +21,7 @@ export default function Header() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
 
   return (
-    <nav className="bg-gray-700 shadow-sm sticky top-0 z-50 h-20 my-auto">
+    <nav className="bg-blue-800 shadow-sm sticky top-0 z-50 h-20 my-auto">
       <div className="mx-auto md:mx-8 px-6 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link
@@ -43,7 +43,7 @@ export default function Header() {
             <Link
               href="/book-service"
               className={`text-base font-bold transition-colors ${isActive("/book-service")
-                ? "text-blue-400"
+                ? "text-white border-b-2 border-white"
                 : "text-white hover:text-blue-400"
                 }`}
             >
@@ -63,7 +63,7 @@ export default function Header() {
                     href="/new-delhi-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/new-delhi-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -75,7 +75,7 @@ export default function Header() {
                     href="/old-delhi-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/old-delhi-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -87,7 +87,7 @@ export default function Header() {
                     href="/delhi-cantt-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/delhi-cantt-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -101,7 +101,7 @@ export default function Header() {
                     className={`text-base font-bold transition-colors ${isActive(
                       "/hazrat-nizamuddin-railway-station-parent-pickup"
                     )
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -113,7 +113,7 @@ export default function Header() {
                     href="/anand-vihar-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/anand-vihar-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -125,7 +125,7 @@ export default function Header() {
                     href="/ghaziabad-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/ghaziabad-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -137,7 +137,7 @@ export default function Header() {
                     href="/delhi-sarai-rohilla-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/delhi-sarai-rohilla-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -149,7 +149,7 @@ export default function Header() {
                     href="/jaipur-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/jaipur-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -161,7 +161,7 @@ export default function Header() {
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -185,7 +185,7 @@ export default function Header() {
                     href="/igi-airport-delhi-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/igi-airport-delhi-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -197,7 +197,7 @@ export default function Header() {
                     href="/t3-igi-airport-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/t3-igi-airport-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -209,7 +209,7 @@ export default function Header() {
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -221,7 +221,7 @@ export default function Header() {
             <Link
               href="/pricing"
               className={`text-base font-bold transition-colors ${isActive("/pricing")
-                ? "text-blue-400"
+                ? "text-white border-b-2 border-white"
                 : "text-white hover:text-blue-400"
                 }`}
             >
@@ -230,7 +230,7 @@ export default function Header() {
             <Link
               href="/blog"
               className={`text-base font-bold transition-colors ${isBlogSection
-                ? "text-blue-400"
+                ? "text-white border-b-2 border-white"
                 : "text-white hover:text-blue-400"
                 }`}
             >
@@ -251,7 +251,7 @@ export default function Header() {
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -263,7 +263,7 @@ export default function Header() {
                     href="/about-us"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/about-us")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -275,7 +275,7 @@ export default function Header() {
                     href="/contact-us"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/contact-us")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -287,7 +287,7 @@ export default function Header() {
                     href="/terms"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/terms")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -299,7 +299,7 @@ export default function Header() {
                     href="/privacy-policy"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/privacy-policy")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -311,7 +311,7 @@ export default function Header() {
                     href="/safety"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/safety")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -323,7 +323,7 @@ export default function Header() {
                     href="/faq"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/faq")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -335,7 +335,7 @@ export default function Header() {
                     href="/vision-mission"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/vision-mission")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -358,7 +358,7 @@ export default function Header() {
                     href="/delhi-elder-tour"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/delhi-elder-tour")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -453,7 +453,7 @@ export default function Header() {
                     href="/new-delhi-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/new-delhi-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -465,7 +465,7 @@ export default function Header() {
                     href="/old-delhi-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/old-delhi-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -477,7 +477,7 @@ export default function Header() {
                     href="/delhi-cantt-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/delhi-cantt-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -491,7 +491,7 @@ export default function Header() {
                     className={`text-base font-bold transition-colors ${isActive(
                       "/hazrat-nizamuddin-railway-station-parent-pickup"
                     )
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -503,7 +503,7 @@ export default function Header() {
                     href="/anand-vihar-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/anand-vihar-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -515,7 +515,7 @@ export default function Header() {
                     href="/ghaziabad-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/ghaziabad-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -527,7 +527,7 @@ export default function Header() {
                     href="/delhi-sarai-rohilla-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/delhi-sarai-rohilla-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -539,7 +539,7 @@ export default function Header() {
                     href="/jaipur-railway-station-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/jaipur-railway-station-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -563,7 +563,7 @@ export default function Header() {
                     href="/igi-airport-delhi-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/igi-airport-delhi-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -575,7 +575,7 @@ export default function Header() {
                     href="/t3-igi-airport-parent-pickup"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/t3-igi-airport-parent-pickup")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -599,7 +599,7 @@ export default function Header() {
                     href="/about-us"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/about-us")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -611,7 +611,7 @@ export default function Header() {
                     href="/contact-us"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/contact-us")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -623,7 +623,7 @@ export default function Header() {
                     href="/terms"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/terms")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -635,7 +635,7 @@ export default function Header() {
                     href="/privacy-policy"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/privacy-policy")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -647,7 +647,7 @@ export default function Header() {
                     href="/safety"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/safety")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -659,7 +659,7 @@ export default function Header() {
                     href="/faq"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/faq")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -671,7 +671,7 @@ export default function Header() {
                     href="/vision-mission"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/vision-mission")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >
@@ -694,7 +694,7 @@ export default function Header() {
                     href="/delhi-elder-tour"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/delhi-elder-tour")
-                      ? "text-blue-400"
+                      ? "text-white border-b-2 border-white"
                       : "text-white hover:text-blue-400"
                       }`}
                   >

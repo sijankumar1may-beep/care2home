@@ -21,7 +21,7 @@ const Footer = () => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   return (
     <>
-      <footer className="bg-gray-700 text-white py-12">
+      <footer className="bg-blue-800 text-white py-12">
         <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8 mb-8">
             <div>
@@ -34,7 +34,7 @@ const Footer = () => {
                   className="rounded-lg mt-2 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
                 />
               </div>
-              <p className="text-white font-bold hover:text-blue-600 mb-4">
+              <p className="text-white font-bold hover:border-b-2 hover:border-white mb-4">
                 Trusted care for parents traveling alone. Peace of mind for
                 working professionals.
               </p>
@@ -65,14 +65,14 @@ const Footer = () => {
                 <li>
                   <Link
                     href="/"
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                   >
                     Home
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/interchange-service"
                   >
                     Interchange Service
@@ -80,7 +80,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/pricing"
                   >
                     Pricing
@@ -88,7 +88,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/blog"
                   >
                     Blog
@@ -96,7 +96,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/book-service"
                   >
                     Book Service
@@ -104,7 +104,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/faq"
                   >
                     FAQ
@@ -112,7 +112,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/terms"
                   >
                     Terms & Safety
@@ -120,7 +120,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/privacy-policy"
                   >
                     Privacy Policy
@@ -128,7 +128,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/vision-mission"
                   >
                     Vision & Mission
@@ -142,14 +142,14 @@ const Footer = () => {
                 <li>
                   <Link
                     href="/new-delhi-railway-station-parent-pickup"
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                   >
                     New Delhi Railway Station Parent Pickup
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/old-delhi-railway-station-parent-pickup"
                   >
                     Old Delhi Railway Station Parent Pickup
@@ -157,7 +157,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/delhi-cantt-railway-station-parent-pickup"
                   >
                     Delhi Cantt Railway Station Parent Pickup
@@ -165,7 +165,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/hazrat-nizamuddin-railway-station-parent-pickup"
                   >
                     Hazrat Nizamuddin Railway Station Parent Pickup
@@ -173,7 +173,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/anand-vihar-railway-station-parent-pickup"
                   >
                     Anand Vihar Railway Station Parent Pickup
@@ -181,7 +181,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/ghaziabad-railway-station-parent-pickup"
                   >
                     Ghaziabad Railway Station Parent Pickup
@@ -189,7 +189,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/delhi-sarai-rohilla-railway-station-parent-pickup"
                   >
                     Delhi Sarai Rohilla Railway Station Parent Pickup
@@ -197,7 +197,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/jaipur-railway-station-parent-pickup"
                   >
                     Jaipur Railway Station Parent Pickup
@@ -205,7 +205,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/interchange-service"
                   >
                     Stations Interchange
@@ -219,7 +219,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href="/igi-airport-delhi-parent-pickup"
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                   >
                     IGI Airport Delhi Parent Pickup
                   </Link>
@@ -227,7 +227,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href="/t3-igi-airport-parent-pickup"
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                   >
                     T3 IGI Airport Parent Pickup
                   </Link>
@@ -235,7 +235,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href="/interchange-service"
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                   >
                     Airport ↔ Station Transfer
                   </Link>
@@ -247,15 +247,15 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/contact-us"
                   >
                     Contact us
                   </Link>
                 </li>
-                <li className="flex items-center hover:text-blue-600">
+                <li className="flex items-center hover:border-b-2 hover:border-white">
                   <Link
-                    className="hover:text-blue-600 transition-colors flex items-center"
+                    className="hover:border-b-2 hover:border-white transition-colors flex items-center"
                     href={`${whatsappUrl}`}
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
@@ -283,7 +283,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/about-us"
                   >
                     About us
@@ -291,7 +291,7 @@ const Footer = () => {
                 </li>
                 {/* <li>
                   <Link
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/our-team"
                   >
                     Our team
@@ -305,7 +305,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href="/delhi-elder-tour"
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:border-b-2 hover:border-white transition-colors"
                   >
                     Delhi Elder Tour
                   </Link>
