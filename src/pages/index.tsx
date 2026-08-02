@@ -77,11 +77,15 @@ export default function Home() {
       <StructuredData id="home-service-schema" data={homePageSchema} />
 
       <HeroBanner />
-
+      <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
+      <iframe  src="https://www.youtube.com/embed/10o3q8qJFXc?si=jVm1UMZGd8q1ZrCf" title="YouTube video player" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowFullScreen className="w-full h-140"></iframe>
+      </section>
       <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
           How it works
         </h2>
+       
         <div className="grid md:grid-cols-3 gap-8">
           <Card>
             <div className="text-center">
@@ -127,6 +131,10 @@ export default function Home() {
               </p>
             </div>
           </Card>
+        </div>
+        <div className="mt-10">
+        <iframe className="w-full h-140" src="https://www.youtube.com/embed/YQ5Qm7fnA-w?si=HaMLQ6yvK7NSlqPL" title="YouTube video player"  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+      
         </div>
       </section>
 
