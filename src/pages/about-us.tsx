@@ -38,8 +38,8 @@ const Aboutus = () => {
   return (
     <>
       <SEO
-        title="About Us | Elderly Parent Pickup Service Delhi | Parent Care & Travel Assistance | Care2Home"
-        description="Learn about Care2Home - trusted elderly parent pickup service Delhi, railway station pickup, airport pickup for parents. Our story, vision, and commitment to safe parent travel assistance."
+        title="About Us | Elderly Parent Pickup Service India | Delhi NCR & Nationwide Parent Care | Care2Home"
+        description="Learn about Care2Home - trusted elderly parent pickup service across India with Delhi NCR hub. Railway station pickup, airport pickup for parents. Our story, vision, and commitment to safe parent travel assistance nationwide."
         canonical="https://www.care2home.co/about-us"
       />
       <StructuredData id="about-page-schema" data={aboutPageSchema} />

@@ -46,7 +46,7 @@ export default function IGIAirportPickup() {
                         <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-muted-foreground mb-8">
                             <span>✔ Arrival Gate Assistance</span>
                             <span>✔ Till-Home Responsibility</span>
-                            <span>✔ Delhi NCR Only</span>
+                            <span>✔ Across India (Delhi NCR hub)</span>
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -119,7 +119,7 @@ export default function IGIAirportPickup() {
                                     Whether it’s a late-night international arrival, an early morning
                                     domestic flight, or a first-time solo journey for your parents,
                                     Care2Home ensures a stress-free, reliable airport pickup experience
-                                    across Delhi NCR. Our goal is simple — your parents arrive home safely,
+                                    across India—with strong coverage in Delhi NCR. Our goal is simple — your parents arrive home safely,
                                     and you remain completely worry-free.
                                 </p>
                             </div>

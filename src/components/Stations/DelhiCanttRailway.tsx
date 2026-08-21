@@ -107,14 +107,14 @@ export default function DelhiCanttPage() {
               Unlike traditional taxi or cab services, we take complete responsibility. Our &quot;Till Home&quot; promise means we
               don&apos;t just drop your parents at the building entrance. We help carry bags up stairs, ensure they&apos;re
               comfortably inside with all essentials accessible, and confirm their safe arrival with you before leaving.
-              This comprehensive care approach has made us the trusted choice for hundreds of families across Delhi NCR.
+              This comprehensive care approach has made us the trusted choice for hundreds of families across India—with strong coverage in Delhi NCR.
             </p>
 
             <p className="text-muted-foreground leading-relaxed mb-6">
               Delhi Cantt serves trains from Bangalore, Trivandrum, Mangalore, Chennai, and other South Indian cities.
               If your parents travel frequently on these routes, Care2Home ensures every arrival is safe and
               comfortable. Book instantly via WhatsApp and receive real-time updates throughout the journey. Available
-              24/7 across all Delhi NCR locations.
+              24/7 across India (Delhi NCR hub).
             </p>
 
             <div className="bg-accent/5 border-l-4 border-accent p-6 rounded-r-lg">

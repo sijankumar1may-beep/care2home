@@ -110,7 +110,9 @@ export default function AboutPage() {
               </p>
 
               <p className="leading-relaxed font-semibold text-primary">
-                Today, we&apos;re proud to serve families across Delhi NCR, providing peace of mind one journey at a time.
+                Today, we&apos;re proud to serve families across India—with strong
+                coverage in Delhi NCR—providing peace of mind one journey at a
+                time.
               </p>
             </div>
           </div>

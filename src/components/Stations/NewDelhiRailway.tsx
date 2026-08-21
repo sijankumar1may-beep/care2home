@@ -127,7 +127,7 @@ export default function NewDelhiRailwayStationPage() {
               Whether your parents are arriving from Kolkata, Mumbai, Lucknow,
               or any other city, our service ensures they have a safe,
               comfortable journey from New Delhi Railway Station to their
-              doorstep. Available 24/7 across Delhi NCR, we&apos;re just a
+              doorstep. Available 24/7 across India (Delhi NCR hub), we&apos;re just a
               WhatsApp message away.
             </p>
 

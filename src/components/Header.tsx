@@ -332,6 +332,18 @@ export default function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
+                    href="/reviews"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/reviews")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Reviews
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
                     href="/vision-mission"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/vision-mission")
@@ -664,6 +676,18 @@ export default function Header() {
                       }`}
                   >
                     FAQ
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/reviews"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/reviews")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Reviews
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

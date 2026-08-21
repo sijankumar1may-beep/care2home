@@ -123,7 +123,7 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
           <footer className="mt-14 pt-10 border-t border-gray-200">
             <p className="text-gray-700 mb-6">
               Care2Home offers verified Care Companions for airport and railway
-              pickup for elderly parents across Delhi NCR—with live updates for
+              pickup for elderly parents across India—with strong coverage in Delhi NCR—with live updates for
               your family.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

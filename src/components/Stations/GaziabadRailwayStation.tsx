@@ -52,7 +52,7 @@ export default function GhaziabadRailwayStationPage() {
                             <span>✔ Background-Verified Companions</span>
                             <span>✔ Till-Home Responsibility</span>
                             <span>✔ Expert Handling at Busy Platforms</span>
-                            <span>✔ Delhi NCR Only</span>
+                            <span>✔ Across India (Delhi NCR hub)</span>
                         </div>
 
                         {/* Primary CTA */}

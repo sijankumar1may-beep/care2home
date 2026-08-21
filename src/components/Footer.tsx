@@ -113,6 +113,14 @@ const Footer = () => {
                 <li>
                   <Link
                     className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/reviews"
+                  >
+                    Reviews
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/terms"
                   >
                     Terms & Safety

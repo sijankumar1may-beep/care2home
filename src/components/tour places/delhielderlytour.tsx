@@ -130,7 +130,7 @@ export default function DelhiElderTour() {
             </button>
 
             <p className="mt-4 text-sm opacity-75">
-              Available across Delhi NCR
+              Available across India • Strong coverage in Delhi NCR
             </p>
           </div>
         </div>

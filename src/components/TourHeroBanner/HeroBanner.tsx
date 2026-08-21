@@ -85,7 +85,7 @@ const HeroSection = () => {
                 Same-day bookings available
               </p> */}
               <p className="text-sm text-muted-foreground">
-                Trusted by families across Delhi NCR • Available 24/7
+                Trusted by families across India • Delhi NCR hub • Available 24/7
               </p>
             </div>
           </div>

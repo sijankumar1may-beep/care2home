@@ -1,4 +1,5 @@
-import { useState, FormEvent, useRef } from "react";
+import { useState, FormEvent, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 import { Input, TextArea } from "../components/Input";
@@ -6,10 +7,24 @@ import { CheckCircle, Upload, X, MapPin, Loader2 } from "lucide-react";
 import Link from "next/link";
 import SEO from "@/components/Seo";
 import StructuredData from "@/components/StructuredData";
+import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
+import { formatDistanceKm, formatIndianCurrency, getVehicleLabel } from "@/lib/pricing";
+import type { VehicleType } from "@/lib/pricing-config";
+import type { JourneyPricingResult } from "@/types/pricing";
 import { storage } from '../../lib/firebase'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
+function getQueryString(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return value[0] ?? "";
+  return value ?? "";
+}
+
+function isValidVehicleType(value: string): value is VehicleType {
+  return value === "car" || value === "auto";
+}
+
 export default function BookService() {
+  const router = useRouter();
   const bookingWebPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -33,10 +48,16 @@ export default function BookService() {
     provider: {
       "@id": "https://www.care2home.co/#organization",
     },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Delhi NCR",
-    },
+    areaServed: [
+      {
+        "@type": "AdministrativeArea",
+        name: "Delhi NCR",
+      },
+      {
+        "@type": "Country",
+        name: "India",
+      },
+    ],
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: "https://www.care2home.co/book-service",
@@ -70,6 +91,8 @@ export default function BookService() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
+  const [pricing, setPricing] = useState<JourneyPricingResult | null>(null);
+  const [isLoadingPricing, setIsLoadingPricing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
@@ -77,6 +100,47 @@ export default function BookService() {
     phone: "",
     email: "",
   });
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const source = getQueryString(router.query.source);
+    const origin = getQueryString(router.query.origin);
+    const destination = getQueryString(router.query.destination);
+    const vehicleType = getQueryString(router.query.vehicleType);
+
+    if (source === "pricing" && origin && destination) {
+      setFormData((prev) => ({
+        ...prev,
+        address: `Pickup: ${origin}\nDestination: ${destination}`,
+      }));
+
+      if (isValidVehicleType(vehicleType)) {
+        setIsLoadingPricing(true);
+        fetch("/api/calculate-journey-price", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            originAddress: origin,
+            destinationAddress: destination,
+            vehicleType,
+          }),
+        })
+          .then(async (response) => {
+            const data = await response.json();
+            if (response.ok) {
+              setPricing(data as JourneyPricingResult);
+            }
+          })
+          .catch(() => {
+            setPricing(null);
+          })
+          .finally(() => {
+            setIsLoadingPricing(false);
+          });
+      }
+    }
+  }, [router.isReady, router.query]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -183,11 +247,11 @@ export default function BookService() {
     }
   };
 
-  const uploadImage = async (): Promise<string | null> => {
+  const uploadImage = async (phone?: string): Promise<string | null> => {
     if (!ticketImage) return null;
 
     try {
-      const fileName = `${Date.now()}-${ticketImage.name}`;
+      const fileName = `${Date.now()}-${phone}-${ticketImage.name}`;
       const imageRef = ref(storage, `Care2homeWeb/${fileName}`);
       await uploadBytes(imageRef, ticketImage);
       const imageURL = await getDownloadURL(imageRef);
@@ -201,12 +265,22 @@ export default function BookService() {
   const WHATSAPP_NUMBER = "919910646415";
   const sendToWhatsApp = (imageUrl: string | null) => {
     const fullImageUrl = imageUrl || 'Not provided';
+
+    const pricingSection = pricing
+      ? `
+💰 *Journey Price:* ${formatIndianCurrency(pricing.totalPrice)}
+   ${getVehicleLabel(pricing.vehicleType)}: ${formatIndianCurrency(pricing.transportationFee)}
+   Care Companion: ${formatIndianCurrency(pricing.careCompanionFee)}
+📏 *Distance:* ${formatDistanceKm(pricing.distanceKm)} km
+🚗 *Vehicle:* ${pricing.vehicleType === "car" ? "Car" : "Auto"}
+`
+      : "";
     
     const message = `
 🟢 *New Care2Home Booking Request*
 
 📋 *Booking Details:*
-
+${pricingSection}
 📸 *Ticket Image:* ${fullImageUrl}
 
 📍 *Pickup/Drop Address:*
@@ -252,7 +326,7 @@ ${formData.address}
 
     try {
       // Upload image first
-      const imageUrl = await uploadImage();
+      const imageUrl = await uploadImage(formData.phone.trim());
       setUploadedImageUrl(imageUrl);
 
       // Send to WhatsApp
@@ -314,8 +388,8 @@ ${formData.address}
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
       <SEO
-        title="Book Parent Pickup Service | Elderly Parent Pickup Booking Delhi | Railway Station Airport Pickup | Care2Home"
-        description="Book elderly parent pickup service Delhi. Book parent pickup railway station, airport pickup for elderly parents, senior citizen travel assistance. Quick booking with verified care companions. Book now."
+        title="Book Parent Pickup Service in India | Elderly Parent Pickup Delhi NCR & Nationwide | Care2Home"
+        description="Book elderly parent pickup service across India. Delhi NCR hub with nationwide airport and railway station pickup for elderly parents, senior citizen travel assistance. Quick booking with verified care companions. Book now."
         canonical="https://www.care2home.co/book-service"
       />
       <StructuredData id="booking-webpage-schema" data={bookingWebPageSchema} />
@@ -330,13 +404,27 @@ ${formData.address}
             Book Care Service
           </h1>
           <p className="text-sm text-gray-500 text-center mb-6">
-            Available 24/7 • Airport, Railway & Bus Stand pickups • Delhi NCR
+            Available 24/7 • Airport, Railway & Bus Stand pickups • Across India
+            (Delhi NCR hub)
           </p>
           <p className="text-lg text-gray-600">
             Share your parent&apos;s travel details and we&apos;ll take care of
             the rest.
           </p>
         </div>
+
+        {isLoadingPricing && (
+          <div className="mb-6 flex items-center justify-center gap-2 text-gray-600">
+            <Loader2 className="w-5 h-5 animate-spin" />
+            <span>Loading journey price...</span>
+          </div>
+        )}
+
+        {pricing && !isLoadingPricing && (
+          <div className="mb-6">
+            <JourneyPriceBreakdown pricing={pricing} />
+          </div>
+        )}
 
         <Card>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -433,7 +521,7 @@ ${formData.address}
 
             {/* Phone Number */}
             <Input
-              label="Phone Number"
+              label="Phone Number *"
               name="phone"
               type="tel"
               required

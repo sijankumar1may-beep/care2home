@@ -5,7 +5,7 @@ const HeroSection = () => {
   const trustPoints = [
     "Background-Verified Companions",
     "Till-Home Responsibility",
-    "Delhi NCR Only",
+    "Across India (Delhi NCR hub)",
   ];
 
   return (

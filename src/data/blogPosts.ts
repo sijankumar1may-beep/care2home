@@ -64,7 +64,7 @@ const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Families across Delhi NCR use Care2Home when work schedules, distance, or health make it impossible to be at IGI Airport or New Delhi Railway Station in person. A verified Care Companion can meet your parent with a name placard, help with luggage and navigation, stay with them until they are safely inside their home, and send you updates along the way. It does not replace your love—it extends your care into the moments you cannot physically cover.",
+        text: "Families across India use Care2Home—with strong coverage in Delhi NCR—when work schedules, distance, or health make it impossible to be at IGI Airport or New Delhi Railway Station in person. A verified Care Companion can meet your parent with a name placard, help with luggage and navigation, stay with them until they are safely inside their home, and send you updates along the way. It does not replace your love—it extends your care into the moments you cannot physically cover.",
       },
       {
         type: "h2",

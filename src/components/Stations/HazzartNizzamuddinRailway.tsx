@@ -50,7 +50,7 @@ export default function HazratNizamuddinRailway() {
             <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-muted-foreground mb-8">
               <span>✔ Background-Verified Companions</span>
               <span>✔ Till-Home Responsibility</span>
-              <span>✔ Delhi NCR Only</span>
+              <span>✔ Across India (Delhi NCR hub)</span>
             </div>
 
             {/* Primary CTA */}

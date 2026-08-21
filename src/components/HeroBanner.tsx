@@ -46,11 +46,12 @@ const HeroBanner = () => {
 
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-xl">
               A trained Care Companion provides senior citizen airport assistance
-              and station support across Delhi NCR—airport pickup for elderly
-              parents, railway station pickup for senior citizens, or the
-              reverse journey—with live updates for you. It&apos;s a parent
-              companion service and elderly travel assistance: a safe pickup
-              service for parents when you can&apos;t be at the gate yourself.
+              and station support across India—with strong coverage in Delhi
+              NCR. Airport pickup for elderly parents, railway station pickup
+              for senior citizens, or the reverse journey—with live updates for
+              you. It&apos;s a parent companion service and elderly travel
+              assistance: a safe pickup service for parents when you can&apos;t
+              be at the gate yourself.
             </p>
 
             <ul className="flex flex-col sm:flex-row gap-4 text-gray-700 mb-8">
@@ -106,13 +107,19 @@ const HeroBanner = () => {
               >
                 Book Online
               </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 bg-blue-800 text-white text-lg font-medium transition"
+              >
+                Calculate Your Price
+              </Link>
             </div>
             <p className="text-sm text-black mt-2">
               Parents arriving today? Book instantly.
             </p>
             <p className="text-sm text-gray-500 mt-6">
-              Currently available in Delhi NCR • Avg response time under 5
-              minutes
+              Available across India • Delhi NCR hub • Avg response time under
+              5 minutes
             </p>
           </div>
 

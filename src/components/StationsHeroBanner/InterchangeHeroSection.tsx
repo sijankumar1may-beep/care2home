@@ -19,7 +19,7 @@ export default function InterchangeHeroSection({
   const trustPoints = [
     "Background-Verified Companions",
     "Till-Handover Responsibility",
-    "Delhi NCR Only",
+    "Across India (Delhi NCR hub)",
   ];
 
   const whatsappText = encodeURIComponent(

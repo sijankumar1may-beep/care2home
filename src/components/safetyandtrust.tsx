@@ -85,8 +85,9 @@ const Safetyandtrust = () => {
               Growing base
             </p>
             <p className="text-xs text-gray-600 mt-1">
-              Hundreds of pickup and companion journeys across Delhi NCR, with
-              many families booking again when parents travel next
+              Hundreds of pickup and companion journeys across India—with strong
+              coverage in Delhi NCR—with many families booking again when
+              parents travel next
             </p>
           </Card>
           <Card className="p-5 text-center bg-blue-50/80 border-blue-100">

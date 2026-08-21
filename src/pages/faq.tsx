@@ -7,7 +7,7 @@ const FAQ_ITEMS = [
   {
     question: "How does Care2Home work?",
     answer:
-      "You share your parent’s travel details—arrival or departure at an airport or railway station in Delhi NCR, or a home-to-terminal journey—through our booking form or WhatsApp. We assign a trained Care Companion who meets your parent with a name placard, helps with luggage and navigation, stays with them in arranged transport, and remains until they are safely home (or checked in for departure). You receive updates throughout so you always know how the journey is progressing.",
+      "You share your parent’s travel details—arrival or departure at an airport or railway station anywhere in India (with strong coverage in Delhi NCR), or a home-to-terminal journey—through our booking form or WhatsApp. We assign a trained Care Companion who meets your parent with a name placard, helps with luggage and navigation, stays with them in arranged transport, and remains until they are safely home (or checked in for departure). You receive updates throughout so you always know how the journey is progressing.",
   },
   {
     question: "Are companions verified?",
@@ -17,7 +17,7 @@ const FAQ_ITEMS = [
   {
     question: "Can you assist at railway stations?",
     answer:
-      "Yes. We regularly assist families at major Delhi NCR railway stations—including New Delhi, Old Delhi, Hazrat Nizamuddin, Anand Vihar, Delhi Cantt, Ghaziabad, Delhi Sarai Rohilla, and Jaipur—plus station-to-airport interchange journeys. Your companion meets your parent on the platform or at the agreed exit, helps with bags and crowds, and coordinates a safe ride home.",
+      "Yes. We regularly assist families at major railway stations across India, with our strongest coverage in Delhi NCR—including New Delhi, Old Delhi, Hazrat Nizamuddin, Anand Vihar, Delhi Cantt, Ghaziabad, Delhi Sarai Rohilla, and Jaipur—plus station-to-airport interchange journeys. Your companion meets your parent on the platform or at the agreed exit, helps with bags and crowds, and coordinates a safe ride home.",
   },
   {
     question: "Do you provide wheelchair support?",
@@ -32,7 +32,7 @@ const FAQ_ITEMS = [
   {
     question: "Which cities do you serve?",
     answer:
-      "Care2Home’s parent pickup and companion service is focused on Delhi, NCR, Gurgaon and Jaipur, including airport and railway coverage in the region. We also support listed station pages such as Jaipur for certain journeys. If you are unsure whether your route is covered, message us on WhatsApp with your station or terminal and we will confirm quickly.",
+      "Care2Home provides parent pickup and companion services across India, with our Delhi NCR hub covering Delhi, NCR, Gurgaon, Noida, Ghaziabad, Faridabad, and Jaipur—including airport and railway coverage in the region. We also serve families at major stations and airports nationwide. If you are unsure whether your route is covered, message us on WhatsApp with your station or terminal and we will confirm quickly.",
   },
 ] as const;
 
@@ -72,7 +72,7 @@ export default function FaqPage() {
   return (
     <>
       <SEO
-        title="FAQ | Care2Home — Airport & Railway Pickup for Elderly Parents | Delhi NCR"
+        title="FAQ | Care2Home — Airport & Railway Pickup for Elderly Parents | India & Delhi NCR"
         description="Frequently asked questions: how Care2Home works, verified companions, railway station assistance, wheelchair coordination, live journey updates, and cities we serve."
         canonical="https://www.care2home.co/faq"
       />

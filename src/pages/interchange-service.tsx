@@ -244,7 +244,7 @@ export default function InterchangeService() {
                         </h2>
                         <p className="text-lg mb-6 opacity-90 leading-relaxed text-balance">
                             One companion, one responsibility: your parent’s safe connection from arrival to departure.
-                            Available 24/7 across Delhi NCR.
+                            Available 24/7 across India (Delhi NCR hub).
                         </p>
 
                         <a

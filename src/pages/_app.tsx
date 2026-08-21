@@ -64,10 +64,16 @@ export default function App({ Component, pageProps }: AppProps) {
         latitude: 28.59070101354673,
         longitude: 77.30841745833007,
       },
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Delhi NCR",
-      },
+      areaServed: [
+        {
+          "@type": "AdministrativeArea",
+          name: "Delhi NCR",
+        },
+        {
+          "@type": "Country",
+          name: "India",
+        },
+      ],
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -94,10 +100,16 @@ export default function App({ Component, pageProps }: AppProps) {
       provider: {
         "@id": "https://www.care2home.co/#organization",
       },
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Delhi NCR",
-      },
+      areaServed: [
+        {
+          "@type": "AdministrativeArea",
+          name: "Delhi NCR",
+        },
+        {
+          "@type": "Country",
+          name: "India",
+        },
+      ],
       sameAs: ["https://www.care2home.co/"],
     },
   ];
