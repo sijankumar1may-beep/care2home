@@ -8,7 +8,7 @@ import Link from "next/link";
 import SEO from "@/components/Seo";
 import StructuredData from "@/components/StructuredData";
 import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
-import { formatDistanceKm, formatIndianCurrency, getVehicleLabel } from "@/lib/pricing";
+import { formatDistanceKm, formatIndianCurrencyRange, getVehicleLabel } from "@/lib/pricing";
 import type { VehicleType } from "@/lib/pricing-config";
 import type { JourneyPricingResult } from "@/types/pricing";
 import { storage } from '../../lib/firebase'
@@ -268,9 +268,10 @@ export default function BookService() {
 
     const pricingSection = pricing
       ? `
-💰 *Journey Price:* ${formatIndianCurrency(pricing.totalPrice)}
-   ${getVehicleLabel(pricing.vehicleType)}: ${formatIndianCurrency(pricing.transportationFee)}
-   Care Companion: ${formatIndianCurrency(pricing.careCompanionFee)}
+💰 *Journey Price:* ${formatIndianCurrencyRange(pricing.discountedTotalPriceRange.min, pricing.discountedTotalPriceRange.max)} (${pricing.discountPercent}% first-time discount applied)
+   Estimated before discount: ${formatIndianCurrencyRange(pricing.totalPriceRange.min, pricing.totalPriceRange.max)}
+   ${getVehicleLabel(pricing.vehicleType)}: ${formatIndianCurrencyRange(pricing.transportationFeeRange.min, pricing.transportationFeeRange.max)}
+   Care Companion: ${formatIndianCurrencyRange(pricing.careCompanionFeeRange.min, pricing.careCompanionFeeRange.max)}
 📏 *Distance:* ${formatDistanceKm(pricing.distanceKm)} km
 🚗 *Vehicle:* ${pricing.vehicleType === "car" ? "Car" : "Auto"}
 `

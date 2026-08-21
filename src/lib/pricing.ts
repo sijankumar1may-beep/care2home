@@ -1,4 +1,11 @@
-import { pricingConfig, type VehicleType } from "@/lib/pricing-config";
+import {
+  firstTimeUserDiscountPercent,
+  pricingConfig,
+  pricingRangeConfig,
+  type PricingConfig,
+  type VehicleType,
+} from "@/lib/pricing-config";
+import type { PriceRange } from "@/types/pricing";
 import {
   detectLocationCategory,
   shouldApplyAirportSurcharge,
@@ -23,6 +30,37 @@ export function formatIndianCurrency(amount: number): string {
   }
 
   return `₹${Math.round(amount).toLocaleString("en-IN")}`;
+}
+
+export function formatIndianCurrencyRange(min: number, max: number): string {
+  if (!Number.isFinite(min) || !Number.isFinite(max)) {
+    return "₹0";
+  }
+
+  const roundedMin = Math.round(min);
+  const roundedMax = Math.round(max);
+
+  if (roundedMin === roundedMax) {
+    return formatIndianCurrency(roundedMin);
+  }
+
+  return `${formatIndianCurrency(roundedMin)} – ${formatIndianCurrency(roundedMax)}`;
+}
+
+export function applyFirstTimeDiscount(amount: number): number {
+  if (!Number.isFinite(amount) || amount < 0) {
+    return 0;
+  }
+
+  const multiplier = 1 - firstTimeUserDiscountPercent / 100;
+  return sanitizeAmount(amount * multiplier);
+}
+
+export function applyFirstTimeDiscountToRange(range: PriceRange): PriceRange {
+  return {
+    min: applyFirstTimeDiscount(range.min),
+    max: applyFirstTimeDiscount(range.max),
+  };
 }
 
 export function formatDistanceKm(distanceKm: number): string {
@@ -53,16 +91,24 @@ type CalculateJourneyPricingInput = {
   destinationLocationType?: LocationCategory;
 };
 
-export function calculateJourneyPricing(
+function calculatePricingWithConfig(
   input: CalculateJourneyPricingInput,
-): JourneyPricingResult | null {
+  config: PricingConfig,
+): Omit<
+  JourneyPricingResult,
+  | "transportationFeeRange"
+  | "careCompanionFeeRange"
+  | "totalPriceRange"
+  | "discountPercent"
+  | "discountedTotalPriceRange"
+> | null {
   const { distanceKm, vehicleType } = input;
 
   if (!Number.isFinite(distanceKm) || distanceKm <= 0) {
     return null;
   }
 
-  const vehicleConfig = pricingConfig[vehicleType];
+  const vehicleConfig = config[vehicleType];
   if (!vehicleConfig) {
     return null;
   }
@@ -83,9 +129,9 @@ export function calculateJourneyPricing(
   const airportSurcharge = shouldApplyAirportSurcharge(
     originLocationType,
     destinationLocationType,
-    pricingConfig.airportSurchargeRules,
+    config.airportSurchargeRules,
   )
-    ? pricingConfig.airportSurcharge
+    ? config.airportSurcharge
     : 0;
 
   const rawTransportationTotal =
@@ -97,7 +143,7 @@ export function calculateJourneyPricing(
       ? Math.max(sanitizeAmount(rawTransportationTotal), minimumFare)
       : sanitizeAmount(rawTransportationTotal);
 
-  const careCompanionFee = sanitizeAmount(pricingConfig.careCompanionFee);
+  const careCompanionFee = sanitizeAmount(config.careCompanionFee);
   const totalPrice = transportationTotal + careCompanionFee;
 
   return {
@@ -119,6 +165,40 @@ export function calculateJourneyPricing(
     transportationFee: transportationTotal,
     careCompanionFee,
     totalPrice,
+  };
+}
+
+export function calculateJourneyPricing(
+  input: CalculateJourneyPricingInput,
+  config: PricingConfig = pricingConfig,
+  rangeConfig: PricingConfig = pricingRangeConfig,
+): JourneyPricingResult | null {
+  const basePricing = calculatePricingWithConfig(input, config);
+  const maxPricing = calculatePricingWithConfig(input, rangeConfig);
+
+  if (!basePricing || !maxPricing) {
+    return null;
+  }
+
+  return {
+    ...basePricing,
+    transportationFeeRange: {
+      min: basePricing.transportationFee,
+      max: maxPricing.transportationFee,
+    },
+    careCompanionFeeRange: {
+      min: basePricing.careCompanionFee,
+      max: maxPricing.careCompanionFee,
+    },
+    totalPriceRange: {
+      min: basePricing.totalPrice,
+      max: maxPricing.totalPrice,
+    },
+    discountPercent: firstTimeUserDiscountPercent,
+    discountedTotalPriceRange: applyFirstTimeDiscountToRange({
+      min: basePricing.totalPrice,
+      max: maxPricing.totalPrice,
+    }),
   };
 }
 

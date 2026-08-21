@@ -2,9 +2,20 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/Cardnew";
-import { CheckCircle, Info, MapPin, Loader2, Navigation } from "lucide-react";
+import {
+  Car,
+  CarFront,
+  CheckCircle,
+  Info,
+  MapPin,
+  Loader2,
+  Navigation,
+  Sparkles,
+  Shield,
+} from "lucide-react";
 import { AddressAutocomplete } from "@/components/AddressAutocomplete";
 import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
+import { firstTimeUserDiscountPercent } from "@/lib/pricing-config";
 import type { VehicleType } from "@/lib/pricing-config";
 import type { JourneyPricingResult } from "@/types/pricing";
 
@@ -17,9 +28,24 @@ const features = [
   "24/7 Emergency Support",
 ];
 
-const vehicleOptions: { type: VehicleType; label: string; description: string }[] = [
-  { type: "car", label: "Car", description: "Comfortable car for longer journeys" },
-  { type: "auto", label: "Auto", description: "Auto-rickshaw for shorter city trips" },
+const vehicleOptions: {
+  type: VehicleType;
+  label: string;
+  description: string;
+  icon: typeof Car;
+}[] = [
+  {
+    type: "car",
+    label: "Car",
+    description: "Comfortable car for longer journeys",
+    icon: Car,
+  },
+  {
+    type: "auto",
+    label: "Auto",
+    description: "Auto-rickshaw for shorter city trips",
+    icon: CarFront,
+  },
 ];
 
 export default function PricingModel() {
@@ -139,96 +165,152 @@ export default function PricingModel() {
   };
 
   return (
-    <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-12">
-      <div className="text-center mb-12">
-        <p className="text-center text-gray-700 text-lg font-medium mb-2">
-          Most families book us when they can&apos;t leave office or live in another
-          city — and don&apos;t want to take risks with their parents.
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Simple, Transparent Pricing
-        </h2>
-        <p className="text-center text-gray-600 mb-2 max-w-2xl mx-auto">
-          Enter your pickup and destination to see your journey price and exactly
-          what&apos;s included.
-        </p>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        {/* Hero */}
+        <div className="text-center mb-10">
+          <div className="inline-block bg-gradient-to-r from-blue-600 to-green-600 text-white px-5 py-2 rounded-full mb-5 transform -rotate-1 shadow-lg">
+            <span className="text-lg font-bold flex items-center gap-2">
+              <Sparkles className="w-5 h-5" />
+              {firstTimeUserDiscountPercent}% OFF — First Booking
+            </span>
+          </div>
 
-        <Card className="max-w-3xl mx-auto mb-8 border-blue-200">
-          <CardContent className="p-6">
-            <div className="flex items-center gap-2 mb-5 justify-center">
-              <Navigation className="w-5 h-5 text-blue-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Calculate Your Journey Price
-              </h3>
+          <p className="text-gray-700 text-lg font-medium mb-3 max-w-2xl mx-auto">
+            Most families book us when they can&apos;t leave office or live in another
+            city — and don&apos;t want to take risks with their parents.
+          </p>
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+            Simple,{" "}
+            <span className="text-blue-700">Transparent</span> Pricing
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            Enter your pickup and destination to see your journey price — with{" "}
+            <span className="font-semibold text-green-700">
+              {firstTimeUserDiscountPercent}% off
+            </span>{" "}
+            for first-time users.
+          </p>
+        </div>
+
+        {/* Calculator Form */}
+        <Card className="max-w-3xl mx-auto mb-8 rounded-2xl shadow-xl border-0 border-t-4 border-t-blue-600 overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-600 to-green-600 px-6 py-5">
+            <div className="flex items-center gap-3 text-white">
+              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                <Navigation className="w-5 h-5" />
+              </div>
+              <div>
+                <h2 className="text-lg md:text-xl font-bold">
+                  Calculate Your Journey Price
+                </h2>
+                <p className="text-blue-100 text-sm">
+                  Distance-based pricing with no hidden charges
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <CardContent className="p-6 md:p-8">
+            <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 mb-6 flex items-start gap-3">
+              <Shield className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <p className="text-sm text-amber-900">
+                <span className="font-semibold">Special offer:</span> Get{" "}
+                <span className="font-bold text-blue-700">
+                  {firstTimeUserDiscountPercent}% discount
+                </span>{" "}
+                on your first booking. Safe travel for your parents, peace of mind
+                for you.
+              </p>
             </div>
 
-            <div className="space-y-4">
-              <AddressAutocomplete
-                label="Pickup Address (Origin)"
-                address={originAddress}
-                onAddressChange={(address) => {
-                  setOriginAddress(address);
-                  setOriginPlaceTypes([]);
-                }}
-                onAddressSelect={(suggestion) => {
-                  setOriginPlaceTypes(suggestion.placeTypes ?? []);
-                }}
-                addressPlaceholder="e.g. IGI Airport Terminal 3, New Delhi"
-                headerAction={
-                  <button
-                    type="button"
-                    onClick={getCurrentAddress}
-                    disabled={isLoadingOrigin}
-                    className="flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 disabled:text-gray-400 disabled:cursor-not-allowed"
-                  >
-                    {isLoadingOrigin ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Getting location...</span>
-                      </>
-                    ) : (
-                      <>
-                        <MapPin className="w-4 h-4" />
-                        <span>Use Current Location</span>
-                      </>
-                    )}
-                  </button>
-                }
-              />
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <AddressAutocomplete
+                  label="Pickup Address (Origin)"
+                  address={originAddress}
+                  onAddressChange={(address) => {
+                    setOriginAddress(address);
+                    setOriginPlaceTypes([]);
+                  }}
+                  onAddressSelect={(suggestion) => {
+                    setOriginPlaceTypes(suggestion.placeTypes ?? []);
+                  }}
+                  addressPlaceholder="e.g. IGI Airport Terminal 3, New Delhi"
+                  headerAction={
+                    <button
+                      type="button"
+                      onClick={getCurrentAddress}
+                      disabled={isLoadingOrigin}
+                      className="flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
+                    >
+                      {isLoadingOrigin ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Getting location...</span>
+                        </>
+                      ) : (
+                        <>
+                          <MapPin className="w-4 h-4" />
+                          <span>Use Current Location</span>
+                        </>
+                      )}
+                    </button>
+                  }
+                />
 
-              <AddressAutocomplete
-                label="Destination Address (Home)"
-                address={destinationAddress}
-                onAddressChange={(address) => {
-                  setDestinationAddress(address);
-                  setDestinationPlaceTypes([]);
-                }}
-                onAddressSelect={(suggestion) => {
-                  setDestinationPlaceTypes(suggestion.placeTypes ?? []);
-                }}
-                addressPlaceholder="e.g. Sector 62, Noida, Uttar Pradesh"
-              />
+                <AddressAutocomplete
+                  label="Destination Address (Home)"
+                  address={destinationAddress}
+                  onAddressChange={(address) => {
+                    setDestinationAddress(address);
+                    setDestinationPlaceTypes([]);
+                  }}
+                  onAddressSelect={(suggestion) => {
+                    setDestinationPlaceTypes(suggestion.placeTypes ?? []);
+                  }}
+                  addressPlaceholder="e.g. Sector 62, Noida, Uttar Pradesh"
+                />
+              </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-800 mb-3">
                   Vehicle Type
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {vehicleOptions.map((option) => (
-                    <button
-                      key={option.type}
-                      type="button"
-                      onClick={() => setVehicleType(option.type)}
-                      className={`rounded-lg border p-4 text-left transition-colors ${
-                        vehicleType === option.type
-                          ? "border-blue-600 bg-blue-50"
-                          : "border-gray-300 hover:border-blue-300"
-                      }`}
-                    >
-                      <p className="font-semibold text-gray-900">{option.label}</p>
-                      <p className="text-sm text-gray-600 mt-1">{option.description}</p>
-                    </button>
-                  ))}
+                  {vehicleOptions.map((option) => {
+                    const Icon = option.icon;
+                    const isSelected = vehicleType === option.type;
+
+                    return (
+                      <button
+                        key={option.type}
+                        type="button"
+                        onClick={() => setVehicleType(option.type)}
+                        className={`rounded-xl border-2 p-4 text-left transition-all ${
+                          isSelected
+                            ? "border-blue-600 bg-blue-50 shadow-md ring-2 ring-blue-100"
+                            : "border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div
+                            className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
+                              isSelected ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"
+                            }`}
+                          >
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-gray-900">{option.label}</p>
+                            <p className="text-sm text-gray-600 mt-0.5">
+                              {option.description}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -236,7 +318,7 @@ export default function PricingModel() {
                 type="button"
                 onClick={calculateJourneyPrice}
                 disabled={isCalculating}
-                className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3.5 rounded-xl text-lg font-bold hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
               >
                 {isCalculating ? (
                   <>
@@ -252,7 +334,9 @@ export default function PricingModel() {
               </button>
 
               {distanceError && (
-                <p className="text-sm text-red-600 text-center">{distanceError}</p>
+                <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3">
+                  <p className="text-sm text-red-700 text-center">{distanceError}</p>
+                </div>
               )}
 
               {pricing && (
@@ -264,9 +348,14 @@ export default function PricingModel() {
                     query: {
                       distanceKm: pricing.distanceKm,
                       vehicleType: pricing.vehicleType,
-                      transportationFee: pricing.transportationFee,
-                      careCompanionFee: pricing.careCompanionFee,
-                      totalPrice: pricing.totalPrice,
+                      transportationFeeMin: pricing.transportationFeeRange.min,
+                      transportationFeeMax: pricing.transportationFeeRange.max,
+                      careCompanionFeeMin: pricing.careCompanionFeeRange.min,
+                      careCompanionFeeMax: pricing.careCompanionFeeRange.max,
+                      totalPriceMin: pricing.totalPriceRange.min,
+                      totalPriceMax: pricing.totalPriceRange.max,
+                      discountedTotalMin: pricing.discountedTotalPriceRange.min,
+                      discountedTotalMax: pricing.discountedTotalPriceRange.max,
                       origin: originAddress,
                       destination: destinationAddress,
                       source: "pricing",
@@ -278,17 +367,18 @@ export default function PricingModel() {
           </CardContent>
         </Card>
 
-        <p className="text-sm text-gray-600 text-center mb-4">
+        <p className="text-sm text-gray-600 text-center mb-10 max-w-2xl mx-auto">
           You&apos;re booking an assisted journey with a dedicated Care Companion — not
-          just a vehicle. No hidden charges.
+          just a vehicle. No surge pricing, no hidden charges.
         </p>
-      </div>
 
-      <div className="md:mx-8 mx-auto px-4 sm:px-6 lg:px-8">
-        <Card className="bg-blue-50 border-blue-200">
+        {/* What's Included */}
+        <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-blue-50 to-green-50 border border-blue-100">
           <CardContent className="p-8">
             <div className="flex items-start gap-3 mb-6">
-              <Info className="w-6 h-6 text-blue-600 shrink-0 mt-1" />
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shrink-0">
+                <Info className="w-5 h-5 text-white" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   What&apos;s Included in Every Journey
@@ -302,9 +392,12 @@ export default function PricingModel() {
 
             <div className="grid md:grid-cols-2 gap-4">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
+                <div
+                  key={index}
+                  className="flex items-center gap-3 bg-white/70 rounded-lg px-4 py-3 border border-white"
+                >
                   <CheckCircle className="w-5 h-5 text-green-600 shrink-0" />
-                  <span className="text-gray-700">{feature}</span>
+                  <span className="text-gray-700 font-medium">{feature}</span>
                 </div>
               ))}
             </div>
@@ -312,7 +405,7 @@ export default function PricingModel() {
         </Card>
 
         <div className="mt-8 text-center">
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600">
             Transportation based on distance plus a fixed Care Companion service fee.
             No surge pricing, no hidden charges.
           </p>

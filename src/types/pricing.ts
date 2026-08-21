@@ -15,6 +15,11 @@ export type CareCompanionPricing = {
   fee: number;
 };
 
+export type PriceRange = {
+  min: number;
+  max: number;
+};
+
 export type JourneyPricingResult = {
   distanceKm: number;
   vehicleType: VehicleType;
@@ -25,4 +30,9 @@ export type JourneyPricingResult = {
   transportationFee: number;
   careCompanionFee: number;
   totalPrice: number;
+  transportationFeeRange: PriceRange;
+  careCompanionFeeRange: PriceRange;
+  totalPriceRange: PriceRange;
+  discountPercent: number;
+  discountedTotalPriceRange: PriceRange;
 };

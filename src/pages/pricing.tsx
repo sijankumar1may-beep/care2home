@@ -25,4 +25,4 @@ const Pricing = () => {
   );
 };
 
-export default PricingModel;
+export default Pricing;
