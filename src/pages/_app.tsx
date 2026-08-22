@@ -4,8 +4,11 @@ import Script from "next/script";
 import Layout from "@/components/Layout";
 import DiscountPopup from "@/components/DiscountPopup";
 import StructuredData from "@/components/StructuredData";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const isEmbed = router.query.embed === "app";
   const organizationAndWebsiteSchema = [
     {
       "@context": "https://schema.org",
@@ -134,7 +137,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Script>
       
       <Component {...pageProps} />
-      <DiscountPopup />
+      {!isEmbed && <DiscountPopup />}
     </Layout>
   );
 }

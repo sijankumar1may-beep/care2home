@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="icon" href="/care2homefavicon.png" />
+        <link rel="icon" href="/favicon.ico" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17430269913"
           strategy="beforeInteractive"
