@@ -8,19 +8,19 @@ import Link from "next/link";
 import SEO from "@/components/Seo";
 import StructuredData from "@/components/StructuredData";
 import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
-import { formatDistanceKm, formatIndianCurrencyRange, getVehicleLabel } from "@/lib/pricing";
-import type { VehicleType } from "@/lib/pricing-config";
 import type { JourneyPricingResult } from "@/types/pricing";
-import { storage } from '../../lib/firebase'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-
+import {
+  buildBookingRecord,
+  loadJourneyPricingFromSession,
+  parseJourneyPricingFromQuery,
+  toFirestoreBookingDocId,
+} from "@/lib/booking";
+import { storage, firestoreDB } from "../../lib/firebase";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 function getQueryString(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return value[0] ?? "";
   return value ?? "";
-}
-
-function isValidVehicleType(value: string): value is VehicleType {
-  return value === "car" || value === "auto";
 }
 
 export default function BookService() {
@@ -89,10 +89,9 @@ export default function BookService() {
   const [error, setError] = useState("");
   const [ticketImage, setTicketImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
   const [pricing, setPricing] = useState<JourneyPricingResult | null>(null);
-  const [isLoadingPricing, setIsLoadingPricing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
@@ -107,7 +106,6 @@ export default function BookService() {
     const source = getQueryString(router.query.source);
     const origin = getQueryString(router.query.origin);
     const destination = getQueryString(router.query.destination);
-    const vehicleType = getQueryString(router.query.vehicleType);
 
     if (source === "pricing" && origin && destination) {
       setFormData((prev) => ({
@@ -115,29 +113,12 @@ export default function BookService() {
         address: `Pickup: ${origin}\nDestination: ${destination}`,
       }));
 
-      if (isValidVehicleType(vehicleType)) {
-        setIsLoadingPricing(true);
-        fetch("/api/calculate-journey-price", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            originAddress: origin,
-            destinationAddress: destination,
-            vehicleType,
-          }),
-        })
-          .then(async (response) => {
-            const data = await response.json();
-            if (response.ok) {
-              setPricing(data as JourneyPricingResult);
-            }
-          })
-          .catch(() => {
-            setPricing(null);
-          })
-          .finally(() => {
-            setIsLoadingPricing(false);
-          });
+      const pricingFromSession = loadJourneyPricingFromSession();
+      const pricingFromQuery = parseJourneyPricingFromQuery(router.query);
+      const resolvedPricing = pricingFromSession ?? pricingFromQuery;
+
+      if (resolvedPricing) {
+        setPricing(resolvedPricing);
       }
     }
   }, [router.isReady, router.query]);
@@ -177,9 +158,8 @@ export default function BookService() {
   const removeImage = () => {
     setTicketImage(null);
     setImagePreview(null);
-    setUploadedImageUrl(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -262,45 +242,6 @@ export default function BookService() {
     }
   };
 
-  const WHATSAPP_NUMBER = "919910646415";
-  const sendToWhatsApp = (imageUrl: string | null) => {
-    const fullImageUrl = imageUrl || 'Not provided';
-
-    const pricingSection = pricing
-      ? `
-💰 *Journey Price:* ${formatIndianCurrencyRange(pricing.discountedTotalPriceRange.min, pricing.discountedTotalPriceRange.max)} (${pricing.discountPercent}% first-time discount applied)
-   Estimated before discount: ${formatIndianCurrencyRange(pricing.totalPriceRange.min, pricing.totalPriceRange.max)}
-   ${getVehicleLabel(pricing.vehicleType)}: ${formatIndianCurrencyRange(pricing.transportationFeeRange.min, pricing.transportationFeeRange.max)}
-   Care Companion: ${formatIndianCurrencyRange(pricing.careCompanionFeeRange.min, pricing.careCompanionFeeRange.max)}
-📏 *Distance:* ${formatDistanceKm(pricing.distanceKm)} km
-🚗 *Vehicle:* ${pricing.vehicleType === "car" ? "Car" : "Auto"}
-`
-      : "";
-    
-    const message = `
-🟢 *New Care2Home Booking Request*
-
-📋 *Booking Details:*
-${pricingSection}
-📸 *Ticket Image:* ${fullImageUrl}
-
-📍 *Pickup/Drop Address:*
-${formData.address}
-
-📞 *Phone Number:* ${formData.phone}
-
-📧 *Email:* ${formData.email || "Not provided"}
-
----
-*Thank you for choosing Care2Home!*
-    `.trim();
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-    window.open(whatsappUrl, "_blank");
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -326,32 +267,53 @@ ${formData.address}
     }
 
     try {
-      // Upload image first
       const imageUrl = await uploadImage(formData.phone.trim());
-      setUploadedImageUrl(imageUrl);
 
-      // Send to WhatsApp
-      sendToWhatsApp(imageUrl);
+      const contact = {
+        address: formData.address.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim() || null,
+      };
+
+      const journey = {
+        origin: getQueryString(router.query.origin) || null,
+        destination: getQueryString(router.query.destination) || null,
+        source: getQueryString(router.query.source) || null,
+      };
+
+      const booking = buildBookingRecord({
+        contact,
+        ticketImageUrl: imageUrl,
+        pricing,
+        journey,
+      });
+
+      const bookingDocId = toFirestoreBookingDocId(contact.phone)+Math.random().toString(36).substring(2, 15);
+      await setDoc(doc(firestoreDB, "Orders", bookingDocId), {
+        ...booking,
+        createdAt: serverTimestamp(),
+      });
 
       setIsSuccess(true);
 
-      // Reset form
       setFormData({
         address: "",
         phone: "",
         email: "",
       });
       removeImage();
-    } catch (err: any) {
-      setError(
-        err.message || "Unable to upload image. Please try again or contact us on WhatsApp."
-      );
+      setPricing(null);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Unable to submit booking. Please try again or contact us on WhatsApp.";
+      setError(message);
       console.error(err);
     } finally {
       setIsSubmitting(false);
     }
   };
-
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
@@ -368,13 +330,32 @@ ${formData.address}
               request and our team will contact you shortly to confirm the
               details.
             </p>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 mb-4">
               You will receive a confirmation call within 2 hours. We will share
               your Care Companion&apos;s details before the journey begins.
             </p>
+            {whatsappUrl && (
+              <p className="text-sm text-gray-600 mb-6">
+                If WhatsApp did not open automatically, tap the button below to
+                send your booking details to our team.
+              </p>
+            )}
             <div className="space-y-4">
+              {whatsappUrl && (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-[#25D366] px-6 py-3 text-base font-semibold text-white hover:bg-[#1ebe5d] transition-colors"
+                >
+                  Open WhatsApp &amp; Send Booking
+                </a>
+              )}
               <Button
-                onClick={() => setIsSuccess(false)}
+                onClick={() => {
+                  setIsSuccess(false);
+                  setWhatsappUrl(null);
+                }}
                 className="w-full sm:w-auto"
               >
                 Book Another Journey
@@ -414,14 +395,7 @@ ${formData.address}
           </p>
         </div>
 
-        {isLoadingPricing && (
-          <div className="mb-6 flex items-center justify-center gap-2 text-gray-600">
-            <Loader2 className="w-5 h-5 animate-spin" />
-            <span>Loading journey price...</span>
-          </div>
-        )}
-
-        {pricing && !isLoadingPricing && (
+        {pricing && (
           <div className="mb-6">
             <JourneyPriceBreakdown pricing={pricing} />
           </div>
@@ -530,7 +504,6 @@ ${formData.address}
               onChange={handleChange}
               placeholder="Enter your phone number"
             />
-
             {/* Email (Optional) */}
             <Input
               label="Email (Optional)"

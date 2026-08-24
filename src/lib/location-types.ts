@@ -62,6 +62,17 @@ export function detectLocationCategory(
   return "other";
 }
 
+export function isAirportLocation(
+  locationType: LocationCategory,
+  address = "",
+): boolean {
+  if (locationType === "airport") {
+    return true;
+  }
+
+  return matchesKeywords(address, AIRPORT_KEYWORDS);
+}
+
 export function shouldApplyAirportSurcharge(
   originType: LocationCategory,
   destinationType: LocationCategory,
@@ -69,9 +80,14 @@ export function shouldApplyAirportSurcharge(
     applyWhenOriginIsAirport: boolean;
     applyWhenDestinationIsAirport: boolean;
   },
+  originAddress = "",
+  destinationAddress = "",
 ): boolean {
-  const originIsAirport = originType === "airport";
-  const destinationIsAirport = destinationType === "airport";
+  const originIsAirport = isAirportLocation(originType, originAddress);
+  const destinationIsAirport = isAirportLocation(
+    destinationType,
+    destinationAddress,
+  );
 
   if (originIsAirport && rules.applyWhenOriginIsAirport) {
     return true;

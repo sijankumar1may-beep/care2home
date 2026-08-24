@@ -15,16 +15,24 @@ type JourneyPriceBreakdownProps = {
     pathname: string;
     query: Record<string, string | number>;
   };
+  onCtaClick?: () => void;
 };
 
 export function JourneyPriceBreakdown({
   pricing,
   showCta = false,
   ctaHref,
+  onCtaClick,
 }: JourneyPriceBreakdownProps) {
   const distanceLabel = formatDistanceKm(pricing.distanceKm);
   const vehicleLabel = getVehicleLabel(pricing.vehicleType);
   const VehicleIcon = pricing.vehicleType === "car" ? Car : CarFront;
+  const hasAirportLeg =
+    pricing.originLocationType === "airport" ||
+    pricing.destinationLocationType === "airport";
+  const hasRailwayLeg =
+    pricing.originLocationType === "railway" ||
+    pricing.destinationLocationType === "railway";
 
   return (
     <div className="rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 via-white to-blue-50 p-6 md:p-8 text-left shadow-lg">
@@ -116,9 +124,46 @@ export function JourneyPriceBreakdown({
             </p>
           </div>
 
-          <p className="text-xs text-gray-500 mt-3 text-center sm:text-left">
-            * Valid for first-time users only. Final price confirmed at booking.
+          <div className="mt-4 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3 space-y-2">
+            <p className="text-sm font-semibold text-gray-800">
+              Estimated price for first-time users ({pricing.discountPercent}%
+              discount included).
+            </p>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Your final fare will fall within the range shown above. After you
+              submit, our team will call you within 2 hours to confirm the exact
+              amount before any payment.
+            </p>
+            <p className="text-xs font-medium text-blue-900">
+              No payment is required now.
+            </p>
+          </div>
+        </div>
+
+        <div className="rounded-xl bg-white/70 p-4 border border-gray-200">
+          <p className="text-sm font-semibold text-gray-800 mb-2">
+            Why you see a price range
           </p>
+          <ul className="space-y-1.5 text-xs text-gray-600 leading-relaxed">
+            <li>
+              Based on ~{distanceLabel} km route and {vehicleLabel.toLowerCase()}{" "}
+              rates
+            </li>
+            {hasAirportLeg && (
+              <li>Includes airport pickup/drop surcharge where applicable</li>
+            )}
+            {hasRailwayLeg && (
+              <li>Allows for station waiting and platform assistance time</li>
+            )}
+            <li>
+              Accounts for day-of variations like traffic, tolls, and route
+              changes
+            </li>
+            <li>
+              Exact fare is confirmed on our call — you will not pay more than
+              the upper limit shown above
+            </li>
+          </ul>
         </div>
 
         <div className="rounded-xl bg-white/70 p-4 border border-green-100">
@@ -140,6 +185,7 @@ export function JourneyPriceBreakdown({
         <Link
           className="mt-6 inline-block w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 py-3.5 rounded-xl text-center font-bold transition-all shadow-lg hover:shadow-xl"
           href={ctaHref}
+          onClick={() => onCtaClick?.()}
         >
           Book Now & Save —{" "}
           {formatIndianCurrencyRange(

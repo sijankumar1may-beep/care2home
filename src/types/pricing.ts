@@ -36,3 +36,48 @@ export type JourneyPricingResult = {
   discountPercent: number;
   discountedTotalPriceRange: PriceRange;
 };
+
+export type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled";
+
+export type BookingContact = {
+  address: string;
+  phone: string;
+  email: string | null;
+};
+
+export type BookingJourney = {
+  origin: string | null;
+  destination: string | null;
+  source: string | null;
+};
+
+/** Snapshot of journey pricing stored with each booking */
+export type BookingPricingSnapshot = {
+  distanceKm: number;
+  vehicleType: VehicleType;
+  discountPercent: number;
+  discountedTotalPriceRange: PriceRange;
+  totalPriceRange: PriceRange;
+  transportationFeeRange: PriceRange;
+  careCompanionFeeRange: PriceRange;
+  originLocationType: LocationCategory;
+  destinationLocationType: LocationCategory;
+  transportationFee: number;
+  careCompanionFee: number;
+  totalPrice: number;
+};
+
+/** Full booking payload saved to Firestore and mirrored in the WhatsApp message */
+export type BookingRecord = {
+  contact: BookingContact;
+  ticketImageUrl: string | null;
+  pricing: BookingPricingSnapshot | null;
+  journey: BookingJourney;
+  whatsappMessage: string;
+  status: BookingStatus;
+  platform: "web";
+};
+
+export type Booking = BookingRecord & {
+  id?: string;
+};

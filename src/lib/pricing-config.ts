@@ -30,18 +30,18 @@ export const firstTimeUserDiscountPercent = 10;
 export const pricingConfig: PricingConfig = {
   car: {
     baseFare: 260,
-    perKmRate: 15,
+    perKmRate: 20,
     minimumFare: 0,
     label: "Car Service",
   },
   auto: {
     baseFare: 130,
-    perKmRate: 12,
+    perKmRate: 15,
     minimumFare: 0,
     label: "Auto Service",
   },
-  careCompanionFee: 310,
-  airportSurcharge: 160,
+  careCompanionFee: 400,
+  airportSurcharge: 200,
   airportSurchargeRules: {
     applyWhenOriginIsAirport: true,
     applyWhenDestinationIsAirport: true,
@@ -55,7 +55,7 @@ export const pricingConfig: PricingConfig = {
 export const pricingRangeConfig: PricingConfig = {
   car: {
     baseFare: 320,
-    perKmRate: 19,
+    perKmRate: 25,
     minimumFare: 0,
     label: "Car Service",
   },
@@ -65,8 +65,8 @@ export const pricingRangeConfig: PricingConfig = {
     minimumFare: 0,
     label: "Auto Service",
   },
-  careCompanionFee: 380,
-  airportSurcharge: 210,
+  careCompanionFee: 480,
+  airportSurcharge: 250,
   airportSurchargeRules: {
     applyWhenOriginIsAirport: true,
     applyWhenDestinationIsAirport: true,

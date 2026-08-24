@@ -130,6 +130,8 @@ function calculatePricingWithConfig(
     originLocationType,
     destinationLocationType,
     config.airportSurchargeRules,
+    input.originAddress,
+    input.destinationAddress,
   )
     ? config.airportSurcharge
     : 0;

@@ -16,6 +16,7 @@ import {
 import { AddressAutocomplete } from "@/components/AddressAutocomplete";
 import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
 import { firstTimeUserDiscountPercent } from "@/lib/pricing-config";
+import { saveJourneyPricingToSession } from "@/lib/booking";
 import type { VehicleType } from "@/lib/pricing-config";
 import type { JourneyPricingResult } from "@/types/pricing";
 
@@ -343,11 +344,18 @@ export default function PricingModel() {
                 <JourneyPriceBreakdown
                   pricing={pricing}
                   showCta
+                  onCtaClick={() => saveJourneyPricingToSession(pricing)}
                   ctaHref={{
                     pathname: "/book-service",
                     query: {
                       distanceKm: pricing.distanceKm,
                       vehicleType: pricing.vehicleType,
+                      discountPercent: pricing.discountPercent,
+                      originLocationType: pricing.originLocationType,
+                      destinationLocationType: pricing.destinationLocationType,
+                      transportationFee: pricing.transportationFee,
+                      careCompanionFee: pricing.careCompanionFee,
+                      totalPrice: pricing.totalPrice,
                       transportationFeeMin: pricing.transportationFeeRange.min,
                       transportationFeeMax: pricing.transportationFeeRange.max,
                       careCompanionFeeMin: pricing.careCompanionFeeRange.min,
