@@ -83,9 +83,13 @@ export default function Home() {
 
       <HeroBanner />
       <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          Parents Traveling Alone? We ensure they reach home safely with our Care Companion.
+      </h2>
       <iframe  src="https://www.youtube.com/embed/10o3q8qJFXc?si=jVm1UMZGd8q1ZrCf" title="YouTube video player" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
     allowFullScreen className="w-full h-140"></iframe>
       </section>
+      <ReviewsPreview />
       <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
           How it works
@@ -227,118 +231,12 @@ export default function Home() {
 
       <Safetyandtrust />
       <AsSeenOn />
-
-      {/* <section className="bg-white py-16">
-        <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Choose the care level that fits your needs. No hidden charges.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="hover:shadow-lg transition-shadow">
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Standard Care
-                </h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-blue-600">₹999</span>
-                  <span className="text-gray-600"> / journey</span>
-                </div>
-                <ul className="text-left space-y-3 mb-8">
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      Verified Care Companion
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      Airport/Station to Home
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">Luggage assistance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">Live journey updates</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      Basic transport included
-                    </span>
-                  </li>
-                </ul>
-                <Button className="w-full">Book Standard Care</Button>
-              </div>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow border-2 border-blue-600">
-              <div className="text-center">
-                <div className="inline-block bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full mb-2">
-                  RECOMMENDED
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Comfort Care
-                </h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-blue-600">
-                    ₹1,499
-                  </span>
-                  <span className="text-gray-600"> / journey</span>
-                </div>
-                <ul className="text-left space-y-3 mb-8">
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      Everything in Standard Care
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      Premium comfortable transport
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      Senior Care Specialist
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">Priority booking</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">
-                      24/7 support line access
-                    </span>
-                  </li>
-                </ul>
-                <Button className="w-full">Book Comfort Care</Button>
-              </div>
-            </Card>
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-8">
-            Prices are for Delhi NCR. Transport arranged based on safety &
-            comfort.
-          </p>
-        </div>
-      </section> */}
       <DifferentTypesOfServices />
       <ServiceStations />
       <ServiceAirport />
       <ProvingTourPackages />
       <PricingModel />
-      <ReviewsPreview />
+      
       <section className="lg:px-8 py-16">
         <Card className=" bg-gray-300 text-black text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
