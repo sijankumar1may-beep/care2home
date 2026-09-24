@@ -45,6 +45,26 @@ const stations = [
     image: "/placeholder.svg",
   },
   {
+    name: "Hyderabad Deccan Railway Station",
+    slug: "/hyderabad-railway-station-parent-pickup",
+    image: "/placeholder.svg",
+  },
+  {
+    name: "Secunderabad Railway Station",
+    slug: "/secunderabad-railway-station-parent-pickup",
+    image: "/placeholder.svg",
+  },
+  {
+    name: "Bangalore Railway Station (SBC)",
+    slug: "/bangalore-railway-station-parent-pickup",
+    image: "/placeholder.svg",
+  },
+  {
+    name: "Pune Junction Railway Station",
+    slug: "/pune-railway-station-parent-pickup",
+    image: "/placeholder.svg",
+  },
+  {
     name: "Stations Interchange",
     slug: "/interchange-service",
     image: "/placeholder.svg",

@@ -15,6 +15,11 @@ const airports = [
       image: "/placeholder.svg",
     },
     {
+      name: "Noida Jewar Airport",
+      slug: "/noida-jewar-airport-parent-pickup",
+      image: "/placeholder.svg",
+    },
+    {
       name: "Airport ↔ Station Transfer",
       slug: "/interchange-service",
       image: "/interchangeservice.png",

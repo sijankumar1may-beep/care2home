@@ -12,12 +12,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/dropdown-menu";
+import { homeVideoNavItems } from "@/lib/home-videos";
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const isActive = (path: string) => router.pathname == path;
   const isBlogSection =
     router.asPath === "/blog" || router.asPath.startsWith("/blog/");
+  const isVideoSection = homeVideoNavItems.some(
+    (video) => router.pathname === `/${video.slug}`
+  );
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
 
   return (
@@ -158,6 +163,54 @@ export default function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
+                    href="/hyderabad-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/hyderabad-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Hyderabad Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/secunderabad-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/secunderabad-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Secunderabad Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/bangalore-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/bangalore-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Bangalore Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/pune-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/pune-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Pune Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
@@ -206,6 +259,18 @@ export default function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
+                    href="/noida-jewar-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/noida-jewar-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Noida Jewar Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
@@ -236,6 +301,37 @@ export default function Header() {
             >
               Blog
             </Link>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={`flex items-center gap-1 transition-colors outline-none font-bold ${isVideoSection
+                  ? "text-white border-b-2 border-white"
+                  : "text-white hover:text-blue-400"
+                  }`}
+              >
+                Videos
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="w-56 bg-gray-500 text-white"
+              >
+                {homeVideoNavItems.map((video) => (
+                  <DropdownMenuItem key={video.slug} asChild>
+                    <Link
+                      href={`/${video.slug}`}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-base font-bold transition-colors ${isActive(`/${video.slug}`)
+                        ? "text-white border-b-2 border-white"
+                        : "text-white hover:text-blue-400"
+                        }`}
+                    >
+                      {video.navLabel}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 transition-colors outline-none text-white font-bold">
@@ -441,6 +537,36 @@ export default function Header() {
             >
               Blog
             </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={`flex items-center gap-1 transition-colors outline-none font-bold ${isVideoSection
+                  ? "text-blue-400"
+                  : "text-white"
+                  }`}
+              >
+                Videos
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="w-56 bg-gray-500 text-white"
+              >
+                {homeVideoNavItems.map((video) => (
+                  <DropdownMenuItem key={video.slug} asChild>
+                    <Link
+                      href={`/${video.slug}`}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-base font-bold transition-colors ${isActive(`/${video.slug}`)
+                        ? "text-white border-b-2 border-white"
+                        : "text-white hover:text-blue-400"
+                        }`}
+                    >
+                      {video.navLabel}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               href="/book-service"
               onClick={() => setIsOpen(false)}
@@ -558,6 +684,54 @@ export default function Header() {
                     Jaipur Railway Station Parent Pickup
                   </Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/hyderabad-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/hyderabad-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Hyderabad Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/secunderabad-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/secunderabad-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Secunderabad Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/bangalore-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/bangalore-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Bangalore Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/pune-railway-station-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/pune-railway-station-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Pune Railway Station Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -592,6 +766,30 @@ export default function Header() {
                       }`}
                   >
                     T3 IGI Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/noida-jewar-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/noida-jewar-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Noida Jewar Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/interchange-service"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/interchange-service")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Airport ↔ Station Transfer
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

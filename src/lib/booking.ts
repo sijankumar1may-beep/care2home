@@ -55,6 +55,17 @@ export function loadJourneyPricingFromSession(): JourneyPricingResult | null {
   }
 }
 
+/** Remove pricing handoff / session data after a completed booking */
+export function clearJourneyPricingSession(): void {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.removeItem(JOURNEY_PRICING_SESSION_KEY);
+    sessionStorage.removeItem(JOURNEY_PRICING_HANDOFF_KEY);
+  } catch {
+    // Private mode — ignore
+  }
+}
+
 export function saveJourneyPricingHandoff(handoff: JourneyPricingHandoff): void {
   if (typeof window === "undefined") return;
   try {
@@ -133,6 +144,22 @@ function isValidVehicleType(value: unknown): value is VehicleType {
 export function toFirestoreBookingDocId(phone: string): string {
   const digits = phone.replace(/\D/g, "");
   return digits || phone.trim();
+}
+
+const pad2 = (n: number) => String(n).padStart(2, "0");
+
+/** Human-readable Orders doc id: {mobile}-dd-mm-yy:HH-mm-ss-ms (local time) */
+export function buildFirestoreBookingDocId(
+  phone: string,
+  now: Date = new Date()
+): string {
+  const mobile = toFirestoreBookingDocId(phone);
+  const dd = pad2(now.getDate());
+  const mm = pad2(now.getMonth() + 1);
+  const yy = pad2(now.getFullYear() % 100);
+  const ms = String(now.getMilliseconds()).padStart(3, "0");
+  const time = `${pad2(now.getHours())}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}-${ms}`;
+  return `${mobile}-${dd}-${mm}-${yy}:${time}`;
 }
 
 export function toBookingPricingSnapshot(

@@ -332,9 +332,22 @@ body {
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @layer utilities {
   .animate-fade-in-up {
     animation: fade-in-up 0.45s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.45s ease-out both;
   }
 
   .animate-scale-in {
@@ -367,6 +380,43 @@ body {
 
   .animate-celebration-burst {
     animation: celebration-burst 0.9s ease-out forwards;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-price-pop,
+  .animate-soft-pulse,
+  .animate-sparkle-nudge,
+  .animate-check-pop,
+  .animate-confetti-fall,
+  .animate-celebration-banner,
+  .animate-celebration-burst {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

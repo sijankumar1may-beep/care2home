@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getAllBlogSlugs } from "../data/blogPosts";
 
-const SITE_URL = "https://care2home.co";
+const SITE_URL = "https://www.care2home.co";
 
 const Sitemap = () => null;
 
@@ -27,8 +27,16 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     "/hazrat-nizamuddin-railway-station-parent-pickup",
     "/anand-vihar-railway-station-parent-pickup",
     "/delhi-cantt-railway-station-parent-pickup",
+    "/ghaziabad-railway-station-parent-pickup",
+    "/delhi-sarai-rohilla-railway-station-parent-pickup",
+    "/jaipur-railway-station-parent-pickup",
+    "/hyderabad-railway-station-parent-pickup",
+    "/secunderabad-railway-station-parent-pickup",
+    "/bangalore-railway-station-parent-pickup",
+    "/pune-railway-station-parent-pickup",
     "/igi-airport-delhi-parent-pickup",
     "/t3-igi-airport-parent-pickup",
+    "/noida-jewar-airport-parent-pickup",
     "/interchange-service"
   ];
 

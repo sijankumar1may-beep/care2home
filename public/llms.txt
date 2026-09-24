@@ -1,0 +1,58 @@
+# Care2Home
+
+> Care2Home is a parent companion service across India with strong coverage in Delhi NCR: airport pickup for elderly parents, railway station pickup for senior citizens, senior citizen airport assistance, and elderly travel assistance. Verified Care Companions, live updates for families, and online booking at care2home.co.
+
+- **Audience:** Families in India and NRIs booking safe pickup and travel assistance for parents and senior citizens (typically 60+).
+- **Primary region:** Delhi NCR; services also available in other cities where listed on the site.
+- **Languages:** English and Hindi.
+- **Pricing currency:** INR.
+- **Canonical site:** https://www.care2home.co/
+- **Book a trip:** https://www.care2home.co/book-service
+
+## Book and pricing
+
+- [Home](https://www.care2home.co/): Overview of elderly parent pickup, Care Companions, and service areas.
+- [Book service](https://www.care2home.co/book-service): Online booking for airport or railway pickup and assisted travel home.
+- [Pricing](https://www.care2home.co/pricing): Fare structure and journey pricing for companion services.
+- [FAQ](https://www.care2home.co/faq): Common questions about booking, companions, and travel.
+- [Safety](https://www.care2home.co/safety): How Care2Home verifies companions and keeps journeys safe.
+- [Reviews](https://www.care2home.co/reviews): Customer reviews and testimonials.
+
+## Delhi NCR airport pickup
+
+- [IGI Airport Delhi parent pickup](https://www.care2home.co/igi-airport-delhi-parent-pickup): Elderly parent airport pickup at Delhi IGI.
+- [T3 IGI Airport parent pickup](https://www.care2home.co/t3-igi-airport-parent-pickup): Terminal 3 IGI airport pickup for parents and seniors.
+
+## Railway station parent pickup
+
+- [New Delhi Railway Station](https://www.care2home.co/new-delhi-railway-station-parent-pickup): Parent pickup from NDLS with doorstep drop.
+- [Old Delhi Railway Station](https://www.care2home.co/old-delhi-railway-station-parent-pickup): Pickup for elderly parents at Old Delhi station.
+- [Hazrat Nizamuddin Railway Station](https://www.care2home.co/hazrat-nizamuddin-railway-station-parent-pickup): NZM station parent pickup and assisted travel home.
+- [Anand Vihar Railway Station](https://www.care2home.co/anand-vihar-railway-station-parent-pickup): Anand Vihar parent pickup service in Delhi.
+- [Delhi Cantt Railway Station](https://www.care2home.co/delhi-cantt-railway-station-parent-pickup): Delhi Cantt railway station pickup for seniors.
+- [Delhi Sarai Rohilla Railway Station](https://www.care2home.co/delhi-sarai-rohilla-railway-station-parent-pickup): Sarai Rohilla parent pickup with live updates.
+- [Ghaziabad Railway Station](https://www.care2home.co/ghaziabad-railway-station-parent-pickup): Ghaziabad station pickup in NCR.
+- [Jaipur Railway Station](https://www.care2home.co/jaipur-railway-station-parent-pickup): Jaipur railway station parent pickup.
+- [Bangalore Railway Station](https://www.care2home.co/bangalore-railway-station-parent-pickup): Bangalore station parent pickup service.
+- [Hyderabad Railway Station](https://www.care2home.co/hyderabad-railway-station-parent-pickup): Hyderabad station parent pickup service.
+- [Secunderabad Railway Station](https://www.care2home.co/secunderabad-railway-station-parent-pickup): Secunderabad station parent pickup service.
+- [Pune Railway Station](https://www.care2home.co/pune-railway-station-parent-pickup): Pune railway station parent pickup service.
+
+## Other services
+
+- [Interchange service](https://www.care2home.co/interchange-service): Connections between airport, railway, and home with a Care Companion.
+- [Delhi elder tour](https://www.care2home.co/delhi-elder-tour): Guided tour packages for senior citizens in Delhi.
+- [Parents traveling alone video](https://www.care2home.co/parents-traveling-alone): Video explaining Care Companion pickup when parents travel alone.
+- [How it works video](https://www.care2home.co/how-it-works-video): Video walkthrough of booking and the companion journey.
+
+## Company
+
+- [About us](https://www.care2home.co/about-us): Mission, team, and why Care2Home exists.
+- [Vision and mission](https://www.care2home.co/vision-mission): Long-term goals for elderly travel assistance in India.
+- [Contact us](https://www.care2home.co/contact-us): Phone, WhatsApp, and support for bookings and questions.
+
+## Optional
+
+- [Blog](https://www.care2home.co/blog): Guides for families and NRIs on senior travel and pickup.
+- [Terms](https://www.care2home.co/terms): Terms of service.
+- [Privacy policy](https://www.care2home.co/privacy-policy): Privacy and data handling.

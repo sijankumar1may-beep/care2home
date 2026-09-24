@@ -1,18 +1,14 @@
 import {
-  Shield,
   Clock,
+  Mail,
+  MapPin,
   MessageCircle,
-  CheckCircle,
-  Plane,
-  Train,
-  Home as HomeIcon,
-  Heart,
-  UserCheck,
-  Bell,
-  Smartphone,
+  Phone,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { homeVideoNavItems } from "@/lib/home-videos";
+
 const Footer = () => {
   const whatsappNumber = "919910646415"; // CHANGE THIS TO YOUR WHATSAPP NUMBER
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
@@ -214,6 +210,38 @@ const Footer = () => {
                 <li>
                   <Link
                     className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/hyderabad-railway-station-parent-pickup"
+                  >
+                    Hyderabad Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/secunderabad-railway-station-parent-pickup"
+                  >
+                    Secunderabad Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/bangalore-railway-station-parent-pickup"
+                  >
+                    Bangalore Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/pune-railway-station-parent-pickup"
+                  >
+                    Pune Railway Station Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/interchange-service"
                   >
                     Stations Interchange
@@ -242,6 +270,14 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
+                    href="/noida-jewar-airport-parent-pickup"
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                  >
+                    Noida Jewar Airport Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/interchange-service"
                     className="hover:border-b-2 hover:border-white transition-colors"
                   >
@@ -252,7 +288,58 @@ const Footer = () => {
             </div>
             <div className="col-span-2 md:col-span-1">
               <h4 className="font-semibold mb-4">Contact & Support</h4>
-              <ul className="space-y-2">
+              <ul className="space-y-4 text-white text-sm">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0" aria-hidden />
+                  <div>
+                    <p className="font-medium mb-0.5">Office</p>
+                    <p className="text-white/90 leading-relaxed">
+                      New Ashok Nager, Mayur Vihar Tehsil, East Delhi, Delhi,
+                      110096, India
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 mt-0.5 shrink-0" aria-hidden />
+                  <div>
+                    <p className="font-medium mb-0.5">Phone</p>
+                    <a
+                      href="tel:+919910646415"
+                      className="text-white/90 hover:border-b hover:border-white transition-colors"
+                    >
+                      +91 9910646415
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 mt-0.5 shrink-0" aria-hidden />
+                  <div>
+                    <p className="font-medium mb-0.5">Email</p>
+                    <a
+                      href="mailto:info@care2home.co"
+                      className="text-white/90 hover:border-b hover:border-white transition-colors break-all"
+                    >
+                      info@care2home.co
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 mt-0.5 shrink-0" aria-hidden />
+                  <div>
+                    <p className="font-medium">24 × 7</p>
+                  </div>
+                </li>
+                <li className="flex items-center gap-2 pt-1">
+                  <MessageCircle className="w-4 h-4 shrink-0" aria-hidden />
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:border-b hover:border-white transition-colors"
+                  >
+                    WhatsApp Support
+                  </a>
+                </li>
                 <li>
                   <Link
                     className="hover:border-b-2 hover:border-white transition-colors"
@@ -260,34 +347,6 @@ const Footer = () => {
                   >
                     Contact us
                   </Link>
-                </li>
-                <li className="flex items-center hover:border-b-2 hover:border-white">
-                  <Link
-                    className="hover:border-b-2 hover:border-white transition-colors flex items-center"
-                    href={`${whatsappUrl}`}
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    WhatsApp Support
-                  </Link>
-                </li>
-                <li className="mt-2">
-                  <p className="text-white font-semibold mb-2 text-sm">
-                    Download our Android App
-                  </p>
-                  <a
-                    href={playStoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block hover:opacity-80 transition-opacity"
-                  >
-                    <Image
-                      src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                      alt="Get it on Google Play"
-                      width={130}
-                      height={50}
-                      className="h-auto"
-                    />
-                  </a>
                 </li>
                 <li>
                   <Link
@@ -297,14 +356,21 @@ const Footer = () => {
                     About us
                   </Link>
                 </li>
-                {/* <li>
-                  <Link
-                    className="hover:border-b-2 hover:border-white transition-colors"
-                    href="/our-team"
-                  >
-                    Our team
-                  </Link>
-                </li> */}
+              </ul>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <h4 className="font-semibold mb-4">Videos</h4>
+              <ul className="space-y-2 text-white">
+                {homeVideoNavItems.map((video) => (
+                  <li key={video.slug}>
+                    <Link
+                      href={`/${video.slug}`}
+                      className="hover:border-b-2 hover:border-white transition-colors"
+                    >
+                      {video.navLabel}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-span-2 md:col-span-1">

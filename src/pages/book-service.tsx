@@ -4,15 +4,17 @@ import { Button } from "../components/Button";
 import { Input, TextArea, Select } from "../components/Input";
 import { CheckCircle, Upload, X, MapPin, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import SEO from "@/components/Seo";
 import StructuredData from "@/components/StructuredData";
 import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
 import type { JourneyPricingResult } from "@/types/pricing";
 import {
   buildBookingRecord,
+  clearJourneyPricingSession,
   loadJourneyPricingHandoff,
   resolveJourneyPricingFromHandoff,
-  toFirestoreBookingDocId,
+  buildFirestoreBookingDocId,
 } from "@/lib/booking";
 import { storage, firestoreDB } from "../../lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
@@ -27,6 +29,8 @@ const LUGGAGE_OPTIONS = Array.from({ length: 5 }, (_, i) => {
 });
 
 export default function BookService() {
+  const router = useRouter();
+
   const bookingWebPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -125,6 +129,19 @@ export default function BookService() {
       setPricing(resolved);
     }
   }, []);
+
+  useEffect(() => {
+    const clearPricingSessionWhenLeaving = (url: string) => {
+      const path = url.split("?")[0].split("#")[0];
+      if (path === "/book-service") return;
+      clearJourneyPricingSession();
+    };
+
+    router.events.on("routeChangeStart", clearPricingSessionWhenLeaving);
+    return () => {
+      router.events.off("routeChangeStart", clearPricingSessionWhenLeaving);
+    };
+  }, [router.events]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -306,12 +323,16 @@ export default function BookService() {
         journey,
       });
 
-      const bookingDocId = toFirestoreBookingDocId(contact.phone)+Math.random().toString(36).substring(2, 15);
+      const bookingDocId = buildFirestoreBookingDocId(contact.phone);
       await setDoc(doc(firestoreDB, "Orders", bookingDocId), {
         ...booking,
         createdAt: serverTimestamp(),
       });
 
+      clearJourneyPricingSession();
+      setJourneyOrigin(null);
+      setJourneyDestination(null);
+      setJourneySource(null);
       setIsSuccess(true);
 
       setFormData({

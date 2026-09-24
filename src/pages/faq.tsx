@@ -17,7 +17,7 @@ const FAQ_ITEMS = [
   {
     question: "Can you assist at railway stations?",
     answer:
-      "Yes. We regularly assist families at major railway stations across India, with our strongest coverage in Delhi NCR—including New Delhi, Old Delhi, Hazrat Nizamuddin, Anand Vihar, Delhi Cantt, Ghaziabad, Delhi Sarai Rohilla, and Jaipur—plus station-to-airport interchange journeys. Your companion meets your parent on the platform or at the agreed exit, helps with bags and crowds, and coordinates a safe ride home.",
+      "Yes. We regularly assist families at major railway stations across India, with our strongest coverage in Delhi NCR—including New Delhi, Old Delhi, Hazrat Nizamuddin, Anand Vihar, Delhi Cantt, Ghaziabad, Delhi Sarai Rohilla, and Jaipur—as well as Hyderabad (HYB), Secunderabad (SC), Bengaluru (SBC), and Pune (PUNE), plus station-to-airport interchange journeys. Your companion meets your parent on the platform or at the agreed exit, helps with bags and crowds, and coordinates a safe ride home.",
   },
   {
     question: "Do you provide wheelchair support?",
@@ -32,7 +32,7 @@ const FAQ_ITEMS = [
   {
     question: "Which cities do you serve?",
     answer:
-      "Care2Home provides parent pickup and companion services across India, with our Delhi NCR hub covering Delhi, NCR, Gurgaon, Noida, Ghaziabad, Faridabad, and Jaipur—including airport and railway coverage in the region. We also serve families at major stations and airports nationwide. If you are unsure whether your route is covered, message us on WhatsApp with your station or terminal and we will confirm quickly.",
+      "Care2Home provides parent pickup and companion services across India, with our Delhi NCR hub covering Delhi, NCR, Gurgaon, Noida, Ghaziabad, Faridabad, and Jaipur—including airport and railway coverage in the region. We also serve families at major stations in Hyderabad, Bengaluru, Pune, and nationwide. If you are unsure whether your route is covered, message us on WhatsApp with your station or terminal and we will confirm quickly.",
   },
 ] as const;
 
