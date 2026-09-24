@@ -57,6 +57,7 @@ export type BookingJourney = {
   origin: string | null;
   destination: string | null;
   source: string | null;
+  luggageCount: number;
 };
 
 /** Snapshot of journey pricing stored with each booking */

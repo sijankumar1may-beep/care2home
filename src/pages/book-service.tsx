@@ -1,7 +1,7 @@
 import { useState, FormEvent, useRef, useEffect } from "react";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
-import { Input, TextArea } from "../components/Input";
+import { Input, TextArea, Select } from "../components/Input";
 import { CheckCircle, Upload, X, MapPin, Loader2 } from "lucide-react";
 import Link from "next/link";
 import SEO from "@/components/Seo";
@@ -17,6 +17,14 @@ import {
 import { storage, firestoreDB } from "../../lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+const LUGGAGE_OPTIONS = Array.from({ length: 5 }, (_, i) => {
+  const value = String(i + 1);
+  return {
+    value,
+    label: i === 4 ? ">5" : `${value}`,
+  };
+});
 
 export default function BookService() {
   const bookingWebPageSchema = {
@@ -97,6 +105,7 @@ export default function BookService() {
     address: "",
     phone: "",
     email: "",
+    luggageCount: "",
   });
 
   useEffect(() => {
@@ -118,7 +127,9 @@ export default function BookService() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -260,6 +271,18 @@ export default function BookService() {
       return;
     }
 
+    const luggageCount = Number(formData.luggageCount);
+    if (
+      formData.luggageCount.trim() === "" ||
+      !Number.isInteger(luggageCount) ||
+      luggageCount < 1 ||
+      luggageCount > 11
+    ) {
+      setError("Please select number of luggage (1 to 11)");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const imageUrl = await uploadImage(formData.phone.trim());
 
@@ -273,6 +296,7 @@ export default function BookService() {
         origin: journeyOrigin,
         destination: journeyDestination,
         source: journeySource,
+        luggageCount,
       };
 
       const booking = buildBookingRecord({
@@ -294,6 +318,7 @@ export default function BookService() {
         address: "",
         phone: "",
         email: "",
+        luggageCount: "",
       });
       removeImage();
       setPricing(null);
@@ -312,35 +337,50 @@ export default function BookService() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Card className="text-center animate-scale-in">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-check-pop">
               <CheckCircle className="w-10 h-10 text-green-600" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2
+              className="text-3xl font-bold text-gray-900 mb-4 animate-fade-in-up"
+              style={{ animationDelay: "80ms" }}
+            >
               Booking Received!
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p
+              className="text-lg text-gray-600 mb-6 animate-fade-in-up"
+              style={{ animationDelay: "140ms" }}
+            >
               Thank you for trusting Care2Home. We have received your booking
               request and our team will contact you shortly to confirm the
               details.
             </p>
-            <p className="text-gray-600 mb-4">
+            <p
+              className="text-gray-600 mb-4 animate-fade-in-up"
+              style={{ animationDelay: "200ms" }}
+            >
               You will receive a confirmation call within 2 hours. We will share
               your Care Companion&apos;s details before the journey begins.
             </p>
             {whatsappUrl && (
-              <p className="text-sm text-gray-600 mb-6">
+              <p
+                className="text-sm text-gray-600 mb-6 animate-fade-in-up"
+                style={{ animationDelay: "260ms" }}
+              >
                 If WhatsApp did not open automatically, tap the button below to
                 send your booking details to our team.
               </p>
             )}
-            <div className="space-y-4">
+            <div
+              className="space-y-4 animate-fade-in-up"
+              style={{ animationDelay: "320ms" }}
+            >
               {whatsappUrl && (
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-[#25D366] px-6 py-3 text-base font-semibold text-white hover:bg-[#1ebe5d] transition-colors"
+                  className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-[#25D366] px-6 py-3 text-base font-semibold text-white hover:bg-[#1ebe5d] hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg"
                 >
                   Open WhatsApp &amp; Send Booking
                 </a>
@@ -375,7 +415,7 @@ export default function BookService() {
         data={bookingBreadcrumbSchema}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 animate-fade-in-up">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Book Care Service
           </h1>
@@ -383,6 +423,14 @@ export default function BookService() {
             Available 24/7 • Airport, Railway & Bus Stand pickups • Across India
             (Delhi NCR hub)
           </p>
+          <div className="flex justify-center items-center gap-4 mb-4">
+          <Link
+                href="/pricing"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 bg-blue-800 text-white text-lg font-medium transition"
+              >
+                Calculate Your Price
+              </Link>
+              </div>
           <p className="text-lg text-gray-600">
             Share your parent&apos;s travel details and we&apos;ll take care of
             the rest.
@@ -390,7 +438,10 @@ export default function BookService() {
         </div>
 
         {pricing && (
-          <div className="mb-6">
+          <div
+            className="mb-6 animate-fade-in-up"
+            style={{ animationDelay: "80ms" }}
+          >
             <JourneyPriceBreakdown
               pricing={pricing}
               initialDiscountApplied={pricing.discountAmount > 0}
@@ -399,18 +450,22 @@ export default function BookService() {
           </div>
         )}
 
-        <Card>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="animate-scale-in" style={{ animationDelay: "120ms" }}>
+          <Card>
+            <form onSubmit={handleSubmit} className="space-y-6">
             {/* Ticket Image Upload */}
-            <div>
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "160ms" }}
+            >
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Ticket Image <span className="text-red-500">*</span>
               </label>
               <div className="mt-1">
                 {!imagePreview ? (
-                  <div className="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-400 transition-colors">
+                  <div className="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-400 hover:bg-blue-50/40 transition-all duration-200">
                     <div className="space-y-1 text-center">
-                      <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                      <Upload className="mx-auto h-12 w-12 text-gray-400 transition-transform duration-200 group-hover:scale-105" />
                       <div className="flex text-sm text-gray-600">
                         <label
                           htmlFor="ticket-image"
@@ -436,7 +491,7 @@ export default function BookService() {
                     </div>
                   </div>
                 ) : (
-                  <div className="relative">
+                  <div className="relative animate-scale-in">
                     <div className="border-2 border-gray-300 rounded-lg p-4">
                       <img
                         src={imagePreview}
@@ -447,7 +502,7 @@ export default function BookService() {
                     <button
                       type="button"
                       onClick={removeImage}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors"
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 hover:scale-105 transition-all duration-200"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -457,7 +512,10 @@ export default function BookService() {
             </div>
 
             {/* Pickup/Drop Address */}
-            <div>
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "220ms" }}
+            >
               <div className="flex items-center justify-between mb-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Pickup/Drop Address <span className="text-red-500">*</span>
@@ -492,33 +550,82 @@ export default function BookService() {
               />
             </div>
 
+            {/* Number of luggage */}
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "280ms" }}
+            >
+              <Select
+                label="Number of Luggage *"
+                name="luggageCount"
+                required
+                value={formData.luggageCount}
+                onChange={handleChange}
+                options={[
+                  { value: "", label: "Select luggage count" },
+                  ...LUGGAGE_OPTIONS,
+                ]}
+              />
+              {Number(formData.luggageCount) >= 4 &&
+                pricing?.vehicleType === "car" &&
+                pricing?.cabType === "5_seater" && (
+                  <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-4 animate-scale-in">
+                    <p className="text-sm text-amber-900">
+                      <strong>Suggestion:</strong> With {formData.luggageCount}{" "}
+                      bags, a 5-seater may be tight. Please change cab type from
+                      5-seater to 7-seater on the pricing page for more luggage
+                      space.
+                    </p>
+                    <Link
+                      href="/pricing"
+                      className="mt-2 inline-block text-sm font-semibold text-amber-800 underline hover:text-amber-950 transition-colors"
+                    >
+                      Go to Pricing to change cab type
+                    </Link>
+                  </div>
+                )}
+            </div>
+
             {/* Phone Number */}
-            <Input
-              label="Phone Number *"
-              name="phone"
-              type="tel"
-              required
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-            />
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "340ms" }}
+            >
+              <Input
+                label="Phone Number *"
+                name="phone"
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+              />
+            </div>
             {/* Email (Optional) */}
-            <Input
-              label="Email (Optional)"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email address"
-            />
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "400ms" }}
+            >
+              <Input
+                label="Email (Optional)"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email address"
+              />
+            </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 animate-scale-in">
                 <p className="text-red-800 text-sm">{error}</p>
               </div>
             )}
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div
+              className="bg-blue-50 border border-blue-200 rounded-lg p-4 animate-fade-in-up"
+              style={{ animationDelay: "460ms" }}
+            >
               <p className="text-xs text-gray-600 text-center mb-2">
                 All Care Companions are background-verified and trained to assist elderly parents
               </p>
@@ -529,20 +636,29 @@ export default function BookService() {
               </p>
             </div>
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full"
-              size="lg"
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "520ms" }}
             >
-              {isSubmitting
-                ? "Uploading & Submitting Request..."
-                : "Submit Request • We'll Call You"}
-            </Button>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full hover:-translate-y-0.5 transition-all duration-200"
+                size="lg"
+              >
+                {isSubmitting
+                  ? "Uploading & Submitting Request..."
+                  : "Submit Request • We'll Call You"}
+              </Button>
+            </div>
           </form>
-        </Card>
+          </Card>
+        </div>
 
-        <div className="mt-8 text-center">
+        <div
+          className="mt-8 text-center animate-fade-in-up"
+          style={{ animationDelay: "580ms" }}
+        >
           <p className="text-xs text-gray-600 mt-3 text-center">
             Prefer talking first? <Link href="tel:+919910646415" className="underline">Call us </Link> or <Link className="underline" href="https://wa.me/919910646415?text=Hi%20Care2Home%20Team">WhatsApp us</Link> anytime.
           </p>

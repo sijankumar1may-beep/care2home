@@ -162,7 +162,8 @@ export function toBookingPricingSnapshot(
 export function buildWhatsAppMessage(
   contact: BookingContact,
   ticketImageUrl: string | null,
-  pricing: BookingPricingSnapshot | null
+  pricing: BookingPricingSnapshot | null,
+  journey?: BookingJourney | null
 ): string {
   const vehicleLine = pricing
     ? pricing.vehicleType === "car"
@@ -184,11 +185,16 @@ export function buildWhatsAppMessage(
 `
     : "";
 
+  const luggageLine =
+    journey && typeof journey.luggageCount === "number"
+      ? `\n🧳 *Luggage:* ${journey.luggageCount}`
+      : "";
+
   return `
 🟢 *New Care2Home Booking Request*
 
 📋 *Booking Details:*
-${pricingSection}
+${pricingSection}${luggageLine}
 📸 *Ticket Image:* ${ticketImageUrl || "Not provided"}
 
 📍 *Pickup/Drop Address:*
@@ -218,7 +224,8 @@ export function buildBookingRecord({
   const whatsappMessage = buildWhatsAppMessage(
     contact,
     ticketImageUrl,
-    pricingSnapshot
+    pricingSnapshot,
+    journey
   );
 
   return {
