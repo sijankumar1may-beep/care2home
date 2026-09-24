@@ -1,5 +1,4 @@
 import { useState, FormEvent, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 import { Input, TextArea } from "../components/Input";
@@ -11,20 +10,15 @@ import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
 import type { JourneyPricingResult } from "@/types/pricing";
 import {
   buildBookingRecord,
-  loadJourneyPricingFromSession,
-  parseJourneyPricingFromQuery,
+  loadJourneyPricingHandoff,
+  resolveJourneyPricingFromHandoff,
   toFirestoreBookingDocId,
 } from "@/lib/booking";
 import { storage, firestoreDB } from "../../lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-function getQueryString(value: string | string[] | undefined): string {
-  if (Array.isArray(value)) return value[0] ?? "";
-  return value ?? "";
-}
 
 export default function BookService() {
-  const router = useRouter();
   const bookingWebPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -92,6 +86,11 @@ export default function BookService() {
   const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
   const [pricing, setPricing] = useState<JourneyPricingResult | null>(null);
+  const [journeyOrigin, setJourneyOrigin] = useState<string | null>(null);
+  const [journeyDestination, setJourneyDestination] = useState<string | null>(
+    null
+  );
+  const [journeySource, setJourneySource] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
@@ -101,27 +100,22 @@ export default function BookService() {
   });
 
   useEffect(() => {
-    if (!router.isReady) return;
+    const handoff = loadJourneyPricingHandoff();
+    if (!handoff) return;
 
-    const source = getQueryString(router.query.source);
-    const origin = getQueryString(router.query.origin);
-    const destination = getQueryString(router.query.destination);
+    setFormData((prev) => ({
+      ...prev,
+      address: `Pickup: ${handoff.origin}\nDestination: ${handoff.destination}`,
+    }));
+    setJourneyOrigin(handoff.origin);
+    setJourneyDestination(handoff.destination);
+    setJourneySource("pricing");
 
-    if (source === "pricing" && origin && destination) {
-      setFormData((prev) => ({
-        ...prev,
-        address: `Pickup: ${origin}\nDestination: ${destination}`,
-      }));
-
-      const pricingFromSession = loadJourneyPricingFromSession();
-      const pricingFromQuery = parseJourneyPricingFromQuery(router.query);
-      const resolvedPricing = pricingFromSession ?? pricingFromQuery;
-
-      if (resolvedPricing) {
-        setPricing(resolvedPricing);
-      }
+    const resolved = resolveJourneyPricingFromHandoff(handoff);
+    if (resolved) {
+      setPricing(resolved);
     }
-  }, [router.isReady, router.query]);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -276,9 +270,9 @@ export default function BookService() {
       };
 
       const journey = {
-        origin: getQueryString(router.query.origin) || null,
-        destination: getQueryString(router.query.destination) || null,
-        source: getQueryString(router.query.source) || null,
+        origin: journeyOrigin,
+        destination: journeyDestination,
+        source: journeySource,
       };
 
       const booking = buildBookingRecord({
@@ -397,7 +391,11 @@ export default function BookService() {
 
         {pricing && (
           <div className="mb-6">
-            <JourneyPriceBreakdown pricing={pricing} />
+            <JourneyPriceBreakdown
+              pricing={pricing}
+              initialDiscountApplied={pricing.discountAmount > 0}
+              showDiscountControls={false}
+            />
           </div>
         )}
 
@@ -538,7 +536,7 @@ export default function BookService() {
               size="lg"
             >
               {isSubmitting
-                ? "Uploading & Redirecting to WhatsApp..."
+                ? "Uploading & Submitting Request..."
                 : "Submit Request • We'll Call You"}
             </Button>
           </form>

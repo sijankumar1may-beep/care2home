@@ -1,14 +1,19 @@
 import {
-  firstTimeUserDiscountPercent,
+  DEFAULT_CAB_TYPE,
+  firstTimeUserDiscountAmount,
+  getCabTypeLabel,
   pricingConfig,
   pricingRangeConfig,
+  type CabType,
   type PricingConfig,
+  type VehiclePricingConfig,
   type VehicleType,
 } from "@/lib/pricing-config";
 import type { PriceRange } from "@/types/pricing";
 import {
   detectLocationCategory,
   shouldApplyAirportSurcharge,
+  shouldApplyRailwaySurcharge,
 } from "@/lib/location-types";
 import type {
   JourneyPricingResult,
@@ -52,8 +57,7 @@ export function applyFirstTimeDiscount(amount: number): number {
     return 0;
   }
 
-  const multiplier = 1 - firstTimeUserDiscountPercent / 100;
-  return sanitizeAmount(amount * multiplier);
+  return sanitizeAmount(Math.max(0, amount - firstTimeUserDiscountAmount));
 }
 
 export function applyFirstTimeDiscountToRange(range: PriceRange): PriceRange {
@@ -83,6 +87,7 @@ function sanitizeAmount(value: number): number {
 type CalculateJourneyPricingInput = {
   distanceKm: number;
   vehicleType: VehicleType;
+  cabType?: CabType;
   originAddress: string;
   destinationAddress: string;
   originPlaceTypes?: string[];
@@ -91,6 +96,19 @@ type CalculateJourneyPricingInput = {
   destinationLocationType?: LocationCategory;
 };
 
+function resolveVehicleConfig(
+  config: PricingConfig,
+  vehicleType: VehicleType,
+  cabType?: CabType,
+): VehiclePricingConfig | null {
+  if (vehicleType === "auto") {
+    return config.auto;
+  }
+
+  const resolvedCabType = cabType ?? DEFAULT_CAB_TYPE;
+  return config.car[resolvedCabType] ?? null;
+}
+
 function calculatePricingWithConfig(
   input: CalculateJourneyPricingInput,
   config: PricingConfig,
@@ -98,8 +116,10 @@ function calculatePricingWithConfig(
   JourneyPricingResult,
   | "transportationFeeRange"
   | "careCompanionFeeRange"
+  | "careCompanionTravelChargeRange"
+  | "railwaySurchargeRange"
   | "totalPriceRange"
-  | "discountPercent"
+  | "discountAmount"
   | "discountedTotalPriceRange"
 > | null {
   const { distanceKm, vehicleType } = input;
@@ -108,7 +128,10 @@ function calculatePricingWithConfig(
     return null;
   }
 
-  const vehicleConfig = config[vehicleType];
+  const resolvedCabType =
+    vehicleType === "car" ? (input.cabType ?? DEFAULT_CAB_TYPE) : undefined;
+
+  const vehicleConfig = resolveVehicleConfig(config, vehicleType, resolvedCabType);
   if (!vehicleConfig) {
     return null;
   }
@@ -136,8 +159,21 @@ function calculatePricingWithConfig(
     ? config.airportSurcharge
     : 0;
 
+  const railwaySurcharge = shouldApplyRailwaySurcharge(
+    originLocationType,
+    destinationLocationType,
+    config.railwaySurchargeRules,
+    input.originAddress,
+    input.destinationAddress,
+  )
+    ? config.railwaySurcharge
+    : 0;
+
   const rawTransportationTotal =
-    vehicleConfig.baseFare + distanceCharge + airportSurcharge;
+    vehicleConfig.baseFare +
+    distanceCharge +
+    airportSurcharge +
+    railwaySurcharge;
 
   const minimumFare = vehicleConfig.minimumFare;
   const transportationTotal =
@@ -146,11 +182,17 @@ function calculatePricingWithConfig(
       : sanitizeAmount(rawTransportationTotal);
 
   const careCompanionFee = sanitizeAmount(config.careCompanionFee);
-  const totalPrice = transportationTotal + careCompanionFee;
+  const careCompanionTravelCharge = sanitizeAmount(
+    config.careCompanionTravelCharge,
+  );
+  const sanitizedRailwaySurcharge = sanitizeAmount(railwaySurcharge);
+  const totalPrice =
+    transportationTotal + careCompanionFee + careCompanionTravelCharge;
 
   return {
     distanceKm,
     vehicleType,
+    ...(resolvedCabType ? { cabType: resolvedCabType } : {}),
     originLocationType,
     destinationLocationType,
     transportation: {
@@ -159,13 +201,17 @@ function calculatePricingWithConfig(
       distanceRate: vehicleConfig.perKmRate,
       distanceCharge,
       airportSurcharge,
+      railwaySurcharge: sanitizedRailwaySurcharge,
       total: transportationTotal,
     },
     careCompanion: {
       fee: careCompanionFee,
+      travelCharge: careCompanionTravelCharge,
     },
     transportationFee: transportationTotal,
     careCompanionFee,
+    careCompanionTravelCharge,
+    railwaySurcharge: sanitizedRailwaySurcharge,
     totalPrice,
   };
 }
@@ -192,11 +238,19 @@ export function calculateJourneyPricing(
       min: basePricing.careCompanionFee,
       max: maxPricing.careCompanionFee,
     },
+    careCompanionTravelChargeRange: {
+      min: basePricing.careCompanionTravelCharge,
+      max: maxPricing.careCompanionTravelCharge,
+    },
+    railwaySurchargeRange: {
+      min: basePricing.railwaySurcharge,
+      max: maxPricing.railwaySurcharge,
+    },
     totalPriceRange: {
       min: basePricing.totalPrice,
       max: maxPricing.totalPrice,
     },
-    discountPercent: firstTimeUserDiscountPercent,
+    discountAmount: firstTimeUserDiscountAmount,
     discountedTotalPriceRange: applyFirstTimeDiscountToRange({
       min: basePricing.totalPrice,
       max: maxPricing.totalPrice,
@@ -204,6 +258,17 @@ export function calculateJourneyPricing(
   };
 }
 
-export function getVehicleLabel(vehicleType: VehicleType): string {
-  return pricingConfig[vehicleType]?.label ?? "Transportation";
+export function getVehicleLabel(
+  vehicleType: VehicleType,
+  cabType?: CabType,
+): string {
+  if (vehicleType === "car") {
+    const baseLabel = pricingConfig.car[cabType ?? DEFAULT_CAB_TYPE]?.label ?? "Car Service";
+    if (cabType) {
+      return `${baseLabel} (${getCabTypeLabel(cabType)})`;
+    }
+    return baseLabel;
+  }
+
+  return pricingConfig.auto?.label ?? "Transportation";
 }

@@ -73,6 +73,17 @@ export function isAirportLocation(
   return matchesKeywords(address, AIRPORT_KEYWORDS);
 }
 
+export function isRailwayLocation(
+  locationType: LocationCategory,
+  address = "",
+): boolean {
+  if (locationType === "railway") {
+    return true;
+  }
+
+  return matchesKeywords(address, RAILWAY_KEYWORDS);
+}
+
 export function shouldApplyAirportSurcharge(
   originType: LocationCategory,
   destinationType: LocationCategory,
@@ -94,6 +105,33 @@ export function shouldApplyAirportSurcharge(
   }
 
   if (destinationIsAirport && rules.applyWhenDestinationIsAirport) {
+    return true;
+  }
+
+  return false;
+}
+
+export function shouldApplyRailwaySurcharge(
+  originType: LocationCategory,
+  destinationType: LocationCategory,
+  rules: {
+    applyWhenOriginIsRailway: boolean;
+    applyWhenDestinationIsRailway: boolean;
+  },
+  originAddress = "",
+  destinationAddress = "",
+): boolean {
+  const originIsRailway = isRailwayLocation(originType, originAddress);
+  const destinationIsRailway = isRailwayLocation(
+    destinationType,
+    destinationAddress,
+  );
+
+  if (originIsRailway && rules.applyWhenOriginIsRailway) {
+    return true;
+  }
+
+  if (destinationIsRailway && rules.applyWhenDestinationIsRailway) {
     return true;
   }
 

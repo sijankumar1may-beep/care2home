@@ -1,4 +1,5 @@
 import type { VehicleType } from "@/lib/pricing-config";
+import type { CabType } from "@/lib/pricing-config";
 
 export type LocationCategory = "airport" | "railway" | "home" | "other";
 
@@ -8,11 +9,13 @@ export type TransportationPricing = {
   distanceRate: number;
   distanceCharge: number;
   airportSurcharge: number;
+  railwaySurcharge: number;
   total: number;
 };
 
 export type CareCompanionPricing = {
   fee: number;
+  travelCharge: number;
 };
 
 export type PriceRange = {
@@ -23,17 +26,22 @@ export type PriceRange = {
 export type JourneyPricingResult = {
   distanceKm: number;
   vehicleType: VehicleType;
+  cabType?: CabType;
   originLocationType: LocationCategory;
   destinationLocationType: LocationCategory;
   transportation: TransportationPricing;
   careCompanion: CareCompanionPricing;
   transportationFee: number;
   careCompanionFee: number;
+  careCompanionTravelCharge: number;
+  railwaySurcharge: number;
   totalPrice: number;
   transportationFeeRange: PriceRange;
   careCompanionFeeRange: PriceRange;
+  careCompanionTravelChargeRange: PriceRange;
+  railwaySurchargeRange: PriceRange;
   totalPriceRange: PriceRange;
-  discountPercent: number;
+  discountAmount: number;
   discountedTotalPriceRange: PriceRange;
 };
 
@@ -55,15 +63,20 @@ export type BookingJourney = {
 export type BookingPricingSnapshot = {
   distanceKm: number;
   vehicleType: VehicleType;
-  discountPercent: number;
+  cabType?: CabType;
+  discountAmount: number;
   discountedTotalPriceRange: PriceRange;
   totalPriceRange: PriceRange;
   transportationFeeRange: PriceRange;
   careCompanionFeeRange: PriceRange;
+  careCompanionTravelChargeRange: PriceRange;
+  railwaySurchargeRange: PriceRange;
   originLocationType: LocationCategory;
   destinationLocationType: LocationCategory;
   transportationFee: number;
   careCompanionFee: number;
+  careCompanionTravelCharge: number;
+  railwaySurcharge: number;
   totalPrice: number;
 };
 

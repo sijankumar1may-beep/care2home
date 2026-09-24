@@ -1,62 +1,132 @@
 import {
+  calculateJourneyPricing,
   formatDistanceKm,
+  formatIndianCurrency,
   formatIndianCurrencyRange,
   getVehicleLabel,
 } from "@/lib/pricing";
-import type { VehicleType } from "@/lib/pricing-config";
+import {
+  getCabTypeLabel,
+  isValidCabType,
+  type CabType,
+  type VehicleType,
+} from "@/lib/pricing-config";
 import type {
   BookingContact,
   BookingJourney,
   BookingPricingSnapshot,
   BookingRecord,
   JourneyPricingResult,
-  LocationCategory,
 } from "@/types/pricing";
 
 export const WHATSAPP_NUMBER = "919910646415";
 export const JOURNEY_PRICING_SESSION_KEY = "care2home:journey-pricing";
+export const JOURNEY_PRICING_HANDOFF_KEY = "care2home:journey-pricing-handoff";
+
+export type JourneyPricingHandoff = {
+  distanceKm: number;
+  vehicleType: VehicleType;
+  cabType?: CabType;
+  discountAmount: number;
+  origin: string;
+  destination: string;
+};
 
 export function saveJourneyPricingToSession(
   pricing: JourneyPricingResult
 ): void {
   if (typeof window === "undefined") return;
-  sessionStorage.setItem(JOURNEY_PRICING_SESSION_KEY, JSON.stringify(pricing));
+  try {
+    sessionStorage.setItem(JOURNEY_PRICING_SESSION_KEY, JSON.stringify(pricing));
+  } catch {
+    // Private mode / quota — ignore
+  }
 }
 
 export function loadJourneyPricingFromSession(): JourneyPricingResult | null {
   if (typeof window === "undefined") return null;
 
-  const raw = sessionStorage.getItem(JOURNEY_PRICING_SESSION_KEY);
-  if (!raw) return null;
-
   try {
+    const raw = sessionStorage.getItem(JOURNEY_PRICING_SESSION_KEY);
+    if (!raw) return null;
     return JSON.parse(raw) as JourneyPricingResult;
   } catch {
     return null;
   }
 }
 
-function getQueryString(value: string | string[] | undefined): string {
-  if (Array.isArray(value)) return value[0] ?? "";
-  return value ?? "";
+export function saveJourneyPricingHandoff(handoff: JourneyPricingHandoff): void {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.setItem(JOURNEY_PRICING_HANDOFF_KEY, JSON.stringify(handoff));
+  } catch {
+    // Private mode / quota — ignore
+  }
 }
 
-function getQueryNumber(value: string | string[] | undefined): number | null {
-  const parsed = Number(getQueryString(value));
-  return Number.isFinite(parsed) ? parsed : null;
+export function loadJourneyPricingHandoff(): JourneyPricingHandoff | null {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const raw = sessionStorage.getItem(JOURNEY_PRICING_HANDOFF_KEY);
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw) as Partial<JourneyPricingHandoff>;
+    if (
+      typeof parsed.distanceKm !== "number" ||
+      parsed.distanceKm <= 0 ||
+      !isValidVehicleType(parsed.vehicleType) ||
+      (parsed.vehicleType === "car" && !isValidCabType(parsed.cabType)) ||
+      typeof parsed.origin !== "string" ||
+      !parsed.origin.trim() ||
+      typeof parsed.destination !== "string" ||
+      !parsed.destination.trim()
+    ) {
+      return null;
+    }
+
+    return {
+      distanceKm: parsed.distanceKm,
+      vehicleType: parsed.vehicleType,
+      ...(isValidCabType(parsed.cabType) ? { cabType: parsed.cabType } : {}),
+      discountAmount:
+        typeof parsed.discountAmount === "number" && parsed.discountAmount > 0
+          ? parsed.discountAmount
+          : 0,
+      origin: parsed.origin.trim(),
+      destination: parsed.destination.trim(),
+    };
+  } catch {
+    return null;
+  }
 }
 
-function isValidVehicleType(value: string): value is VehicleType {
+export function resolveJourneyPricingFromHandoff(
+  handoff: JourneyPricingHandoff
+): JourneyPricingResult | null {
+  const pricing = calculateJourneyPricing({
+    distanceKm: handoff.distanceKm,
+    vehicleType: handoff.vehicleType,
+    ...(handoff.cabType ? { cabType: handoff.cabType } : {}),
+    originAddress: handoff.origin,
+    destinationAddress: handoff.destination,
+  });
+
+  if (!pricing) return null;
+
+  if (handoff.discountAmount > 0) {
+    return pricing;
+  }
+
+  return {
+    ...pricing,
+    discountAmount: 0,
+    discountedTotalPriceRange: pricing.totalPriceRange,
+  };
+}
+
+function isValidVehicleType(value: unknown): value is VehicleType {
   return value === "car" || value === "auto";
-}
-
-function isValidLocationCategory(value: string): value is LocationCategory {
-  return (
-    value === "airport" ||
-    value === "railway" ||
-    value === "home" ||
-    value === "other"
-  );
 }
 
 /** Firestore doc id from phone — digits only (e.g. +91 99106 46415 → 919910646415) */
@@ -65,112 +135,26 @@ export function toFirestoreBookingDocId(phone: string): string {
   return digits || phone.trim();
 }
 
-/** Rebuild pricing from URL query so saved/WhatsApp price matches the pricing page */
-export function parseJourneyPricingFromQuery(
-  query: Record<string, string | string[] | undefined>
-): JourneyPricingResult | null {
-  if (getQueryString(query.source) !== "pricing") return null;
-
-  const distanceKm = getQueryNumber(query.distanceKm);
-  const vehicleType = getQueryString(query.vehicleType);
-  const transportationFeeMin = getQueryNumber(query.transportationFeeMin);
-  const transportationFeeMax = getQueryNumber(query.transportationFeeMax);
-  const careCompanionFeeMin = getQueryNumber(query.careCompanionFeeMin);
-  const careCompanionFeeMax = getQueryNumber(query.careCompanionFeeMax);
-  const totalPriceMin = getQueryNumber(query.totalPriceMin);
-  const totalPriceMax = getQueryNumber(query.totalPriceMax);
-  const discountedTotalMin = getQueryNumber(query.discountedTotalMin);
-  const discountedTotalMax = getQueryNumber(query.discountedTotalMax);
-  const discountPercent =
-    getQueryNumber(query.discountPercent) ??
-    getQueryNumber(query.discount) ??
-    10;
-  const transportationFee =
-    getQueryNumber(query.transportationFee) ?? transportationFeeMin;
-  const careCompanionFee =
-    getQueryNumber(query.careCompanionFee) ?? careCompanionFeeMin;
-  const totalPrice = getQueryNumber(query.totalPrice) ?? totalPriceMin;
-
-  const rawOriginLocationType = getQueryString(query.originLocationType);
-  const rawDestinationLocationType = getQueryString(
-    query.destinationLocationType
-  );
-  const originLocationType = isValidLocationCategory(rawOriginLocationType)
-    ? rawOriginLocationType
-    : "other";
-  const destinationLocationType = isValidLocationCategory(
-    rawDestinationLocationType
-  )
-    ? rawDestinationLocationType
-    : "other";
-
-  if (
-    distanceKm === null ||
-    !isValidVehicleType(vehicleType) ||
-    transportationFeeMin === null ||
-    transportationFeeMax === null ||
-    careCompanionFeeMin === null ||
-    careCompanionFeeMax === null ||
-    totalPriceMin === null ||
-    totalPriceMax === null ||
-    discountedTotalMin === null ||
-    discountedTotalMax === null ||
-    transportationFee === null ||
-    careCompanionFee === null ||
-    totalPrice === null
-  ) {
-    return null;
-  }
-
-  return {
-    distanceKm,
-    vehicleType,
-    originLocationType,
-    destinationLocationType,
-    transportation: {
-      vehicleType,
-      baseFare: 0,
-      distanceRate: 0,
-      distanceCharge: 0,
-      airportSurcharge: 0,
-      total: transportationFee,
-    },
-    careCompanion: { fee: careCompanionFee },
-    transportationFee,
-    careCompanionFee,
-    totalPrice,
-    transportationFeeRange: {
-      min: transportationFeeMin,
-      max: transportationFeeMax,
-    },
-    careCompanionFeeRange: {
-      min: careCompanionFeeMin,
-      max: careCompanionFeeMax,
-    },
-    totalPriceRange: { min: totalPriceMin, max: totalPriceMax },
-    discountPercent,
-    discountedTotalPriceRange: {
-      min: discountedTotalMin,
-      max: discountedTotalMax,
-    },
-  };
-}
-
 export function toBookingPricingSnapshot(
   pricing: JourneyPricingResult
 ): BookingPricingSnapshot {
   return {
     distanceKm: pricing.distanceKm,
     vehicleType: pricing.vehicleType,
-    discountPercent: pricing.discountPercent,
+    ...(pricing.cabType ? { cabType: pricing.cabType } : {}),
+    discountAmount: pricing.discountAmount,
     discountedTotalPriceRange: pricing.discountedTotalPriceRange,
     totalPriceRange: pricing.totalPriceRange,
     transportationFeeRange: pricing.transportationFeeRange,
     careCompanionFeeRange: pricing.careCompanionFeeRange,
+    careCompanionTravelChargeRange: pricing.careCompanionTravelChargeRange,
+    railwaySurchargeRange: pricing.railwaySurchargeRange,
     originLocationType: pricing.originLocationType,
     destinationLocationType: pricing.destinationLocationType,
     transportationFee: pricing.transportationFee,
     careCompanionFee: pricing.careCompanionFee,
+    careCompanionTravelCharge: pricing.careCompanionTravelCharge,
+    railwaySurcharge: pricing.railwaySurcharge,
     totalPrice: pricing.totalPrice,
   };
 }
@@ -180,14 +164,23 @@ export function buildWhatsAppMessage(
   ticketImageUrl: string | null,
   pricing: BookingPricingSnapshot | null
 ): string {
+  const vehicleLine = pricing
+    ? pricing.vehicleType === "car"
+      ? pricing.cabType
+        ? `Car — ${getCabTypeLabel(pricing.cabType)}`
+        : "Car"
+      : "Auto"
+    : "";
+
   const pricingSection = pricing
     ? `
-💰 *Journey Price:* ${formatIndianCurrencyRange(pricing.discountedTotalPriceRange.min, pricing.discountedTotalPriceRange.max)} (${pricing.discountPercent}% first-time discount applied)
+💰 *Journey Price:* ${formatIndianCurrencyRange(pricing.discountedTotalPriceRange.min, pricing.discountedTotalPriceRange.max)} (${formatIndianCurrency(pricing.discountAmount)} first-time discount applied)
    Estimated before discount: ${formatIndianCurrencyRange(pricing.totalPriceRange.min, pricing.totalPriceRange.max)}
-   ${getVehicleLabel(pricing.vehicleType)}: ${formatIndianCurrencyRange(pricing.transportationFeeRange.min, pricing.transportationFeeRange.max)}
+   ${getVehicleLabel(pricing.vehicleType, pricing.cabType)}: ${formatIndianCurrencyRange(pricing.transportationFeeRange.min, pricing.transportationFeeRange.max)}
    Care Companion: ${formatIndianCurrencyRange(pricing.careCompanionFeeRange.min, pricing.careCompanionFeeRange.max)}
+   Care Companion Travel: ${formatIndianCurrencyRange(pricing.careCompanionTravelChargeRange.min, pricing.careCompanionTravelChargeRange.max)}
 📏 *Distance:* ${formatDistanceKm(pricing.distanceKm)} km
-🚗 *Vehicle:* ${pricing.vehicleType === "car" ? "Car" : "Auto"}
+🚗 *Vehicle:* ${vehicleLine}
 `
     : "";
 

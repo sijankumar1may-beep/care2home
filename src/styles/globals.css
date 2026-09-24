@@ -209,6 +209,167 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes price-pop {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes sparkle-nudge {
+  0%,
+  100% {
+    transform: rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: rotate(-1deg) scale(1.03);
+  }
+}
+
+@keyframes check-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--confetti-x, 0px), 110vh, 0) rotate(720deg);
+  }
+}
+
+@keyframes celebration-banner {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.9);
+  }
+}
+
+@keyframes celebration-burst {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.2);
+  }
+  40% {
+    opacity: 0.35;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fade-in-up 0.45s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out both;
+  }
+
+  .animate-price-pop {
+    animation: price-pop 0.45s ease-out both;
+  }
+
+  .animate-soft-pulse {
+    animation: soft-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-sparkle-nudge {
+    animation: sparkle-nudge 2.4s ease-in-out infinite;
+  }
+
+  .animate-check-pop {
+    animation: check-pop 0.4s ease-out both;
+  }
+
+  .animate-confetti-fall {
+    animation: confetti-fall var(--confetti-duration, 2.4s) ease-in forwards;
+  }
+
+  .animate-celebration-banner {
+    animation: celebration-banner 2.2s ease-out forwards;
+  }
+
+  .animate-celebration-burst {
+    animation: celebration-burst 0.9s ease-out forwards;
+  }
+}
+
 
 .border-border {
   border-color: hsl(var(--border));

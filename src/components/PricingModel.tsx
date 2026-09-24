@@ -15,9 +15,16 @@ import {
 } from "lucide-react";
 import { AddressAutocomplete } from "@/components/AddressAutocomplete";
 import { JourneyPriceBreakdown } from "@/components/JourneyPriceBreakdown";
-import { firstTimeUserDiscountPercent } from "@/lib/pricing-config";
-import { saveJourneyPricingToSession } from "@/lib/booking";
-import type { VehicleType } from "@/lib/pricing-config";
+import {
+  CAB_TYPES,
+  DEFAULT_CAB_TYPE,
+  firstTimeUserDiscountAmount,
+  getCabTypeLabel,
+  type CabType,
+  type VehicleType,
+} from "@/lib/pricing-config";
+import { calculateJourneyPricing, formatIndianCurrency } from "@/lib/pricing";
+import { saveJourneyPricingHandoff } from "@/lib/booking";
 import type { JourneyPricingResult } from "@/types/pricing";
 
 const features = [
@@ -49,16 +56,62 @@ const vehicleOptions: {
   },
 ];
 
+const cabTypeOptions: {
+  type: CabType;
+  label: string;
+  description: string;
+}[] = CAB_TYPES.map((type) => ({
+  type,
+  label: getCabTypeLabel(type),
+  description:
+    type === "5_seater"
+      ? "Standard sedan for small groups and upto 2 luggage"
+      : type === "7_seater"
+        ? "SUV / MPV for families and upto 4 luggage"
+        : "Tempo traveller for larger groups and upto 6 luggage",
+}));
+
 export default function PricingModel() {
   const [originAddress, setOriginAddress] = useState("");
   const [destinationAddress, setDestinationAddress] = useState("");
   const [originPlaceTypes, setOriginPlaceTypes] = useState<string[]>([]);
   const [destinationPlaceTypes, setDestinationPlaceTypes] = useState<string[]>([]);
   const [vehicleType, setVehicleType] = useState<VehicleType>("car");
+  const [cabType, setCabType] = useState<CabType>(DEFAULT_CAB_TYPE);
+  const [distanceKm, setDistanceKm] = useState<number | null>(null);
+  const [pricedRouteKey, setPricedRouteKey] = useState("");
   const [pricing, setPricing] = useState<JourneyPricingResult | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [isLoadingOrigin, setIsLoadingOrigin] = useState(false);
   const [distanceError, setDistanceError] = useState("");
+
+  const buildRouteKey = (origin: string, destination: string) =>
+    `${origin.trim()}→${destination.trim()}`;
+
+  const priceFromDistance = (
+    km: number,
+    nextVehicleType: VehicleType = vehicleType,
+    nextCabType: CabType = cabType,
+  ) => {
+    const result = calculateJourneyPricing({
+      distanceKm: km,
+      vehicleType: nextVehicleType,
+      ...(nextVehicleType === "car" ? { cabType: nextCabType } : {}),
+      originAddress: originAddress.trim(),
+      destinationAddress: destinationAddress.trim(),
+      originPlaceTypes,
+      destinationPlaceTypes,
+    });
+
+    if (!result) {
+      setPricing(null);
+      setDistanceError("Unable to calculate journey price for the provided distance");
+      return;
+    }
+
+    setDistanceError("");
+    setPricing(result);
+  };
 
   const getCurrentAddress = async () => {
     setIsLoadingOrigin(true);
@@ -102,6 +155,9 @@ export default function PricingModel() {
       if (address) {
         setOriginAddress(address);
         setOriginPlaceTypes([]);
+        setDistanceKm(null);
+        setPricedRouteKey("");
+        setPricing(null);
       } else {
         setDistanceError("Could not determine address from location");
       }
@@ -123,42 +179,60 @@ export default function PricingModel() {
 
   const calculateJourneyPrice = async () => {
     setDistanceError("");
-    setPricing(null);
 
-    if (!originAddress.trim()) {
+    const origin = originAddress.trim();
+    const destination = destinationAddress.trim();
+
+    if (!origin) {
       setDistanceError("Please enter a pickup address");
       return;
     }
-    if (!destinationAddress.trim()) {
+    if (!destination) {
       setDistanceError("Please enter a destination address");
       return;
     }
 
+    const routeKey = buildRouteKey(origin, destination);
+
+    // Reuse cached distance for the same route — only fare math runs in the browser
+    if (distanceKm !== null && pricedRouteKey === routeKey) {
+      priceFromDistance(distanceKm);
+      return;
+    }
+
     setIsCalculating(true);
+    setPricing(null);
 
     try {
-      const response = await fetch("/api/calculate-journey-price", {
+      const response = await fetch("/api/compute-routes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          originAddress: originAddress.trim(),
-          destinationAddress: destinationAddress.trim(),
-          vehicleType,
-          originPlaceTypes,
-          destinationPlaceTypes,
+          originAddress: origin,
+          destinationAddress: destination,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to calculate journey price");
+        throw new Error(data.error || "Failed to calculate journey distance");
       }
 
-      setPricing(data as JourneyPricingResult);
+      const km = data.distanceKm as number;
+      if (!Number.isFinite(km) || km <= 0) {
+        throw new Error("Unable to calculate journey distance for these addresses");
+      }
+
+      setDistanceKm(km);
+      setPricedRouteKey(routeKey);
+      priceFromDistance(km);
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "Failed to calculate journey price";
+      setDistanceKm(null);
+      setPricedRouteKey("");
+      setPricing(null);
       setDistanceError(message);
     } finally {
       setIsCalculating(false);
@@ -173,7 +247,7 @@ export default function PricingModel() {
           <div className="inline-block bg-gradient-to-r from-blue-600 to-green-600 text-white px-5 py-2 rounded-full mb-5 transform -rotate-1 shadow-lg">
             <span className="text-lg font-bold flex items-center gap-2">
               <Sparkles className="w-5 h-5" />
-              {firstTimeUserDiscountPercent}% OFF — First Booking
+              {formatIndianCurrency(firstTimeUserDiscountAmount)} OFF — First Booking
             </span>
           </div>
 
@@ -188,7 +262,7 @@ export default function PricingModel() {
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Enter your pickup and destination to see your journey price — with{" "}
             <span className="font-semibold text-green-700">
-              {firstTimeUserDiscountPercent}% off
+              {formatIndianCurrency(firstTimeUserDiscountAmount)} off
             </span>{" "}
             for first-time users.
           </p>
@@ -218,7 +292,7 @@ export default function PricingModel() {
               <p className="text-sm text-amber-900">
                 <span className="font-semibold">Special offer:</span> Get{" "}
                 <span className="font-bold text-blue-700">
-                  {firstTimeUserDiscountPercent}% discount
+                  {formatIndianCurrency(firstTimeUserDiscountAmount)} discount
                 </span>{" "}
                 on your first booking. Safe travel for your parents, peace of mind
                 for you.
@@ -233,9 +307,15 @@ export default function PricingModel() {
                   onAddressChange={(address) => {
                     setOriginAddress(address);
                     setOriginPlaceTypes([]);
+                    setDistanceKm(null);
+                    setPricedRouteKey("");
+                    setPricing(null);
                   }}
                   onAddressSelect={(suggestion) => {
                     setOriginPlaceTypes(suggestion.placeTypes ?? []);
+                    setDistanceKm(null);
+                    setPricedRouteKey("");
+                    setPricing(null);
                   }}
                   addressPlaceholder="e.g. IGI Airport Terminal 3, New Delhi"
                   headerAction={
@@ -266,9 +346,15 @@ export default function PricingModel() {
                   onAddressChange={(address) => {
                     setDestinationAddress(address);
                     setDestinationPlaceTypes([]);
+                    setDistanceKm(null);
+                    setPricedRouteKey("");
+                    setPricing(null);
                   }}
                   onAddressSelect={(suggestion) => {
                     setDestinationPlaceTypes(suggestion.placeTypes ?? []);
+                    setDistanceKm(null);
+                    setPricedRouteKey("");
+                    setPricing(null);
                   }}
                   addressPlaceholder="e.g. Sector 62, Noida, Uttar Pradesh"
                 />
@@ -287,7 +373,19 @@ export default function PricingModel() {
                       <button
                         key={option.type}
                         type="button"
-                        onClick={() => setVehicleType(option.type)}
+                        onClick={() => {
+                          setVehicleType(option.type);
+                          const nextCabType =
+                            option.type === "car" ? DEFAULT_CAB_TYPE : cabType;
+                          if (option.type === "car") {
+                            setCabType(DEFAULT_CAB_TYPE);
+                          }
+                          if (distanceKm !== null) {
+                            priceFromDistance(distanceKm, option.type, nextCabType);
+                          } else {
+                            setPricing(null);
+                          }
+                        }}
                         className={`rounded-xl border-2 p-4 text-left transition-all ${
                           isSelected
                             ? "border-blue-600 bg-blue-50 shadow-md ring-2 ring-blue-100"
@@ -314,6 +412,44 @@ export default function PricingModel() {
                   })}
                 </div>
               </div>
+
+              {vehicleType === "car" && (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-800 mb-3">
+                    Cab Type
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {cabTypeOptions.map((option) => {
+                      const isSelected = cabType === option.type;
+
+                      return (
+                        <button
+                          key={option.type}
+                          type="button"
+                          onClick={() => {
+                            setCabType(option.type);
+                            if (distanceKm !== null) {
+                              priceFromDistance(distanceKm, vehicleType, option.type);
+                            } else {
+                              setPricing(null);
+                            }
+                          }}
+                          className={`rounded-xl border-2 p-4 text-left transition-all ${
+                            isSelected
+                              ? "border-blue-600 bg-blue-50 shadow-md ring-2 ring-blue-100"
+                              : "border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm"
+                          }`}
+                        >
+                          <p className="font-bold text-gray-900">{option.label}</p>
+                          <p className="text-sm text-gray-600 mt-0.5">
+                            {option.description}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               <button
                 type="button"
@@ -344,30 +480,18 @@ export default function PricingModel() {
                 <JourneyPriceBreakdown
                   pricing={pricing}
                   showCta
-                  onCtaClick={() => saveJourneyPricingToSession(pricing)}
-                  ctaHref={{
-                    pathname: "/book-service",
-                    query: {
-                      distanceKm: pricing.distanceKm,
-                      vehicleType: pricing.vehicleType,
-                      discountPercent: pricing.discountPercent,
-                      originLocationType: pricing.originLocationType,
-                      destinationLocationType: pricing.destinationLocationType,
-                      transportationFee: pricing.transportationFee,
-                      careCompanionFee: pricing.careCompanionFee,
-                      totalPrice: pricing.totalPrice,
-                      transportationFeeMin: pricing.transportationFeeRange.min,
-                      transportationFeeMax: pricing.transportationFeeRange.max,
-                      careCompanionFeeMin: pricing.careCompanionFeeRange.min,
-                      careCompanionFeeMax: pricing.careCompanionFeeRange.max,
-                      totalPriceMin: pricing.totalPriceRange.min,
-                      totalPriceMax: pricing.totalPriceRange.max,
-                      discountedTotalMin: pricing.discountedTotalPriceRange.min,
-                      discountedTotalMax: pricing.discountedTotalPriceRange.max,
-                      origin: originAddress,
-                      destination: destinationAddress,
-                      source: "pricing",
-                    },
+                  bookHref="/book-service"
+                  onCtaClick={(effectivePricing) => {
+                    saveJourneyPricingHandoff({
+                      distanceKm: effectivePricing.distanceKm,
+                      vehicleType: effectivePricing.vehicleType,
+                      ...(effectivePricing.cabType
+                        ? { cabType: effectivePricing.cabType }
+                        : {}),
+                      discountAmount: effectivePricing.discountAmount,
+                      origin: originAddress.trim(),
+                      destination: destinationAddress.trim(),
+                    });
                   }}
                 />
               )}
