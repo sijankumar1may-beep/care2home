@@ -271,6 +271,54 @@ export default function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
+                    href="/jaipur-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/jaipur-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Jaipur Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/pune-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/pune-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Pune Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/hyderabad-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/hyderabad-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Hyderabad Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/bangalore-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/bangalore-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Bangalore Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
                     href="/interchange-service"
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-bold transition-colors ${isActive("/interchange-service")
@@ -778,6 +826,54 @@ export default function Header() {
                       }`}
                   >
                     Noida Jewar Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/jaipur-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/jaipur-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Jaipur Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/pune-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/pune-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Pune Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/hyderabad-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/hyderabad-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Hyderabad Airport Parent Pickup
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/bangalore-airport-parent-pickup"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-base font-bold transition-colors ${isActive("/bangalore-airport-parent-pickup")
+                      ? "text-white border-b-2 border-white"
+                      : "text-white hover:text-blue-400"
+                      }`}
+                  >
+                    Bangalore Airport Parent Pickup
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

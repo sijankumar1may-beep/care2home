@@ -37,6 +37,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     "/igi-airport-delhi-parent-pickup",
     "/t3-igi-airport-parent-pickup",
     "/noida-jewar-airport-parent-pickup",
+    "/jaipur-airport-parent-pickup",
+    "/pune-airport-parent-pickup",
+    "/hyderabad-airport-parent-pickup",
+    "/bangalore-airport-parent-pickup",
     "/interchange-service"
   ];
 

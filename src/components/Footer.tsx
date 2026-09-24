@@ -278,6 +278,38 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
+                    href="/jaipur-airport-parent-pickup"
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                  >
+                    Jaipur Airport Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/pune-airport-parent-pickup"
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                  >
+                    Pune Airport Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/hyderabad-airport-parent-pickup"
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                  >
+                    Hyderabad Airport Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/bangalore-airport-parent-pickup"
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                  >
+                    Bangalore Airport Parent Pickup
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/interchange-service"
                     className="hover:border-b-2 hover:border-white transition-colors"
                   >

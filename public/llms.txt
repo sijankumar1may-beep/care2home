@@ -23,6 +23,13 @@
 - [IGI Airport Delhi parent pickup](https://www.care2home.co/igi-airport-delhi-parent-pickup): Elderly parent airport pickup at Delhi IGI.
 - [T3 IGI Airport parent pickup](https://www.care2home.co/t3-igi-airport-parent-pickup): Terminal 3 IGI airport pickup for parents and seniors.
 
+## Other city airport pickup
+
+- [Jaipur Airport parent pickup](https://www.care2home.co/jaipur-airport-parent-pickup): Elderly parent pickup at Jaipur International Airport (JAI).
+- [Pune Airport parent pickup](https://www.care2home.co/pune-airport-parent-pickup): Parent pickup at Pune Lohegaon Airport (PNQ).
+- [Hyderabad Airport parent pickup](https://www.care2home.co/hyderabad-airport-parent-pickup): Parent pickup at Rajiv Gandhi International Airport (HYD).
+- [Bangalore Airport parent pickup](https://www.care2home.co/bangalore-airport-parent-pickup): Parent pickup at Kempegowda International Airport Bengaluru (BLR).
+
 ## Railway station parent pickup
 
 - [New Delhi Railway Station](https://www.care2home.co/new-delhi-railway-station-parent-pickup): Parent pickup from NDLS with doorstep drop.

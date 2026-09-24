@@ -20,6 +20,26 @@ const airports = [
       image: "/placeholder.svg",
     },
     {
+      name: "Jaipur Airport",
+      slug: "/jaipur-airport-parent-pickup",
+      image: "/placeholder.svg",
+    },
+    {
+      name: "Pune Airport",
+      slug: "/pune-airport-parent-pickup",
+      image: "/placeholder.svg",
+    },
+    {
+      name: "Hyderabad Airport",
+      slug: "/hyderabad-airport-parent-pickup",
+      image: "/placeholder.svg",
+    },
+    {
+      name: "Bangalore Airport",
+      slug: "/bangalore-airport-parent-pickup",
+      image: "/placeholder.svg",
+    },
+    {
       name: "Airport ↔ Station Transfer",
       slug: "/interchange-service",
       image: "/interchangeservice.png",
@@ -35,7 +55,7 @@ export default function ServiceAirport() {
           Serving Airtport
         </h2>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {airports.map((station, index) => (
             <Link key={index} href={station.slug}>
               <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
