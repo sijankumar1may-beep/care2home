@@ -16,7 +16,6 @@ import AsSeenOn from "@/components/AsSeenOn";
 import HeroBanner from "@/components/HeroBanner";
 import PricingModel from "@/components/PricingModel";
 import ReviewsPreview from "@/components/ReviewsPreview";
-import RevealOnScroll from "@/components/RevealOnScroll";
 import SEO from "@/components/Seo";
 import StickyButton from "@/components/StickyButton";
 import StructuredData from "@/components/StructuredData";
@@ -82,7 +81,7 @@ export default function Home() {
       <StructuredData id="home-service-schema" data={homePageSchema} />
 
       <HeroBanner />
-      <RevealOnScroll>
+      
         <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Parents Traveling Alone? We ensure they reach home safely with our
@@ -96,21 +95,21 @@ export default function Home() {
             className="w-full h-140"
           />
         </section>
-      </RevealOnScroll>
+      
 
-      <RevealOnScroll>
+      
         <ReviewsPreview />
-      </RevealOnScroll>
+     
 
       <section className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8 py-16">
-        <RevealOnScroll>
+       
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             How it works
           </h2>
-        </RevealOnScroll>
+        
 
         <div className="grid md:grid-cols-3 gap-8">
-          <RevealOnScroll delayMs={0}>
+          
             <Card>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -125,9 +124,7 @@ export default function Home() {
                 </p>
               </div>
             </Card>
-          </RevealOnScroll>
-
-          <RevealOnScroll delayMs={80}>
+          
             <Card>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -142,9 +139,9 @@ export default function Home() {
                 </p>
               </div>
             </Card>
-          </RevealOnScroll>
+         
 
-          <RevealOnScroll delayMs={160}>
+         
             <Card>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -159,9 +156,9 @@ export default function Home() {
                 </p>
               </div>
             </Card>
-          </RevealOnScroll>
+          
         </div>
-        <RevealOnScroll className="mt-10" delayMs={80}>
+       
           <iframe
             className="w-full h-140"
             src={howItWorksVideo.embedSrc}
@@ -169,17 +166,16 @@ export default function Home() {
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
-        </RevealOnScroll>
+        
       </section>
 
       <section className="bg-white py-16">
         <div className="mx-auto md:mx-8 px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll>
+         
             <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
               Why not just book a cab?
             </h2>
-          </RevealOnScroll>
-          <RevealOnScroll delayMs={60}>
+         
             <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
               A cab drops your parent at the gate. Our Care Companion ensures
               they&apos;re safe until they&apos;re home—whether you need airport
@@ -187,10 +183,10 @@ export default function Home() {
               citizens, or ongoing elderly travel assistance across India—with
               strong coverage in Delhi NCR.
             </p>
-          </RevealOnScroll>
+          
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <RevealOnScroll delayMs={0}>
+            
               <Card className="border-l-4 border-blue-600">
                 <div className="flex items-start space-x-4">
                   <UserCheck className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
@@ -205,9 +201,7 @@ export default function Home() {
                   </div>
                 </div>
               </Card>
-            </RevealOnScroll>
-
-            <RevealOnScroll delayMs={80}>
+           
               <Card className="border-l-4 border-green-600">
                 <div className="flex items-start space-x-4">
                   <HomeIcon className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
@@ -222,9 +216,7 @@ export default function Home() {
                   </div>
                 </div>
               </Card>
-            </RevealOnScroll>
-
-            <RevealOnScroll delayMs={160}>
+            
               <Card className="border-l-4 border-blue-600">
                 <div className="flex items-start space-x-4">
                   <Bell className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
@@ -239,9 +231,7 @@ export default function Home() {
                   </div>
                 </div>
               </Card>
-            </RevealOnScroll>
-
-            <RevealOnScroll delayMs={240}>
+           
               <Card className="border-l-4 border-green-600">
                 <div className="flex items-start space-x-4">
                   <Heart className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
@@ -256,42 +246,42 @@ export default function Home() {
                   </div>
                 </div>
               </Card>
-            </RevealOnScroll>
+           
           </div>
         </div>
-        <RevealOnScroll delayMs={80}>
+       
           <p className="text-center text-muted-foreground mt-10 max-w-lg mx-auto">
             A cab driver&apos;s job ends at the door. A{" "}
             <strong className="text-care-trust">Care Companion</strong> ensures
             your parent is safely home.
           </p>
-        </RevealOnScroll>
+       
       </section>
 
-      <RevealOnScroll>
+     
         <Safetyandtrust />
-      </RevealOnScroll>
-      <RevealOnScroll>
+     
+      
         <AsSeenOn />
-      </RevealOnScroll>
-      <RevealOnScroll>
+      
+      
         <DifferentTypesOfServices />
-      </RevealOnScroll>
-      <RevealOnScroll>
+      
+      
         <ServiceStations />
-      </RevealOnScroll>
-      <RevealOnScroll>
+      
+      
         <ServiceAirport />
-      </RevealOnScroll>
-      <RevealOnScroll>
+      
+      
         <ProvingTourPackages />
-      </RevealOnScroll>
-      <RevealOnScroll>
+      
+      
         <PricingModel />
-      </RevealOnScroll>
+      
 
       <section className="lg:px-8 py-16">
-        <RevealOnScroll animation="scale">
+        
           <Card className=" bg-gray-300 text-black text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to ensure safe travel for your parents?
@@ -317,7 +307,7 @@ export default function Home() {
               </Link>
             </div>
           </Card>
-        </RevealOnScroll>
+        
       </section>
       <StickyButton buttonTitle={`📞 Call Now — Parent Pickup | 24/7`} />
     </div>
