@@ -41,7 +41,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     "/pune-airport-parent-pickup",
     "/hyderabad-airport-parent-pickup",
     "/bangalore-airport-parent-pickup",
-    "/interchange-service"
+    "/interchange-service",
+    "/delhi-hospital-transfer",
+    "/nri-treatment-travel-delhi",
   ];
 
   const staticUrls = staticPages

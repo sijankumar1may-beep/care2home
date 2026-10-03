@@ -341,6 +341,29 @@ body {
   }
 }
 
+@keyframes slogan-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.slogan-track {
+  animation: slogan-scroll 22s linear infinite;
+}
+
+.slogan-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slogan-track {
+    animation: none;
+  }
+}
+
 @layer utilities {
   .animate-fade-in-up {
     animation: fade-in-up 0.45s ease-out both;

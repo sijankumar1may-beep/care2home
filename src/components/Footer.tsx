@@ -77,6 +77,22 @@ const Footer = () => {
                 <li>
                   <Link
                     className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/delhi-hospital-transfer"
+                  >
+                    Hospital Transfer (Delhi)
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
+                    href="/nri-treatment-travel-delhi"
+                  >
+                    NRI Treatment Travel
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:border-b-2 hover:border-white transition-colors"
                     href="/pricing"
                   >
                     Pricing
