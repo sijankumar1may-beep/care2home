@@ -60,38 +60,38 @@ export function getCabTypeLabel(cabType: CabType): string {
 export const pricingConfig: PricingConfig = {
   car: {
     "5_seater": {
-      baseFare: 260,
-      perKmRate: 20,
+      baseFare: 101,
+      perKmRate: 18,
       minimumFare: 0,
       label: "Car Service",
     },
     "7_seater": {
-      baseFare: 364,
-      perKmRate: 28,
+      baseFare: 151,
+      perKmRate: 25,
       minimumFare: 0,
       label: "Car Service",
     },
     "11_seater": {
-      baseFare: 572,
-      perKmRate: 44,
+      baseFare: 201,
+      perKmRate: 32,
       minimumFare: 0,
       label: "Car Service",
     },
   },
   auto: {
-    baseFare: 130,
+    baseFare: 80,
     perKmRate: 15,
     minimumFare: 0,
     label: "Auto Service",
   },
   careCompanionFee: 400,
   careCompanionTravelCharge: 80,
-  airportSurcharge: 200,
+  airportSurcharge: 100,
   airportSurchargeRules: {
     applyWhenOriginIsAirport: true,
     applyWhenDestinationIsAirport: true,
   },
-  railwaySurcharge: 100,
+  railwaySurcharge: 50,
   railwaySurchargeRules: {
     applyWhenOriginIsRailway: true,
     applyWhenDestinationIsRailway: true,
@@ -105,20 +105,20 @@ export const pricingConfig: PricingConfig = {
 export const pricingRangeConfig: PricingConfig = {
   car: {
     "5_seater": {
-      baseFare: 320,
-      perKmRate: 25,
+      baseFare: 131,
+      perKmRate: 22,
       minimumFare: 0,
       label: "Car Service",
     },
     "7_seater": {
-      baseFare: 448,
-      perKmRate: 35,
+      baseFare: 181,
+      perKmRate: 27,
       minimumFare: 0,
       label: "Car Service",
     },
     "11_seater": {
-      baseFare: 704,
-      perKmRate: 55,
+      baseFare: 211,
+      perKmRate: 33,
       minimumFare: 0,
       label: "Car Service",
     },
@@ -131,12 +131,12 @@ export const pricingRangeConfig: PricingConfig = {
   },
   careCompanionFee: 480,
   careCompanionTravelCharge: 130,
-  airportSurcharge: 250,
+  airportSurcharge: 110,
   airportSurchargeRules: {
     applyWhenOriginIsAirport: true,
     applyWhenDestinationIsAirport: true,
   },
-  railwaySurcharge: 100,
+  railwaySurcharge: 60,
   railwaySurchargeRules: {
     applyWhenOriginIsRailway: true,
     applyWhenDestinationIsRailway: true,
