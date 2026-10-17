@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
 
 Sitemap: https://www.care2home.co/sitemap.xml
 LLM-Context: https://www.care2home.co/llms.txt
