@@ -27,10 +27,10 @@ export default function Header() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.care2home"; // REPLACE WITH YOUR ACTUAL PLAY STORE URL
 
   return (
-    <div className="sticky top-0 z-50">
-    <nav className="bg-blue-800 shadow-sm">
-      <div className="mx-auto md:mx-8 px-6 sm:px-6 lg:px-8 min-h-20 flex items-center">
-        <div className="flex w-full justify-between items-center h-16">
+    
+    <nav className="bg-blue-800 shadow-sm sticky top-0 z-50 h-20 my-auto">
+      <div className="mx-auto md:mx-8 px-6 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           <Link
             href="/"
             className="flex items-center text-center space-x-2 pt-2"
@@ -41,7 +41,7 @@ export default function Header() {
               width={180}
               height={115}
               alt="logo"
-              className="rounded-lg mt-.5 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
+              className="rounded-lg mt-2 w-[115px] h-auto md:w-32 md:h-auto lg:w-[180px] lg:h-auto"
             />
             {/* <span className="text-xl font-semibold text-gray-900">Care2Home</span> */}
           </Link>
@@ -1093,7 +1093,6 @@ export default function Header() {
         </div>
       )}
     </nav>
-    <SloganMarquee />
-    </div>
+    
   );
 }
